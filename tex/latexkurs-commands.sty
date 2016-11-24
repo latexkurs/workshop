@@ -1,0 +1,55 @@
+% !TEX encoding = UTF-8 Unicode
+% © 2016 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\ProvidesPackage{latexkurs-commands}[2016/06/03 v0.1 handy commands ]
+
+\RequirePackage{
+	tikz,
+	xspace,
+	nag,
+}
+
+%% Package Options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+	family=latexkurs-commands,
+	prefix=ltxkurscmd@,
+}
+\DeclareBoolOption{shortverb}
+\ProcessKeyvalOptions{latexkurs-commands}
+
+%% Logos
+\RequirePackage{dantelogo, hologo}
+\providecommand{\TeXlive}{\TeX\,Live\xspace}
+\providecommand{\XeLaTeX}{\hologo{XeLaTeX}\xspace}
+\providecommand{\XeTeX}{\hologo{XeTeX}\xspace}
+\providecommand{\luaTeX}{\hologo{LuaTeX}\xspace}
+\providecommand{\MikTeX}{\hologo{MiKTeX}\xspace}
+\providecommand{\TikZ}{Ti\textit{k}Z\xspace}
+\providecommand{\BibTeX}{Bib\TeX\xspace}
+
+%% fancy-quotes
+\RequirePackage{tikz}
+	\newcommand*\openquote{\makebox(25,-22){\scalebox{7}{\fontspec{Linux Biolinum O}“}}}
+	\newcommand*\closequote{\makebox(25,-22){\scalebox{7}{\fontspec{Linux Biolinum O}”}}}
+	\newcommand*{\OpenQuote}{\tikz[remember picture,overlay,xshift=-15pt,yshift=-10pt]
+	     \node (OQ) {\openquote};}
+	\newcommand*{\CloseQuote}{\tikz[remember picture,overlay,xshift=15pt,yshift=10pt]
+	     \node (CQ) {\closequote};}
+	\newenvironment{fancyquote}%
+	{\hspace{-1em}\begin{quote}\OpenQuote\vspace*{1ex}\\\hspace*{1em}\begin{minipage}{.835\textwidth}}
+	{\end{minipage}\vspace*{3.8ex}\\\hfill\CloseQuote\end{quote}}
+	\newcommand\quoted[1]{\null\hfill{\scriptsize\sf #1}}
+
+%% Listings
+\providecommand{\meta}[1]{\textcolor{gray}{$\langle$\texttt{\textsl{#1}}$\rangle$}}
+\providecommand{\alert}{\relax} % for compatipillity with latexkurs-exercise
+\providecommand{\pkg}[1]{\href{http://ctan.org/pkg/#1}{\alert{\texttt{#1}}}}
+
+\RequirePackage{shortvrb}
+\ifltxkurscmd@shortverb
+	\MakeShortVerb{\|}
+%	\AtBeginDocument{\MakeShortVerb{\|}}
+\fi
