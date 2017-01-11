@@ -4,7 +4,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-slides}[2016/06/03 v0.1 beamer slides for LaTeX Course]
+\ProvidesClass{latexkurs-slides}[2017/01/02 v0.1 beamer slides for LaTeX Workshop]
 
 \LoadClass[aspectratio=43]{beamer}
 
@@ -62,7 +62,11 @@
 }
 \DeclareStringOption{titel}
 \DeclareStringOption{datum}
+\DeclareStringOption{datum1}
+\DeclareStringOption{datum2}
 \DeclareBoolOption{vorläufig}
+\DeclareBoolOption{kursA}
+\DeclareComplementaryOption{kursB}{kursA}
 \DeclareBoolOption{web}
 \DeclareBoolOption{noshortverb}
 \ProcessKeyvalOptions{latexkurs}
@@ -82,6 +86,11 @@
 \RequirePackage[useregional]{datetime2}
 \DTMusemodule{german}{german}
 \date{\DTMdate{\ltxkurs@datum}}
+%\ifltxkurs@kursA
+%	\date{\DTMdate{\ltxkurs@datum1}}
+%\else
+%	\date{\DTMdate{\ltxkurs@datum2}}
+%\fi
 
 %% Titlepage
 \title{Einführung in das Textsatzsystem \LaTeX{}}
@@ -114,6 +123,18 @@
 }{
 	\end{column}\begin{column}{.108\textwidth}\relax\end{column}\end{columns}
 }
+
+% provide “Arbeitsauftrag”-block
+\newenvironment{arbeitsauftrag}{
+	\begingroup
+	\setbeamercolor{block title}{use=structure,fg=white,bg=green!60!black}
+	\setbeamercolor{block body}{use=structure,fg=black,bg=green!20!white}
+	\begin{block}{Arbeitsauftrag}
+}{
+	\end{block}
+	\endgroup
+}
+
 
 %% PDF Annotations for web release
 \ifltxkurs@web
