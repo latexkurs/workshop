@@ -14,6 +14,9 @@
 	kursA,
 ]{../tex/latexkurs-slides}
 
+\usepackage{caption,booktabs}
+
+
 %% Notes:
 %% Zitate: Harvard-Methode (AuthorYear)
 
@@ -77,7 +80,7 @@
 \end{frame}
 
 \section{Worum geht es überhaupt?}
-\frame{\centering\alert{Teil I}\\\huge The Name of the Game}
+\teil{The Name of the Game}
 
 \subsection{\TeX}
 
@@ -190,7 +193,7 @@ print ( “ Hallo Welt! ” );
 Hallo Welt! \bye 
 \end{lstlisting}\quad\\[1em]
 	\pause
-	\textcolor{gray}{\texttt{\$ }}|tex dokument.tex|\\ erzeugt ein |.dvi|-Dokument und eine |.log|-Datei
+	\promt|tex dokument.tex|\\ erzeugt ein |.dvi|-Dokument und eine |.log|-Datei
 	% Live-Vorführung
 \end{frame}
 
@@ -203,7 +206,7 @@ Hallo Welt!
 \end{LTXexample}
 \pause\vfill
 \begin{arbeitsauftrag}
-Erstellen Sie Ihr erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ihrem Editor abtippen!
+Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ihrem Editor abtippen!
 \end{arbeitsauftrag}
 \end{frame}
 
@@ -218,8 +221,7 @@ Erstellen Sie Ihr erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 	\end{tabular}
 \end{frame}
 
-\section{grundlegende Bedienung}
-\frame{\centering\alert{Teil II}\\\huge Grundlegende Bedienung}
+\teil{Grundlegende Bedienung}
 
 \subsection{Dokumentenklassen}
 \begin{frame}{Dokumentenklassen}
@@ -391,8 +393,7 @@ Erstellen Sie Ihr erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 %	\end{description}
 %\end{frame}
 
-\section{typografische Grundlagen}
-\frame{\centering\alert{Teil III}\\\huge Typografische Grundlagen}
+\teil{Typografische Grundlagen}
 \subsection{Makrotypografie}
 
 \begin{frame}{Makrotypografie}
@@ -688,6 +689,7 @@ Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
 \item Fonts werden über spezielle Befehle geladen |\setmainfont[|\meta{Optionen}|]{|\meta{Name der Schrift}|}|
 \end{itemize}
 \begin{lstlisting}
+\usepackage{fontspec}
 \setromanfont{Linux Libertine O}
 \setsansfont{Linux Biolinum O}
 \setmonofont[Scale=.95]{DejaVu Sans Mono}
@@ -772,8 +774,8 @@ In der Regel reicht die Voreinstellung:
 			\end{itemize}
 \end{frame}
 
-\section{Sprachen}
-\frame{\centering\alert{Teil IV}\\\huge Sprachen, Dokumentation \& Fehlermeldungen}
+\teil{Sprachen, Dokumentation \& Fehlermeldungen}
+\subsection{Sprachen}
 \begin{frame}[fragile]{Sprachen}
 Dokument muss je nach Eingabesprache lokalisiert werden.
 \begin{itemize}
@@ -781,14 +783,32 @@ Dokument muss je nach Eingabesprache lokalisiert werden.
 	\item Bezeichnungen von Verzeichnissen, Kapiteln, …
 	\item typografische Besonderheiten
 \end{itemize}
+\vfill
 
 \begin{lstlisting}
 \usepackage{polyglossia}
 \setmainlanguage{german}
 \setotherlanguage{english}
 \end{lstlisting}
-%Umstellen der Sprache mittels\\
-%% todo
+\end{frame}
+
+\begin{frame}[fragile]{Sprache umschalten}
+\setmonofont[Scale=0.95]{Anonymous Pro}
+Befehl |\text|\meta{Sprache}|{|\meta{Text}|}| für einzelne Wörter\\
+Umgebung |\begin{|\meta{Sprache}|}| für längere Passagen
+\vfill\pause
+\begin{lstlisting}
+% in der Präambel:
+\setmainlanguage{english}
+\setotherlanguage{french, greek}
+
+% im Dokument:
+The document body is in English, but single words can be in \textgreek{ ελληνικά} or \textfrench{français}.
+
+\begin{french}
+  Il est également possible d'écrire des phrases entières en français.
+\end{french}
+\end{lstlisting}
 \end{frame}
 
 
@@ -815,7 +835,7 @@ Dokument muss je nach Eingabesprache lokalisiert werden.
 %\end{lstlisting}
 %\end{frame}
 
-\section{Dokumentation}
+\subsection{Dokumentation}
 \begin{frame}[fragile]{Dokumentation}
 	\begin{itemize}
 		\item \hologo{LaTeXTeX} ist hervorragend dokumentiert
@@ -827,29 +847,29 @@ Dokument muss je nach Eingabesprache lokalisiert werden.
 \begin{frame}[fragile]{Dokumentation}
 	Auf der Kommandozeile:
 	\begin{itemize}
-		\item |texdoc| durchsucht die \LaTeX-Ordner nach Dokumentationen
-		\item |texdox amsmath| öffnet |amsmath.pdf|
-		\item |texdoc -l amsmath| listet alle Ergebnisse auf
-		\item |texdoc -s amsmath| liefert Ergebnisse aus erweiterter Suche
-		\item |texdoc --help| zeigt eine Hilfe an
+		\item \promt|texdoc| durchsucht die \LaTeX-Ordner nach Dokumentationen
+		\item \promt|texdox amsmath| öffnet |amsmath.pdf|
+		\item \promt|texdoc -l amsmath| listet alle Ergebnisse auf
+		\item \promt|texdoc -s amsmath| liefert Ergebnisse aus erweiterter Suche
+		\item \promt|texdoc --help| zeigt eine Hilfe an
 	\end{itemize}
 	Graphische Oberfläche: |texdoctk|\\
 	Webservice: \url{http://texdoc.net}
 	\vfill\pause
 	\begin{arbeitsauftrag}
-		Öffnen Sie über den |texdoc|-Mechanismus die deutschsprachige Dokumentation der KOMA-Klassen.
+		Öffnen Sie über den |texdoc|-Mechanismus die deutschsprachige Dokumentation der KOMA-Skript-Klassen.
 	\end{arbeitsauftrag}
 \end{frame}
 
-\section{Fehlermeldungen}
+\subsection{Fehlermeldungen}
 \begin{frame}[t]{Umgang mit Fehlern}
-	\begin{block}{Was tun, wenn \LaTeX anhält?}
+	\begin{block}{Was tun, wenn \LaTeX\ anhält?}
 		\begin{itemize}
 			\item Ruhe bewahren! (\texttt{tex}-Dateien können nicht beschädigt werden)
 			\item Mit der Fehlersuche beim den letzten Änderungen anfangen.
 			\item Ggf. Schreibfehler korrigieren.
 			\item \texttt{log}-Datei Lesen!
-			\item Viele Editoren helfen bei der Fehlersuche, indem sie zur Zeile springen, in der der Fehler aufgetreten ist. (Das muss nicht die fehlerhafte Zeile sein.)
+			\item Viele Editoren helfen bei der Fehlersuche, indem sie zur Zeile springen, in der der Fehler aufgetreten ist.\\(Das muss nicht die fehlerhafte Zeile sein.)
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -885,9 +905,10 @@ l.60
 ⇒ Irgendwo nach itemize ein |}| oder ein |\end{}| vergessen.
 \end{frame}
 
+
 \begin{frame}{Vollständiges Minimalbeispiel}
 Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges Minimalbeispiel} (MWE) verlangt.
-\vskip1ex
+\vskip.8ex
 \begin{enumerate}
 \item solange Code aus dem Dokument löschen, bis der Fehler gerade noch auftritt
 \item alle überflüssigen Pakete entfernen
@@ -895,11 +916,162 @@ Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges 
 \item wenn Fehler nur bei viel Text auftritt, \pkg{blindtext} verwenden
 \end{enumerate}
 
-\vskip1ex
+\vskip.8ex
 
 Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
+
+\pause\vskip.8ex
+\begin{arbeitsauftrag}
+Laden Sie sich das Dokument \href{https://latexkurs.github.io/MA/uebung_fehlermeldungen.tex}{\texttt{uebung\_fehlermeldungen.tex}} von der Workshophomepage, erstellen Sie ein MWE und beheben Sie falls möglich alle Fehler.
+\end{arbeitsauftrag}
 \end{frame}
 
+
+\section{Gleitobjekte}
+\teil{Gleitobjekte}
+\subsection{allgemeine Gleitumgebungen}
+\begin{frame}{Was sind Gleitobjekte?}
+\begin{itemize}
+\item Objekte, die frei im Dokument „gleiten“ können
+\item Gleiten vermeidet große Leerräume
+\item \TeX\ versucht optimale Positionierung
+\item zu beachten:
+\begin{itemize}
+\item Objekte sollen nicht vor Referenzen auftauchen
+\item Objekte sollen nicht die Reihenfolge tauschen
+\item Seitenumbruch stark abhängig von Gleitobjekten
+\item \emph{optimaler Seitenumbruch ist mit \TeX\ nicht möglich!}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+Eine Gleitumgebung besteht aus verschiedenen Teilen:
+\begin{itemize}
+\item Inhalt (Bild, Tabelle, Text, \dots)
+\item automatische Bezeichnung: „Tabelle 1:“ (\verb|\caption|)
+\item Beschriftung: „Messergebnisse“ (Argument von \verb|\caption{}|)
+\item Markierung für Verweise: \verb|\label{fig:vergleichsdaten}|
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{itemize}
+\item \LaTeX\ verfügt über verschiedene Gleitumgebungen:
+\item \verb|table| für Tabellen
+\item \verb|figure| für Abbildungen
+\item Paket \pkg{float} ermöglicht Definition eigener Umgebungen
+\item für zweispaltigen Satz: \verb|table*|, \verb|figure*| über beide Spalten
+\end{itemize}
+\end{frame}
+
+\subsection{Positionierung}
+\begin{frame}[fragile]{Gleitumgebungen}
+\begin{block}{Positionierungsparameter für Gleitumgebungen:} 
+\verb|\begin{table}[|\meta{Parameter}\verb|]|
+\\
+\begin{description}
+\item[\texttt{!}] überschreibt interne Parameter
+\item[\texttt{h}] Objekt genau an dieser Stelle setzen
+\item[\texttt{t}] Objekt am Seitenanfang setzen
+\item[\texttt{b}] Objekt am Seitenende setzen
+\item[\texttt{p}] Objekt in Gleitobjektseite bzw. -spalte setzen
+\item[\texttt{H}] „genau hier und sonst nirgends“ – Paket \pkg{float}
+\end{description}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{table}
+\only<1>{
+	\begin{table}
+		\caption{\color{white}Eine sinnlose Tabelle}
+		\label{tab:sinnlos}
+	\end{table}
+}
+\vspace*{-2cm}
+\addtocounter{table}{-1}
+
+\begin{LTXexample}
+\begin{table}
+  \centering
+  \begin{tabular}{ccc}
+    a & b & c
+  \end{tabular}
+  \caption{Eine sinnlose Tabelle}
+  \label{tab:sinnlos}
+\end{table}
+
+Im Text kann man auf Tabelle
+\ref{tab:sinnlos} verweisen.
+\end{LTXexample}
+\end{frame}
+
+\subsection{fake-Gleitobjekte}
+\begin{frame}[fragile]{Nichtgleitende Gleitumgebungen}
+nichtgleitende Umgebungen als Gleitumgebungen ausgeben:\\
+Paket \pkg{caption}
+
+\begin{LTXexample}[pos=b]
+Eine kleine Abbildung in einem Text, die eigentlich gar keine ist:
+\begin{minipage}[b]{3cm}
+  \fbox{ ich bin kein Bild }
+  \captionof{figure}{test}
+\end{minipage}
+
+In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
+\end{LTXexample}
+\end{frame}
+
+\subsection{Grafiken}
+\begin{frame}[fragile]{externe Grafiken einbinden}
+	\begin{itemize}
+		\item Grundbefehl: |\includegraphics[|\meta{optionen}|]{|\meta{datei}|}|
+		\item Dateiendung muss nicht angegeben werden
+		\item bei Arbeit mit pdf- \emph{oder} dvi-Ausgabe:
+		\item[] Dateiendung besser weglassen
+		\item keine absoluten Pfadangaben verwenden (Portabilität)
+		\item nützlich, aber nicht ganz zuverlässig: |\graphicspath|
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{graphicx}
+	\begin{itemize}
+		\item \pkg{graphicx} erweitert \pkg{graphics}
+		\item |key=value|-Interface:
+		\item[] |[scale = 0.5,angle=50]|
+	\end{itemize}
+|graphics: \scalebox{0.5}{\includegraphics{a}}|\\
+|graphicx: \includegraphics[scale=.5]{a}|
+\end{frame}
+
+\begin{frame}[fragile]{Einbinden von Grafiken}
+\begin{LTXexample}[pos=b,rframe={}]
+\includegraphics[width=2cm]{raptor.pdf}
+\includegraphics[width=.3\textwidth,angle=25]{raptor}
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{Optionen für \texttt{includegraphics}}
+|\includegraphics| kennt viele Optionen, z.\,B.
+\\[2ex]
+\begin{tabular}{rl}
+|scale| & |0.8| \\
+|width| & |.2\textwidth|, |15pt|, … \\
+|height| & |2em|, |40mm|, … \\
+|keepaspectratio| & |true| oder |false|\\
+|angle|  & |50| \\
+|bb| & |0 0 10 20| \\
+|clip| & |true| oder |false|
+\end{tabular}
+\\[2ex]
+⇒ siehe Dokumentation zu \pkg{graphicx}
+\end{frame}
+
+\nocite{dante:einfuehrung, l2kurz}
+\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\printbibliography
+\end{frame}
 
 \AtEndDocument{\frame{\centering \Huge Happy \TeX ing}}
 

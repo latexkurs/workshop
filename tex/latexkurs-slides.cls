@@ -30,6 +30,7 @@
 	\setbeamercolor{alerted text}{fg=blue}
 	\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 	\setbeamertemplate{footline}[frame number]
+	\setbeamertemplate{caption}[numbered]
 }
 
 %% Listings
@@ -55,7 +56,7 @@
 }
 
 %% Option Handling
-\RequirePackage{kvoptions}
+\RequirePackage{kvoptions,ifthen}
 \SetupKeyvalOptions{
 	family=latexkurs,
 	prefix=ltxkurs@,
@@ -133,6 +134,14 @@
 }{
 	\end{block}
 	\endgroup
+}
+
+% \teil command for parts
+\newcounter{teil}
+\providecommand{\teil}[2][]{
+	\ifthenelse{\equal{#1}{}}{\section{#2}}{\section{#1}}
+	\stepcounter{teil}
+	\frame{\centering\alert{Teil \Roman{teil}}\\\huge #2}
 }
 
 
