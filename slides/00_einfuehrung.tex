@@ -14,7 +14,9 @@
 	kursA,
 ]{../tex/latexkurs-slides}
 
-\usepackage{caption,booktabs}
+\usepackage{caption,booktabs,siunitx}
+
+\setotherlanguages{russian,dutch}
 
 
 %% Notes:
@@ -64,25 +66,25 @@
 	\begin{block}{Übungen}
 		\begin{itemize}
 			\item Theorie und Praxisphasen wechseln sich ab.
-			\item Sie dürfen Beispiele \emph{jederzeit} selbst an Ihrem Computer nachmachen.
+			\item Sie dürfen (und sollen) Beispiele \emph{jederzeit} selbst an Ihrem Computer nachmachen.
 			\item Probieren Sie Neues ruhig \emph{sofort} aus …!
 			\item Fragen Sie gerne nach, wenn Sie etwas nicht hinkriegen.
 		\end{itemize}
 	\end{block}
 	\begin{block}{\LaTeX\ flavour}
-		Alle Inhalte dieses Kurses beziehen sich auf die (relativ moderne) \LaTeX-Variante \hologo{XeLaTeX}.
+		Die Inhalte dieses Kurses beziehen sich auf die (relativ moderne) \LaTeX-Variante \hologo{XeLaTeX}.
 	\end{block}
 \end{frame}
 
 
-\begin{frame}{Inhalt}
+\begin{frame}[t,allowframebreaks]{Inhalt}
 	\tableofcontents
 \end{frame}
 
-\section{Worum geht es überhaupt?}
-\teil{The Name of the Game}
-
-\subsection{\TeX}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\teil[Worum geht es überhaupt?]{The Name of the Game}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{\TeX}
 
 \begin{frame}[<+->][t]{The Name of the Game}
 	\begin{itemize}
@@ -221,9 +223,12 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 	\end{tabular}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Grundlegende Bedienung}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Klassen und Pakete}
+\subsubsection*{Dokumentenklassen}
 
-\subsection{Dokumentenklassen}
 \begin{frame}{Dokumentenklassen}
 	Dokumentenklassen legen grundlegende Eigenschaften des Dokuments fest:
 	\begin{itemize}
@@ -275,7 +280,7 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 \end{lstlisting}
 \end{frame}
 
-\subsection{Pakete}
+\subsubsection*{Pakete}
 \begin{frame}[fragile]{Pakete}
 \begin{itemize}
 \item Pakete bieten zusätzliche Funktionalität
@@ -393,7 +398,9 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 %	\end{description}
 %\end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Typografische Grundlagen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Makrotypografie}
 
 \begin{frame}{Makrotypografie}
@@ -404,6 +411,32 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 		\item Formatierung von Abständen
 		\item Aussehen von Verzeichnissen, Fußnoten, …
 	\end{itemize}
+	
+	\pause
+	
+	\begin{arbeitsauftrag}
+Laden Sie sich die Datei \href{http://latexkurs.github.io/MA/uebung_layout.tex}{\texttt{uebung\_layout.tex}} von der Workshopwebseite herunter. Vollziehen Sie daran nach und nach alle typografischen Einstellungen, die besprochen werden.
+
+Im Idealfall wählen Sie alle Werte so, dass Sie den Anforderungen an die Ihnen bevorstehende Abschlussarbeit genügen.
+\end{arbeitsauftrag}
+\end{frame}
+
+\begin{frame}{Vorgaben für VWL-Bachelorarbeiten}
+\begingroup
+\renewcommand{\familydefault}{\rmdefault}
+\begin{fancyquote}
+\vspace{-1ex}
+\normalfont\textbf{\Large Style}
+\begin{description}[Left and right margin]
+\item[Format] one-sided DIN A4
+\item[Font Size] \SI{12}{pt}
+\item[Line Spread] \SI{1.5}{pt}
+\item[Alignment] justiﬁed (“Blocksatz”)
+\item[Left and right margin] \SI{3}{\centi\meter}
+\end{description}
+\quoted{\itshape Guidelines for Bachelor theses}
+\end{fancyquote}
+\endgroup
 \end{frame}
 
 \begin{frame}{Der Satzspiegel}
@@ -479,7 +512,7 @@ oder:
 \usepackage{geometry}
 \geometry{top=2cm, bottom=5cm}
 \end{lstlisting}
-%Im Zweifelsfall besser z.\,B. auf |typearea| verlassen.
+
 \end{frame}
 
 
@@ -495,13 +528,26 @@ bindingoffset, textwidth, textheight
 twocolumn, columnsep, marginparsep, footnotesep
 headsep, footsep, nofoot, nohead
 hoffset, voffset, offset
+includehead, includefoot
 \end{verbatim}
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]{Zeilenabstand}
+Paket \pkg{setspace} erlaubt Anpassung der Zeilenabstände:
+\begin{lstlisting}
+\usepackage{setspace}
+\singlespacing
+\onehalfspacing
+\doublespacing
+\end{lstlisting}
+Abstand in Fußnoten, etc. bleibt dabei gleich.\\
+Finetuning: |\setstretch{|\meta{Faktor}|}|
+\end{frame}
 
 
-\subsection{Kopf- und Fußzeilen}
+
+\subsubsection*{Kopf- und Fußzeilen}
 \begin{frame}[fragile, t]{Kopf- und Fußzeilen}
 	\begin{itemize}
 		\item Kopf- und Fußzeilen enthalten wichtige Informationen über das Dokument 
@@ -595,61 +641,6 @@ Anpassung mittels z.\,B.\\|\lehead[|\meta{Inhalt plain.scrheadings}|]{|\meta{Inh
 \end{frame}
 
 
-
-\begin{frame}[fragile]{Umgebungen}
-\begin{itemize}
-\item \LaTeX-Dokumente werden oft von Umgebungen strukturiert:
-\end{itemize}
-
-|\begin{|\meta{Umgebung}|}[|\meta{ggf. opt. Argumente}|]{|\meta{ggf. Argumente}|}|\\
-\dots\\
-|\end{|\meta{Umgebung}|}|
-
-\begin{itemize}
-\item Am Anfang und Ende werden Befehle ausgeführt um bestimmtes Verhalten innerhalb der Umgebung zu erreichen.\\
-\item Jede Umgebnung ist eine Gruppierung (wie |{}|)\\⇒ Alle Einstellungen innerhalb einer Umgebung sind lokal.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Umgebungen}
-\begin{block}{wichtige Umgebungen}
-\begin{tabular}{ll}
-Aufzählung & |itemize| \\
-Nummerierung & |enumerate| \\
-wörtliche Wiedergabe & |verbatim| \\
-zweispaltiger Satz & |twocolumn|\\
-Zitat & |quotation| \\
-zentriert & |center|\\
-abgeschlossene Einheit & |minipage|\\
-Tabelle & |tabular|, |tabularx|, |tabulary|,\\
-         & |supertabular| etc. \\
-Abbildung & |figure| \\
-Gleitumgebung & |table| \\
-Beamerfolie & |frame| \\
-Gleichung & |align| (Mathe)\\
-Matrix & |matrix| (Mathe)\\
-\end{tabular}
-\end{block}
-\end{frame}
-
-\begin{frame}[fragile]{Umgebungen}{Einfache Listen}
-\begin{LTXexample}
-\begin{itemize}
-  \item Erster Punkt
-  \item Zweiter Punkt
-  \item[3] Dritter Punkt
-\end{itemize}
-\end{LTXexample}
-\begin{LTXexample}
-\begin{enumerate}
-  \item Erster Punkt
-  \item Zweiter Punkt
-  \item[3] Dritter Punkt
-\end{enumerate}
-\end{LTXexample}
-Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
-\end{frame}
-
 %% todo: inputenc/notwendigkeit von xelatex erklären?
 
 %\begin{frame}[fragile]{Eingabekodierung}
@@ -683,9 +674,21 @@ Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
 %\end{itemize}
 %\end{frame}
 
-\begin{frame}[fragile,t]{Schriften}
+\begin{frame}[fragile,t]{Schriftart}
 \begin{itemize}
-\item Paket |fontspec| erlaubt es auf Systemschriften (OTF, AAT, TTF) zuzugreifen.
+\item viele Schriften sind als Paket verfügbar und können mit |\usepackage{|\meta{Paketname}|}| geladen werden
+\begin{lstlisting}
+\usepackage{nimbusserif}
+\end{lstlisting}
+\item in \TeX live verfügbare Schriften sind im „\LaTeX\ Font Catalogue“ zu finden\\
+\url{http://www.tug.dk/FontCatalogue/}
+\qrcorner{http://www.tug.dk/FontCatalogue/}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]{Schriftart}
+\begin{itemize}
+\item Paket \pkg{fontspec} erlaubt es auf Systemschriften (OTF, AAT, TTF) zuzugreifen.
 \item Fonts werden über spezielle Befehle geladen |\setmainfont[|\meta{Optionen}|]{|\meta{Name der Schrift}|}|
 \end{itemize}
 \begin{lstlisting}
@@ -715,6 +718,65 @@ Wer \emph{genau weiß}, was er will: |\fontsize{|\meta{Größe}|}{|\meta{Durchsc
 \fontsize{10}{12}\selectfont
 \end{lstlisting}
 \end{frame}
+
+
+\begin{frame}[fragile]{Umgebungen}
+\begin{itemize}
+\item \LaTeX-Dokumente werden oft von Umgebungen strukturiert:
+\end{itemize}
+
+|\begin{|\meta{Umgebung}|}[|\meta{ggf. opt. Argumente}|]{|\meta{ggf. Argumente}|}|\\
+\dots\\
+|\end{|\meta{Umgebung}|}|
+
+\begin{itemize}
+\item Am Anfang und Ende werden Befehle ausgeführt um bestimmtes Verhalten innerhalb der Umgebung zu erreichen.\\
+\item Jede Umgebnung ist eine Gruppierung (wie |{}|)\\⇒ Alle Einstellungen innerhalb einer Umgebung sind lokal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Umgebungen}
+\begin{block}{wichtige Umgebungen}
+\begin{tabular}{ll}
+Aufzählung & |itemize| \\
+Nummerierung & |enumerate| \\
+Beschreibungsliste & |description|\\
+zeichengenaue Wiedergabe & |verbatim| \\
+zweispaltiger Satz & |twocolumn|\\
+Zitat & |quotation| \\
+kurzes Zitat & |quote| \\
+zentriert & |center|\\
+%abgeschlossene Einheit & |minipage|\\
+Tabelle & |tabular|, |tabularx|, |tabulary|,\\
+         & |supertabular| etc. \\
+Abbildung & |figure| \\
+Gleitumgebung & |table| \\
+Gleichung & |align| (Mathe)\\
+Matrix & |matrix| (Mathe)\\
+\end{tabular}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Umgebungen}{Einfache Listen}
+\begin{LTXexample}
+\begin{itemize}
+  \item Erster Punkt
+  \item Zweiter Punkt
+  \item[3] Dritter Punkt
+\end{itemize}
+\end{LTXexample}
+\begin{LTXexample}
+\begin{enumerate}
+  \item Erster Punkt
+  \item Zweiter Punkt
+  \item[3] Dritter Punkt
+\end{enumerate}
+\end{LTXexample}
+Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
+\end{frame}
+
+
 
 \subsection{Mikrotypografie}
 \begin{frame}[t]{Mikrotypografie}
@@ -774,67 +836,9 @@ In der Regel reicht die Voreinstellung:
 			\end{itemize}
 \end{frame}
 
-\teil{Sprachen, Dokumentation \& Fehlermeldungen}
-\subsection{Sprachen}
-\begin{frame}[fragile]{Sprachen}
-Dokument muss je nach Eingabesprache lokalisiert werden.
-\begin{itemize}
-	\item Umbruchregeln
-	\item Bezeichnungen von Verzeichnissen, Kapiteln, …
-	\item typografische Besonderheiten
-\end{itemize}
-\vfill
-
-\begin{lstlisting}
-\usepackage{polyglossia}
-\setmainlanguage{german}
-\setotherlanguage{english}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Sprache umschalten}
-\setmonofont[Scale=0.95]{Anonymous Pro}
-Befehl |\text|\meta{Sprache}|{|\meta{Text}|}| für einzelne Wörter\\
-Umgebung |\begin{|\meta{Sprache}|}| für längere Passagen
-\vfill\pause
-\begin{lstlisting}
-% in der Präambel:
-\setmainlanguage{english}
-\setotherlanguage{french, greek}
-
-% im Dokument:
-The document body is in English, but single words can be in \textgreek{ ελληνικά} or \textfrench{français}.
-
-\begin{french}
-  Il est également possible d'écrire des phrases entières en français.
-\end{french}
-\end{lstlisting}
-\end{frame}
 
 
-%\begin{frame}[fragile]{Standardpakete}
-%\hologo{pdfLaTeX}
-%\begin{lstlisting}
-%\usepackage[ngerman]{babel}
-%\usepackage[T1]{fontenc}
-%\usepackage[utf8]{inputenc}
-%\end{lstlisting}
-%\vfill
-%\XeLaTeX \pdfmarginpar{Das Paket xltxtra läd neben einigen XeTeX-spezifischen Definitionen fontspec automatisch, sodass fontspec hier nicht separat aufgerufen werden muss.}
-%\begin{lstlisting}
-%\usepackage{polyglossia}
-%\setmainlanguage{german}
-%\usepackage{xltxtra}
-%\end{lstlisting}
-%\vfill
-%\hologo{LuaLaTeX}
-%\begin{lstlisting}
-%\usepackage{fontspec}
-%\usepackage{polyglossia}
-%\setmainlanguage{german}
-%\end{lstlisting}
-%\end{frame}
-
+\teil{Dokumentation \& Fehlermeldungen}
 \subsection{Dokumentation}
 \begin{frame}[fragile]{Dokumentation}
 	\begin{itemize}
@@ -926,9 +930,118 @@ Laden Sie sich das Dokument \href{https://latexkurs.github.io/MA/uebung_fehlerme
 \end{arbeitsauftrag}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\teil{Sprachen} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Sprachen}
+Dokument muss je nach Eingabesprache lokalisiert werden.
+\begin{itemize}
+	\item Umbruchregeln
+	\item Bezeichnungen von Verzeichnissen, Kapiteln, …
+	\item typografische Besonderheiten
+\end{itemize}
+\vfill
 
-\section{Gleitobjekte}
+\begin{lstlisting}
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\setotherlanguage{english}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Sprachen laden}
+	|\setmainlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|
+	|\setotherlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|
+	|\setotherlanguages{|\meta{Sprachen}|}|\\[1em]\pause
+	\begin{center}
+		\scriptsize
+		\begin{tabular}{*{5}{l}}
+			\multicolumn{5}{l}{\normalsize Vefügbare Sprachen:}\\
+			\toprule
+			albanian & danish & icelandic & nko & slovenian\\
+			amharic & divehi & interlingua & norsk & spanish\\
+			arabic & dutch & irish & nynorsk & swedish\\
+			armenian & english & italian & occitan & syriac\\
+			asturian & esperanto & kannada & piedmontese & tamil\\
+			bahasai & estonian & khmer & polish & telugu\\
+			bahasam & farsi & korean & portuges & thai\\
+			basque & finnish & lao & romanian & tibetan\\
+			bengali & french & latin & romansh & turkish\\
+			brazil[ian] & friulan & latvian & russian & turkmen\\
+			breton & galician & lithuanian & samin & ukrainian\\
+			bulgarian & german & lsorbian & sanskrit & urdu\\
+			catalan & greek & magyar & scottish & usorbian\\
+			coptic & hebrew & malayalam & serbian & vietnamese\\
+			croatian & hindi & marathi & slovak & welsh\\
+			czech \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Sprache umschalten}
+\setmonofont[Scale=0.95]{Anonymous Pro}
+Befehl |\text|\meta{Sprache}|{|\meta{Text}|}| für einzelne Wörter\\
+Umgebung |\begin{|\meta{Sprache}|}| für längere Passagen
+\vfill\pause
+\begin{lstlisting}
+% in der Präambel:
+\setmainlanguage{english}
+\setotherlanguage{french, greek}
+
+% im Dokument:
+The document body is in English, but single words can be in \textgreek{ ελληνικά} or \textfrench{français}.
+
+\begin{french}
+  Il est également possible d'écrire des phrases entières en français.
+\end{french}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Lokalisierte Objekte}
+Bezeichnung von Elementen im Text passen sich der Sprache an:
+\begin{lstlisting}[basicstyle={\fontspec[Scale=0.9]{Anonymous Pro}}]
+heute ist der \today \\
+\textenglish{today is \today}\\
+\textrussian{ сегодня, является \today }
+\end{lstlisting}
+\framebox[\textwidth][l]{\parbox{.9\textwidth}{
+	heute ist der \today \\
+	\textenglish{today is \today}\\
+	\textrussian{ сегодня, является \today }
+}}
+
+\end{frame}
+
+
+%\begin{frame}[fragile]{Standardpakete}
+%\hologo{pdfLaTeX}
+%\begin{lstlisting}
+%\usepackage[ngerman]{babel}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+%\end{lstlisting}
+%\vfill
+%\XeLaTeX \pdfmarginpar{Das Paket xltxtra läd neben einigen XeTeX-spezifischen Definitionen fontspec automatisch, sodass fontspec hier nicht separat aufgerufen werden muss.}
+%\begin{lstlisting}
+%\usepackage{polyglossia}
+%\setmainlanguage{german}
+%\usepackage{xltxtra}
+%\end{lstlisting}
+%\vfill
+%\hologo{LuaLaTeX}
+%\begin{lstlisting}
+%\usepackage{fontspec}
+%\usepackage{polyglossia}
+%\setmainlanguage{german}
+%\end{lstlisting}
+%\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Gleitobjekte}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{allgemeine Gleitumgebungen}
 \begin{frame}{Was sind Gleitobjekte?}
 \begin{itemize}
@@ -952,6 +1065,8 @@ Eine Gleitumgebung besteht aus verschiedenen Teilen:
 \item automatische Bezeichnung: „Tabelle 1:“ (\verb|\caption|)
 \item Beschriftung: „Messergebnisse“ (Argument von \verb|\caption{}|)
 \item Markierung für Verweise: \verb|\label{fig:vergleichsdaten}|
+\item[]\pause
+\item Label kann mit |\ref{fig:vergleichsdaten}| im Text referenziert werden
 \end{itemize}
 \end{frame}
 
@@ -965,7 +1080,7 @@ Eine Gleitumgebung besteht aus verschiedenen Teilen:
 \end{itemize}
 \end{frame}
 
-\subsection{Positionierung}
+\subsubsection*{Positionierung}
 \begin{frame}[fragile]{Gleitumgebungen}
 \begin{block}{Positionierungsparameter für Gleitumgebungen:} 
 \verb|\begin{table}[|\meta{Parameter}\verb|]|
@@ -1024,25 +1139,21 @@ In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
 
 \subsection{Grafiken}
 \begin{frame}[fragile]{externe Grafiken einbinden}
+\begin{lstlisting}
+\usepackage{graphicx}
+\end{lstlisting}
 	\begin{itemize}
 		\item Grundbefehl: |\includegraphics[|\meta{optionen}|]{|\meta{datei}|}|
+		\item |key=value|-Interface:
+		\item[] |[scale = 0.5, angle=50]|
 		\item Dateiendung muss nicht angegeben werden
-		\item bei Arbeit mit pdf- \emph{oder} dvi-Ausgabe:
-		\item[] Dateiendung besser weglassen
+%		\item bei Arbeit mit pdf- \emph{oder} dvi-Ausgabe:
+%		\item[] Dateiendung besser weglassen
 		\item keine absoluten Pfadangaben verwenden (Portabilität)
-		\item nützlich, aber nicht ganz zuverlässig: |\graphicspath|
+%		\item nützlich, aber nicht ganz zuverlässig: |\graphicspath|
 	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{graphicx}
-	\begin{itemize}
-		\item \pkg{graphicx} erweitert \pkg{graphics}
-		\item |key=value|-Interface:
-		\item[] |[scale = 0.5,angle=50]|
-	\end{itemize}
-|graphics: \scalebox{0.5}{\includegraphics{a}}|\\
-|graphicx: \includegraphics[scale=.5]{a}|
-\end{frame}
 
 \begin{frame}[fragile]{Einbinden von Grafiken}
 \begin{LTXexample}[pos=b,rframe={}]
@@ -1068,10 +1179,47 @@ In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
 ⇒ siehe Dokumentation zu \pkg{graphicx}
 \end{frame}
 
-\nocite{dante:einfuehrung, l2kurz}
+\begin{frame}[fragile]{Mehrere Bilder in einer Abbildung}
+\begin{lstlisting}
+\usepackage{subcaption}
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \includegraphics{bild1}
+    \caption{Erstes Teilbild}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \includegraphics{bild2}
+    \caption{Zweites Teilbild}
+  \end{subfigure}
+  \caption{Bildunterschrift für beide Bilder}
+\end{figure}
+\end{lstlisting}
+
+Paket \pkg{subcaption}  bietet Umgebung |subfigure| innerhalb von |figure|.
+\end{frame}
+
+\nocite{dante:einfuehrung, l2kurz, bringhurst, dante:koma, polyglossia, graphicscompanion}
 \begin{frame}[allowframebreaks]{Weiterführende Literatur}
 \printbibliography
 \end{frame}
+
+
+% Inhalte des zweiten Workshop-Tages
+%\subsection{\quad}
+\subsection{\quad}
+\section{Bibliografien}
+\subsection{biblatex}
+\subsection{Verwaltung von Referenzen}
+\section{Mathematiksatz}
+\section{Tabellen}
+\subsection{schöne Taqbellen}
+\subsection{automatische Spaltenbreite}
+\subsection{mehrseitige Tabellen}
+\section{Diagramme}
+\section{Umfangreichere Projekte}
+
+
 
 \AtEndDocument{\frame{\centering \Huge Happy \TeX ing}}
 

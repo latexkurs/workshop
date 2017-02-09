@@ -118,6 +118,18 @@
 		};
 	\end{tikzpicture}
 }
+
+\providecommand{\qrcorner}[1]{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node [xshift=-2.08cm,yshift=2cm, href node={#1}] at (current page.south east)
+		{
+			\scalebox{.55}{\parbox{4.1cm}{
+				\qrcode[height=4cm]{#1}
+			}}
+		};
+	\end{tikzpicture}
+}
+
 % provide column layout for pages containing overleaf QRcode:
 \newenvironment{olcol}{
 	\begin{columns}\begin{column}{.8\textwidth}
