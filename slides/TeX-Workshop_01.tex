@@ -1,16 +1,16 @@
-% !TEX TS-program = xelatex
+% !TEX TS-program = lualatex
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = de_DE
-% © 2017 Moritz Brinkmann, CC-by-sa
-% http://latexkurs.github.io/MA
+% © 2017-2021 Moritz Brinkmann, CC-by-sa
+% https://ma.latexkurs.de
 
 \documentclass[
 	vorläufig=false,
-	datum=2017-02-11,
-	datum1=2017-02-11,
-	datum2=2017-02-25,
+	datum=2022-02-19,
+	datum1=2022-02-19,
+	datum2=2022-03-05,
 	titel={erster Tag},
-	web=false,
+	web=true, handout,
 	kursA,
 ]{../tex/latexkurs-slides}
 
@@ -25,20 +25,32 @@
 
 \begin{document}
 
+\begin{frame}{Lernziele}
+Nach den zwei Workshop-Tagen können Sie …
+\begin{itemize}
+\item einfache Dokumente in \LaTeX\ setzen
+\item Hilfestellungen in Klassen- und Paketdokumentationen auffinden
+\item mehrsprachige Dokumente erstellen
+\item Abbildungen einbinden und Tabellen anlegen
+\item Referenzapparate erzeugen
+\item mathematische Formeln setzen
+\item größere Projekte strukturieren
+\end{itemize}
+\end{frame}
 
-\begin{frame}[t]{Organisatorisches}%{Allgemeines}
+\begin{frame}<handout:0>[t]{Organisatorisches}%{Allgemeines}
 	\begin{block}<1->{Termine}
 		\begin{itemize}
-			\item	 zwei Sitzungen:
-			\begin{itemize}
-				\iftrue
-				\item Samstag 11. Februar
-				\item Samstag 18. Februar
-				\else
-				\item Samstag 25. Februar
-				\item Samstag \phantom24. März
-				\fi
-			\end{itemize}
+			\item	zwei Sitzungen:
+				\begin{itemize}
+				\kursAB{
+					\item Samstag 19. Februar (heute)
+					\item Sonntag 20. Februar (morgen)
+				}{
+					\item Samstag 5. März (heute)
+					\item Sonntag 6. März (morgen)
+				}
+				\end{itemize}
 			jeweils 10 bis 15 Uhr
 			\item ca. 45 Minuten Pause
 		\end{itemize}
@@ -47,8 +59,8 @@
 		\begin{columns}
 			\column{.7\textwidth}
 				\begin{itemize}
-					\item Alle Materialien stehen auf der \href{http://latexkurs.github.io/MA}{Workshophomepage} zum Download:\\[1ex]
-					\url{http://latexkurs.github.io/MA}\\\quad
+					\item Alle Materialien stehen auf der \href{https://ma.latexkurs.de}{Workshophomepage} oder im \href{https://ilias.uni-mannheim.de/goto.php?target=fold_1226497&client_id=ILIAS}{ILIAS} zum Download:\\[1ex]
+					\url{https://ma.latexkurs.de/}\\\quad
 				\end{itemize}
 			\column{.25\textwidth}
 				\vspace*{-2mm}
@@ -56,7 +68,52 @@
 				\begin{minipage}{1.05in}
 					\centering
 					\textcolor{white}{\rule{0.9in}{0.9in}}\vspace*{-0.86in}
-					\qrcode{http://latexkurs.github.io/MA}
+					\qrcode{https://ma.latexkurs.de}
+				\end{minipage}
+			\end{columns}
+	\end{block}
+\end{frame}
+
+\begin{frame}<all:0| handout:99>[t]{Organisatorisches}%{Allgemeines}
+	\begin{block}{Termine}
+		\begin{itemize}
+			\item zwei Sitzungen je Termin:
+			\vspace*{-1.2ex}
+				\begin{columns}
+					\column{0.26\textwidth}
+					\begin{itemize}\setlength{\itemsep}{0pt}
+							\item Samstag 19. Februar
+							\item Sonntag 20. Februar
+					\end{itemize}
+					\column{0.04\textwidth}
+						\emph{oder}
+					\column{0.26\textwidth}
+					\begin{itemize}\setlength{\itemsep}{0pt}
+						\item Samstag 5. März
+						\item Sonntag 6. März
+					\end{itemize}
+					\column{0.1\textwidth}
+						\vspace{1.5cm}
+				\end{columns}
+%				\vspace{1ex}
+			\item jeweils 10 bis 15 Uhr
+			\item ca. 45 Minuten Pause
+		\end{itemize}
+	\end{block}
+	\begin{block}{Materialien}
+		\begin{columns}
+			\column{.7\textwidth}
+				\begin{itemize}
+					\item Alle Materialien stehen auf der \href{https://ma.latexkurs.de}{Workshophomepage} oder im \href{https://ilias.uni-mannheim.de/goto.php?target=fold_1226497&client_id=ILIAS}{ILIAS} zum Download:\\[1ex]
+					\url{https://ma.latexkurs.de/}\\[1em]\quad
+				\end{itemize}
+			\column{.25\textwidth}
+				\vspace*{-2mm}
+				
+				\begin{minipage}{1.05in}
+					\centering
+					\textcolor{white}{\rule{0.9in}{0.9in}}\vspace*{-0.86in}
+					\qrcode{https://ma.latexkurs.de}
 				\end{minipage}
 			\end{columns}
 	\end{block}
@@ -69,11 +126,15 @@
 			\item Sie dürfen (und sollen) Beispiele \emph{jederzeit} selbst an Ihrem Computer nachmachen.
 			\item Probieren Sie Neues ruhig \emph{sofort} aus …!
 			\item Fragen Sie gerne nach, wenn Sie etwas nicht hinkriegen.
+			\item Falls Sie \href{https://www.overleaf.com?r=60500875&rm=d&rs=b}{Overleaf} nutzen können Sie Ihren Quellcode bei Fragen mit \href{mailto:overleaf@latexkurs.de}{\texttt{overleaf@latexkurs.de}} teilen.
 		\end{itemize}
 	\end{block}
-	\begin{block}{\LaTeX\ flavour}
-		Die Inhalte dieses Kurses beziehen sich auf die (relativ moderne) \LaTeX-Variante \hologo{XeLaTeX}.
-	\end{block}
+%	\begin{olcol}
+		\begin{block}{\LaTeX\ flavour}
+			Die Inhalte dieses Kurses beziehen sich auf die (relativ moderne) Variante \hologo{LuaLaTeX}.
+		\end{block}
+%	\end{olcol}
+%	\overleaf{tex00}
 \end{frame}
 
 
@@ -81,9 +142,9 @@
 	\tableofcontents
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil[Worum geht es überhaupt?]{The Name of the Game}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{\TeX}
 
 \begin{frame}[<+->][t]{The Name of the Game}
@@ -148,7 +209,7 @@
 \end{frame}
 
 \begin{frame}[t]{Wie funktioniert \TeX?}
-	\begin{columns}
+	\begin{columns}[t]
 		\begin{column}{.45\textwidth}
 			\begin{block}{Vorteile}
 				\begin{itemize}
@@ -223,9 +284,9 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 	\end{tabular}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Grundlegende Bedienung}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Klassen und Pakete}
 \subsubsection*{Dokumentenklassen}
 
@@ -248,36 +309,16 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 		report & Reporte, Tagungsberichte\\
 		book & Bücher\\
 		letter & Briefe\\
-		minimal & Für Minimalbeispiele\\ \\
+		minimal & für Minimalbeispiele\\ \\
 		&\kern-1.5cm \bf KOMA-Script\\
 		scrartcl & Erweiterung von article\\
 		scrreprt & Erweiterung von report\\
 		scrbook & Erweiterung von book\\
-		scrlttr2 & Sehr mächtige Briefklasse\\ \\
+		scrlttr2 & sehr mächtige Briefklasse\\ \\
 		&\kern-1.5cm \bf Spezialklassen\\
-		beamer & Für Präsentationen\\
-		tikzposter & Wissenschaftliche Poster
+		beamer & für Präsentationen\\
+		tikzposter & wissenschaftliche Poster
 	\end{tabular}
-\end{frame}
-
-\begin{frame}[fragile]{Gliederungsbefehle}
-\begin{itemize}
-\item Gliederungen strukturieren Dokumente,
-\item ermöglichen automatische Nummerierung, Eintragung in Verzeichnisse, Kolumnentitel etc.
-\item Werden von der Dokumentenklasse festgelegt
-\item Grundstruktur im Kernel definiert
-\item[⇒] bestimmte Elemente immer verfügbar
-\end{itemize}
-\vfill
-\begin{lstlisting}
-\part{Band I}
-\chapter{Kapitel}
-\section{Abschnitt}
-\subsection{Unterabschnitt}
-\subsubsection{Unterunterabschnitt}
-\paragraph{Paragraph}
-\subparagraph{Unterparagraph}
-\end{lstlisting}
 \end{frame}
 
 \subsubsection*{Pakete}
@@ -300,21 +341,44 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 \end{itemize}
 \end{frame}
 
-\iffalse
-\begin{frame}{Kleine Auswahl an Paketen}
-	\begin{tabular}{rl}
-		graphics/x & bietet (erweiterte) Grafikunterstützung\\
-		amsmath & Verbesserungen, Erweiterungen für den Mathesatz\\
-		babel/polyglossia & Spachrensupport (Umbruchregeln, …)\\
-		inputenc & ermöglicht verschiedene Eingabekodierungen\\
-		fontenc & ermöglicht verschiedene Fontkodierungen\\
-		lmodern & Stellt auf die lmodern-Schriften um\\
-		fontspec & ermöglicht Nutzung von Systemschriften\\
-		tikz & sehr mächtige Zeichenumgebung\\
-		\vdots & \vdots
-	\end{tabular}
+\begin{frame}[fragile]{Gliederungsbefehle}
+	\begin{itemize}
+		\item Gliederungen strukturieren Dokumente
+		\item ermöglichen automatische Nummerierung, Eintragung in Verzeichnisse, Kolumnentitel etc.
+		\item Werden von der Dokumentenklasse festgelegt
+		\item Grundstruktur im Kernel definiert
+		\item[⇒] bestimmte Elemente immer verfügbar
+	\end{itemize}
+	\vfill
+	\begin{olcol}
+\begin{lstlisting}
+\part{Band I}
+\chapter{Kapitel}
+\section{Abschnitt}
+\subsection{Unterabschnitt}
+\subsubsection{Unterunterabschnitt}
+\paragraph{Paragraph}
+\subparagraph{Unterparagraph}
+\end{lstlisting}
+	\end{olcol}
+	\overleaf*{tex01}
 \end{frame}
-\fi
+
+
+%\begin{frame}{Kleine Auswahl an Paketen}
+%	\begin{tabular}{rl}
+%		graphics/x & bietet (erweiterte) Grafikunterstützung\\
+%		amsmath & Verbesserungen, Erweiterungen für den Mathesatz\\
+%		babel/polyglossia & Spachrensupport (Umbruchregeln, …)\\
+%		inputenc & ermöglicht verschiedene Eingabekodierungen\\
+%		fontenc & ermöglicht verschiedene Fontkodierungen\\
+%		lmodern & Stellt auf die lmodern-Schriften um\\
+%		fontspec & ermöglicht Nutzung von Systemschriften\\
+%		tikz & sehr mächtige Zeichenumgebung\\
+%		\vdots & \vdots
+%	\end{tabular}
+%\end{frame}
+
 
 \begin{frame}[c,fragile]{Grundbefehle}{allgemein}
 \begin{tabular}{ll}
@@ -333,6 +397,7 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 |\tableofcontents| & Produziert Inhaltsverzeichnis\\
 |\today| & aktuelles Datum
 \end{tabular}
+\overleaf{tex01}
 \end{frame}
 
 \subsection{Grundbefehle}
@@ -349,6 +414,7 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 |\Huge| & \Huge noch riesiger\\
 \end{tabular}
 %Manuelle Anpassung: |\fontsize{10}{12}\selectfont|
+\overleaf{tex01}
 \end{frame}
 
 \begin{frame}[c]{Hilfsdateien}
@@ -398,9 +464,9 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 %	\end{description}
 %\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Typografische Grundlagen}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Makrotypografie}
 
 \begin{frame}{Makrotypografie}
@@ -413,12 +479,14 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 	\end{itemize}
 	
 	\pause
-	
-	\begin{arbeitsauftrag}
-Laden Sie sich die Datei \href{http://latexkurs.github.io/MA/uebung_layout.tex}{\texttt{uebung\_layout.tex}} von der Workshopwebseite herunter. Vollziehen Sie daran nach und nach alle typografischen Einstellungen, die besprochen werden.
-
-Im Idealfall wählen Sie alle Werte so, dass Sie den Anforderungen an die Ihnen bevorstehende Abschlussarbeit genügen.
-\end{arbeitsauftrag}
+	\begin{olcol}
+		\begin{arbeitsauftrag}
+			Laden Sie sich die Datei \href{http://latexkurs.github.io/MA/uebung_layout.tex}{\texttt{uebung\_layout.tex}} von der Workshopwebseite herunter. Vollziehen Sie daran nach und nach alle typografischen Einstellungen, die besprochen werden.
+		
+			Im Idealfall wählen Sie alle Werte so, dass Sie den Anforderungen an die Ihnen bevorstehende Abschlussarbeit genügen.
+		\end{arbeitsauftrag}
+	\end{olcol}
+	\overleaf{tex02}
 \end{frame}
 
 \begin{frame}{Vorgaben für VWL-Bachelorarbeiten}
@@ -431,10 +499,10 @@ Im Idealfall wählen Sie alle Werte so, dass Sie den Anforderungen an die Ihnen 
 \item[Format] one-sided DIN A4
 \item[Font Size] \SI{12}{pt}
 \item[Line Spread] \SI{1.5}{pt}
-\item[Alignment] justiﬁed (“Blocksatz”)
+\item[Alignment] justified (“Blocksatz”)
 \item[Left and right margin] \SI{3}{\centi\meter}
 \end{description}
-\quoted{\itshape Guidelines for Bachelor theses}
+\quoted{\itshape \href{https://www.vwl.uni-mannheim.de/media/Fakultaeten/vwl/Dokumente/20141105_Guidelines.pdf}{Guidelines for Bachelor theses}}
 \end{fancyquote}
 \endgroup
 \end{frame}
@@ -479,19 +547,20 @@ Im Idealfall wählen Sie alle Werte so, dass Sie den Anforderungen an die Ihnen 
 %% Markus Kohm: „Satzspiegelkonstruktionen im Vergleich“ http://www.dante.de/tex/Dokumente/KohmSatzspiegel.pdf
 
 \begin{frame}{Satzspiegel bei Gutenberg}
-	\hspace{5.4cm}\includegraphics[height=5.95cm]{gutenbergbibel}
+	\hspace{7.00cm}\includegraphics[height=5.95cm]{gutenbergbibel}
 \end{frame}
 
 \begin{frame}[fragile]{Satzspiegel mit KOMA-Skript}
 \begin{itemize}
-	\item KOMA-Skript bietet optimale Satzspiegelkonstruktion mittels eigenem Paket |typearea|
-	\item Anpassung eigentlich nur bei besonders breiten oder engen Schriften nötig: Option |DIV=|\meta{Faktor}
+	\item KOMA-Skript bietet optimale Satzspiegelkonstruktion mittels eigenem Paket \pkg{typearea}
+	\item Anpassung eigentlich nur bei besonders breiten oder engen Schriften nötig:
+	\\Option |DIV=|\meta{Faktor}
 	\\Autom. Berechnung anhand der Seitengröße: |DIV=calc| 
 	\\Berechnung nach mittelalterl. Buchseitenkanon: |DIV=classic|
 	\item Bindekorrektur mittels Option |BCOR=|\meta{Länge}
 \end{itemize}
 \begin{lstlisting}
-\documentclass[DIV=9, BCOR=12mm]{scrbook}	
+\documentclass[DIV=9, BCOR=12mm]{scrbook}
 \end{lstlisting}
 \vfill
 \begin{olcol}
@@ -503,7 +572,7 @@ Bei Nicht-KOMA-Klassen muss |typearea| direkt geladen werden:
 \end{frame}
 
 \begin{frame}[fragile]{Satzspiegel mit |geometry|}
-Paket |geometry|  erlaubt manuelle Einstellung des Satzspiegels:
+Paket \pkg{geometry}  erlaubt manuelle Einstellung des Satzspiegels:
 \begin{lstlisting}
 \usepackage[top=2cm, bottom=5cm]{geometry}
 \end{lstlisting}
@@ -512,7 +581,6 @@ oder:
 \usepackage{geometry}
 \geometry{top=2cm, bottom=5cm}
 \end{lstlisting}
-
 \end{frame}
 
 
@@ -531,6 +599,10 @@ hoffset, voffset, offset
 includehead, includefoot
 \end{verbatim}
 \end{block}
+%\pause
+%\begin{arbeitsauftrag}
+%Stellen Sie in Ihrem Dokument Ränder links und rechts von \SI{3}{\centi\meter} ein.
+%\end{arbeitsauftrag}
 \end{frame}
 
 \begin{frame}[fragile]{Zeilenabstand}
@@ -543,6 +615,10 @@ Paket \pkg{setspace} erlaubt Anpassung der Zeilenabstände:
 \end{lstlisting}
 Abstand in Fußnoten, etc. bleibt dabei gleich.\\
 Finetuning: |\setstretch{|\meta{Faktor}|}|
+%\pause
+%\begin{arbeitsauftrag}
+%Vergrößern Sie den Zeilenabstand Ihres Dokuments auf \num{1.5}.
+%\end{arbeitsauftrag}
 \end{frame}
 
 
@@ -559,6 +635,7 @@ Finetuning: |\setstretch{|\meta{Faktor}|}|
 		\item Auswahl über |\pagestyle{|\meta{Seitenstil}|}| oder |\thispagestyle{|\meta{Seitenstil}|}| 
 		\item Voreinstellungen: |empty|, |plain|, |headings|
 	\end{itemize}
+\overleaf{tex03}
 \end{frame}
 
 
@@ -680,16 +757,17 @@ Anpassung mittels z.\,B.\\|\lehead[|\meta{Inhalt plain.scrheadings}|]{|\meta{Inh
 \begin{lstlisting}
 \usepackage{nimbusserif}
 \end{lstlisting}
-\item in \TeX live verfügbare Schriften sind im „\LaTeX\ Font Catalogue“ zu finden\\
-\url{http://www.tug.dk/FontCatalogue/}
-\qrcorner{http://www.tug.dk/FontCatalogue/}
+\item in \TeX live verfügbare Schriften sind im „\href{http://www.tug.dk/FontCatalogue/}{\LaTeX\ Font Catalogue}“ zu finden\\
+\url{http://www.tug.dk/FontCatalogue/}\\[1em]
+\qrcode[height=24.75mm]{http://www.tug.dk/FontCatalogue/}
+\overleaf{tex04}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile,t]{Schriftart}
 \begin{itemize}
 \item Paket \pkg{fontspec} erlaubt es auf Systemschriften (OTF, AAT, TTF) zuzugreifen.
-\item Fonts werden über spezielle Befehle geladen |\setmainfont[|\meta{Optionen}|]{|\meta{Name der Schrift}|}|
+\item Fonts werden über spezielle Befehle geladen \\|\setmainfont[|\meta{Optionen}|]{|\meta{Name der Schrift}|}|
 \end{itemize}
 \begin{lstlisting}
 \usepackage{fontspec}
@@ -702,6 +780,7 @@ Anpassung mittels z.\,B.\\|\lehead[|\meta{Inhalt plain.scrheadings}|]{|\meta{Inh
 \item Laden bestimmter Schriften oder Features im Dokument mit\\|\fontspec{|\meta{Name der Schrift}|}[|\meta{Features}|]|
 \end{itemize}
 \end{olcol}
+\overleaf{tex04}
 \end{frame}
 
 \begin{frame}[fragile]{Schriftgröße}%
@@ -717,6 +796,21 @@ Wer \emph{genau weiß}, was er will: |\fontsize{|\meta{Größe}|}{|\meta{Durchsc
 \begin{lstlisting}
 \fontsize{10}{12}\selectfont
 \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{Implementierung}
+\begin{arbeitsauftrag}
+Passen Sie Ihr \href{https://qn3.de/tex02}{Dokument} den Vorgaben für Bachelorarbeiten an!
+
+\begin{description}[Left and right margin]
+\item[Format] one-sided DIN A4
+\item[Font Size] \SI{12}{pt}
+\item[Line Spread] \num{1.5}
+\item[Alignment] justified (“Blocksatz”)
+\item[Left and right margin] \SI{3}{\centi\meter}
+\end{description}
+\end{arbeitsauftrag}
 \end{frame}
 
 
@@ -776,7 +870,13 @@ Matrix & |matrix| (Mathe)\\
 Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
 \end{frame}
 
+\begin{frame}{Implementierung}
+\begin{arbeitsauftrag}
+Ergänzen Sie Ihr \href{https://qn3.de/tex02}{Dokument} durch ein oder mehrere Zitate. Beobachten Sie dabei den Unterschied zwischen |quote| und |quotation|.
 
+Testen Sie auch das Aussehen anderer Umgebungen wie |itemize| und |description|.
+\end{arbeitsauftrag}
+\end{frame}
 
 \subsection{Mikrotypografie}
 \begin{frame}[t]{Mikrotypografie}
@@ -785,18 +885,18 @@ Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
 		\begin{column}{.65\textwidth}
 %			\setlength{\labelwidth}{5cm}
 			\begin{description}
-				\item<1->[tracking] Anpassung des Glyphenabstands innerhalb der Wörter (≤\,3\%)
-				\item<2->[expansion] Anpassung der Glyphenbreite (≤\,2\%)
-				\item<3->[protrusion] Optischer Randausgleich
-				\item<4->[ligatures] Verbindung mehrerer Buchstaben zu einer Glyphe
+				\item<all:1->[tracking] Anpassung des Glyphenabstands innerhalb der Wörter (≤\,3\%)
+				\item<all:2->[expansion] Anpassung der Glyphenbreite (≤\,2\%)
+				\item<all:3->[protrusion] Optischer Randausgleich
+				\item<all:4->[ligatures] Verbindung mehrerer Buchstaben zu einer Glyphe
 			\end{description}
 		\end{column}
 		\begin{column}{.25\textwidth}%
 			\centering\rmfamily\Large\noindent%
-			\only<1>{\LARGE\hfill V\kern1pt A\hfill F\kern1.1pt o\hfill\,\\\hfill VA\hfill Fo\hfill}%
-			\only<2>{Text\\\scalebox{.98}{Text}}%
-			\only<3>{\tiny\parbox{\textwidth}{Lorem ipsum dolor sit amet\textcolor{red}{,} consectetur adipisici elit, sed ei\textcolor{red}{\-}usmod tempor incidunt ut labo\textcolor{red}{\-}re et dolore magna aliqua. Ut enim ad minim veniam, quis no\textcolor{red}{\-}strud exercitation ullamco labo\textcolor{red}{\-}ris nisi ut aliquid ex ea commodi consequat. Quis aute iure repre\textcolor{red}{\-}henderit in voluptate velit esse cillum dolore eu fugiat nulla pa\textcolor{red}{\-}riatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}}%
-			\only<4>{f\/i fi\\
+			\only<all:1>{\LARGE\hfill V\kern1pt A\hfill F\kern1.1pt o\hfill\,\\\hfill VA\hfill Fo\hfill}%
+			\only<all:2>{Text\\\scalebox{.98}{Text}}%
+			\only<all:3>{\tiny\parbox{\textwidth}{Lorem ipsum dolor sit amet consectetur\textcolor{red}{,} adipisici elit, sed eiusmod tempor incid\textcolor{red}{\-}unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis no\textcolor{red}{\-}strud exer\textcolor{red}{\-}citation ullamco labo\textcolor{red}{\-}ris nisi ut aliquid ex ea commodi consequat. Quis aute iure rep\textcolor{red}{\-}rehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa\textcolor{red}{\-}riatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}}%
+			\only<all:4>{f\/i fi\\
 				f\/l fl\\
 				f\/f ff\\
 				f\/f\/l ffl\\
@@ -807,15 +907,19 @@ Aussehen von |itemize| und |enumerate| wird von Dokumentenklasse bestimmt.
 \end{frame}
 
 \begin{frame}[fragile]{Mikrotypografie}
-Das Paket |microtype| kümmert sich um diese typografischen Feinheiten.\\
+Das Paket \pkg{microtype} kümmert sich um diese typografischen Feinheiten.\\
 In der Regel reicht die Voreinstellung:
 \begin{lstlisting}
 \usepackage{microtype}
 \end{lstlisting}
 \begin{itemize}
 \item Aktiviert automatisch protrusion (in \hologo{pdfTeX}, \XeTeX und \hologo{LuaTeX}) und expansion (in \hologo{pdfTeX} und \hologo{LuaTeX}) 
-\item Für weitere Optionen: Dokumentation
+\item Für weitere Optionen: \href{https://texdoc.org/serve/microtype/0}{Dokumentation}
 \end{itemize}
+\pause\vfill
+\begin{arbeitsauftrag}
+Aktivieren Sie in Ihrem \href{https://qn3.de/tex02}{Dokument} den optischen Randausgleich.
+\end{arbeitsauftrag}
 \end{frame}
 
 \begin{frame}[fragile]{Leerräume und Striche}
@@ -857,8 +961,8 @@ In der Regel reicht die Voreinstellung:
 		\item \promt|texdoc -s amsmath| liefert Ergebnisse aus erweiterter Suche
 		\item \promt|texdoc --help| zeigt eine Hilfe an
 	\end{itemize}
-	Graphische Oberfläche: |texdoctk|\\
-	Webservice: \url{http://texdoc.net}
+	Graphische Oberfläche: |texdoctk|\,/\,|texdoc-gui|\\
+	Webservice: \url{http://texdoc.org}
 	\vfill\pause
 	\begin{arbeitsauftrag}
 		Öffnen Sie über den |texdoc|-Mechanismus die deutschsprachige Dokumentation der KOMA-Skript-Klassen.
@@ -911,28 +1015,31 @@ l.60
 
 
 \begin{frame}{Vollständiges Minimalbeispiel}
-Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges Minimalbeispiel} (MWE) verlangt.
-\vskip.8ex
-\begin{enumerate}
-\item solange Code aus dem Dokument löschen, bis der Fehler gerade noch auftritt
-\item alle überflüssigen Pakete entfernen
-\item falls Dokumentenklasse keine Rolle spielt, \pkg{minimal} verwenden
-\item wenn Fehler nur bei viel Text auftritt, \pkg{blindtext} verwenden
-\end{enumerate}
+	Bei Hilfestellung in Webforen/Usenet wird in der Regel ein \emph{vollständiges Minimalbeispiel} (MWE) verlangt.
+	\vskip.8ex
+	\begin{enumerate}
+		\item solange Code aus dem Dokument löschen, bis der Fehler gerade noch auftritt
+		\item alle überflüssigen Pakete entfernen
+		\item falls Dokumentenklasse keine Rolle spielt, \pkg{minimal} verwenden
+		\item wenn Fehler nur bei viel Text auftritt, \pkg{blindtext} verwenden
+	\end{enumerate}
+	
+	\vskip.8ex
+	
+	Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
 
-\vskip.8ex
-
-Oft findet man den Fehler beim erstellen des MWE schon ganz alleine.
-
-\pause\vskip.8ex
-\begin{arbeitsauftrag}
-Laden Sie sich das Dokument \href{https://latexkurs.github.io/MA/uebung_fehlermeldungen.tex}{\texttt{uebung\_fehlermeldungen.tex}} von der Workshophomepage, erstellen Sie ein MWE und beheben Sie falls möglich alle Fehler.
-\end{arbeitsauftrag}
+	\pause\vskip.8ex
+	\begin{olcol}
+		\begin{arbeitsauftrag}
+			Laden Sie sich das Dokument \href{https://latexkurs.github.io/MA/uebung_fehlermeldungen.tex}{\texttt{uebung\_fehlermeldungen.tex}} von der Workshophomepage, erstellen Sie ein MWE und beheben Sie falls möglich alle Fehler.
+		\end{arbeitsauftrag}
+	\end{olcol}
+	\overleaf{tex05}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Sprachen} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Sprachen}
 Dokument muss je nach Eingabesprache lokalisiert werden.
 \begin{itemize}
@@ -941,17 +1048,19 @@ Dokument muss je nach Eingabesprache lokalisiert werden.
 	\item typografische Besonderheiten
 \end{itemize}
 \vfill
-
+\begin{olcol}
 \begin{lstlisting}
 \usepackage{polyglossia}
 \setmainlanguage{german}
 \setotherlanguage{english}
 \end{lstlisting}
+\end{olcol}
+\overleaf{tex06}
 \end{frame}
 
 \begin{frame}[fragile]{Sprachen laden}
-	|\setmainlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|
-	|\setotherlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|
+	|\setmainlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|\\
+	|\setotherlanguage[|\meta{Optionen}|]{|\meta{Sprache}|}|\\
 	|\setotherlanguages{|\meta{Sprachen}|}|\\[1em]\pause
 	\begin{center}
 		\scriptsize
@@ -987,7 +1096,7 @@ Umgebung |\begin{|\meta{Sprache}|}| für längere Passagen
 \begin{lstlisting}
 % in der Präambel:
 \setmainlanguage{english}
-\setotherlanguage{french, greek}
+\setotherlanguages{french, greek}
 
 % im Dokument:
 The document body is in English, but single words can be in \textgreek{ ελληνικά} or \textfrench{français}.
@@ -1009,10 +1118,12 @@ heute ist der \today \\
 	heute ist der \today \\
 	\textenglish{today is \today}\\
 	\textrussian{ сегодня, является \today }
-}}
-
+}}\vfill
+\pause
+\begin{arbeitsauftrag}
+Sorgen Sie in Ihrem Dokument für korrekten Umbruch in mindestens zwei Sprachen.
+\end{arbeitsauftrag}
 \end{frame}
-
 
 %\begin{frame}[fragile]{Standardpakete}
 %\hologo{pdfLaTeX}
@@ -1039,10 +1150,10 @@ heute ist der \today \\
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Gleitobjekte}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{allgemeine Gleitumgebungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gleitumgebungen}
 \begin{frame}{Was sind Gleitobjekte?}
 \begin{itemize}
 \item Objekte, die frei im Dokument „gleiten“ können
@@ -1067,6 +1178,8 @@ Eine Gleitumgebung besteht aus verschiedenen Teilen:
 \item Markierung für Verweise: \verb|\label{fig:vergleichsdaten}|
 \item[]\pause
 \item Label kann mit |\ref{fig:vergleichsdaten}| im Text referenziert werden
+\pause
+\item |\listoffigures| und |\listoftables| erstellen automatisch Abbildungs- bzw. Tabellenverzeichnis
 \end{itemize}
 \end{frame}
 
@@ -1078,6 +1191,7 @@ Eine Gleitumgebung besteht aus verschiedenen Teilen:
 \item Paket \pkg{float} ermöglicht Definition eigener Umgebungen
 \item für zweispaltigen Satz: \verb|table*|, \verb|figure*| über beide Spalten
 \end{itemize}
+\overleaf{tex07}
 \end{frame}
 
 \subsubsection*{Positionierung}
@@ -1121,13 +1235,14 @@ Im Text kann man auf Tabelle
 \end{LTXexample}
 \end{frame}
 
-\subsection{fake-Gleitobjekte}
+%\subsection{fake-Gleitobjekte}
 \begin{frame}[fragile]{Nichtgleitende Gleitumgebungen}
 nichtgleitende Umgebungen als Gleitumgebungen ausgeben:\\
 Paket \pkg{caption}
 
 \begin{LTXexample}[pos=b]
 Eine kleine Abbildung in einem Text, die eigentlich gar keine ist:
+
 \begin{minipage}[b]{3cm}
   \fbox{ ich bin kein Bild }
   \captionof{figure}{test}
@@ -1179,7 +1294,7 @@ In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
 ⇒ siehe Dokumentation zu \pkg{graphicx}
 \end{frame}
 
-\begin{frame}[fragile]{Mehrere Bilder in einer Abbildung}
+\begin{frame}[fragile,t]{Mehrere Bilder in einer Abbildung}
 \begin{lstlisting}
 \usepackage{subcaption}
 
@@ -1197,6 +1312,7 @@ In der \verb/minipage/ kann jeder beliebige Inhalt stehen \dots
 \end{lstlisting}
 
 Paket \pkg{subcaption}  bietet Umgebung |subfigure| innerhalb von |figure|.
+\overleaf{tex08}
 \end{frame}
 
 \nocite{dante:einfuehrung, l2kurz, bringhurst, dante:koma, polyglossia, graphicscompanion}
@@ -1213,11 +1329,12 @@ Paket \pkg{subcaption}  bietet Umgebung |subfigure| innerhalb von |figure|.
 \subsection{Verwaltung von Referenzen}
 \section{Mathematiksatz}
 \section{Tabellen}
-\subsection{schöne Taqbellen}
+\subsection{schöne Tabellen}
 \subsection{automatische Spaltenbreite}
-\subsection{mehrseitige Tabellen}
-\section{Diagramme}
+%\subsection{mehrseitige Tabellen}
 \section{Umfangreichere Projekte}
+\section{Diagramme}
+
 
 
 

@@ -1,0 +1,36 @@
+\documentclass[onesided,12pt,a4paper]{scrreprt}
+
+\usepackage{
+	csquotes,
+	microtype,
+	xltxtra,
+}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{german}
+
+\usepackage[style=authoryear, backend=biber]{biblatex}
+\addbibresource{references-bachelorthesis.bib}
+
+\begin{document}
+
+\chapter{Some Citations}
+
+\section{with a single reference}
+
+This is a well known fact \parencite[p.\,5]{basseler2002} and another, not so well known fact \parencite[see][p.\,7]{samuelson1998}.
+
+\Textcite{schumann1999} presents a different approach. This can be compared to what has been described by \textcite[pp.\,26]{felderer2003}.
+
+
+\section{with multiple references at once}
+
+This proposition refers to multiple books \parencite{blanchard2004,siebert2003}.
+
+An oppsing view is held by \textcite{trossmann1991,mankiw2003}.
+
+
+\printbibliography
+
+\end{document}

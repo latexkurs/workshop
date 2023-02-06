@@ -5,7 +5,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\ProvidesClass{latexkurs-exercise}[2016/09/20 v0.2 Exercise sheets for LaTeX Course]
+\ProvidesClass{latexkurs-exercise}[2018/01/26 v0.2 Exercise sheets for LaTeX Course]
 
 \LoadClass{scrartcl}
 
@@ -24,13 +24,14 @@
 
 %% Fonts
 \RequirePackage{fontspec, microtype}
-\setsansfont{Linux Biolinum O}
-\setromanfont{Linux Libertine O}
+\setsansfont{Libertinus Sans}
+\setromanfont{Libertinus Serif}
+%\setmathfont{Libertinus Math}
 \setmonofont[Scale=.95,AutoFakeSlant]{Inconsolata}
 %\setmonofont[Scale=.95]{Anonymous Pro}
 
 %% Option Handling
-\RequirePackage{kvoptions}
+\RequirePackage{kvoptions, ifthen}
 \SetupKeyvalOptions{
 	family=latexkurs,
 	prefix=ltxkurs@,
@@ -72,7 +73,7 @@
 \ihead{\LaTeX-Workshop}
 \chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{Datum: \DTMdate{\ltxkurs@datum}}{Stand: \DTMdate{\ltxkurs@ausgabe}}}
-\ifoot{Mannheim, FSS 2017}
+\ifoot{Mannheim, FSS 2022}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
@@ -137,7 +138,7 @@
 \expandafter\hypersetup{%
   unicode=true,
   pdfborder={000},
-  pdftitle={LaTeX-Workshop Übungsblatt \ltxkurs@blattnr},
+  pdftitle={LaTeX-Workshop},
   pdfauthor={Moritz Brinkmann},
   colorlinks=true,
   linkcolor=blue,

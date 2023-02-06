@@ -1,0 +1,49 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% © 2017 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io/MA
+
+\documentclass[a4paper, oneside]{scrreprt}
+
+\usepackage{
+	blindtext,
+	xltxtra,
+	geometry,
+}
+
+\geometry{hmargin=3cm}
+\pagestyle{headings}
+
+
+\begin{document}
+	
+	\chapter{Das erste Kapitel}
+	\blindtext
+	
+	
+	\section{Erster Abschnitt im ersten Kapitel}
+	\blindtext[2]
+	
+	\blinditemize
+	
+	\blindtetx
+	\begin{quote}
+		\blindtext
+		
+		\blindtext
+	\end{quote}
+	
+	\blindtext
+	\begin{quotation}
+		\blindtext
+		
+		\blindtext
+	\end{quotation}
+	\blindtext
+	
+	
+	\section{Zweiter Abschnitt im ersten Kapitel}
+	\Blindtext
+	
+\end{document}
