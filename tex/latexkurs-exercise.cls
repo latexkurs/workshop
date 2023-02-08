@@ -73,7 +73,7 @@
 \ihead{\LaTeX-Workshop}
 \chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 \ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{Datum: \DTMdate{\ltxkurs@datum}}{Stand: \DTMdate{\ltxkurs@ausgabe}}}
-\ifoot{Mannheim, FSS 2022}
+\ifoot{Mannheim, FSS 2023}
 \cfoot{}
 \ofoot{Seite~\thepage~von~\pageref{LastPage}}
 
