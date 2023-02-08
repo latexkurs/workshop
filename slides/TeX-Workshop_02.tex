@@ -1,7 +1,7 @@
 % !TEX TS-program = lualatex
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = de_DE
-% © 2017-2021 Moritz Brinkmann, CC-by-sa
+% © 2017-2023 Moritz Brinkmann, CC-by-sa
 % https://ma.latexkurs.de
 
 \documentclass[
@@ -28,7 +28,9 @@
 \usepackage{marvosym}
 
 
-\usepackage{array, booktabs, caption, pifont, tabularx, tabulary}
+\usepackage{array, booktabs, caption, pifont, tabularray}
+
+\UseTblrLibrary{amsmath, booktabs, siunitx}
 
 \usepackage{pgfplots}
 
@@ -40,7 +42,7 @@
 
 \usetikzlibrary{calc, intersections, through, trees, positioning}
 
-\begin{filecontents}{data.dat}
+\begin{filecontents*}{data.dat}
 time	values	error
 0.00E+00	6.66E+01	7.85E-01
 1.00E-01	4.69E+01	8.39E-01
@@ -543,7 +545,7 @@ time	values	error
 4.98E+01	3.88E+01	4.66E-01
 4.99E+01	4.53E+01	8.86E-01
 5.00E+01	5.09E+01	1.51E+00
-\end{filecontents}
+\end{filecontents*}
 
 %% Notes:
 %% Zitate: Harvard-Methode (AuthorYear)
@@ -1124,56 +1126,38 @@ Formel \ref{eq:summe} addiert alle mit $c_i$ gewichtete $a_i$.
 \end{LTXexample}
 \end{frame}
 
-\subsection[booktabs]{Schöne Tabellen}
 
-\begin{frame}[fragile]{Fragwürdiges Layout}
+\subsection[tabularray]{automatische Spaltenbreite}
+\nocite{tabularray}
+
+\begin{frame}[fragile]{automatische Spaltenbreite}
 \begin{itemize}
-\item Paket \pkg{booktabs} (Simon Fear) für hohe Qualität
-\item Empfehlungen aus dem Paket:
+\item \pkg{tabularray} bietet vielfältige Gestaltungsmöglichkeiten für Tabellen.
+\item klassiche Nutzung: \\
+\verb|\begin{tblr}{|\meta{Spaltendefinitionen}\verb|}|\\
+\meta{Tablleninhalt}\\
+\verb|\end{tblr}|
+\item erweiterte Eingabemöglichkeiten::
+\verb|\begin{tblr}{|bla\verb|}|\\
+\meta{Tablleninhalt}\\
+\verb|\end{tblr}|
 \end{itemize}
-\vfill
-\begin{fancyquote}
-\begin{enumerate}
-\item \alert{Never, ever use vertical rules.}
-\item \alert{Never use double rules.}
-\item<2-> Put the units in the column heading (not in the body of the table).
-\item<2-> Always precede a decimal point by a digit; thus \verb/0.1/ \emph{not} just \verb/.1/.
-\item<2-> Do not use “ditto” signs or any other such convention to repeat a previous
-value. In many circumstances a blank will serve just as well. If it won’t,
-then repeat the value. \quoted{\href{https://texdoc.org/pkg/booktabs}{booktabs-Dokumentation}}
-\end{enumerate}
-\end{fancyquote}
 \end{frame}
 
-\begin{frame}[fragile]{ohne booktabs}%{Negativbeispiel}
-\hspace{-1cm}
-\begin{LTXexample}[pos=b,%width=.45\textwidth,
-rframe={}]
-\begin{tabular}{||l|lr||} \hline
-  Mücken     & Gramm       & \$13.65 \\ \cline{2-3}
-             & je          & .01 \\ \hline
-  Gnu        & ausgestopft & 92.50 \\ \cline{1-1} \cline{3-3}
-  Emu        &             & 33.33 \\ \hline
-  Gürteltier & gefroren    & 8.99 \\ \hline
-\end{tabular}
-\end{LTXexample}
+
+\begin{frame}[fragile]{Zellen über mehrere Spalten/Zeilen}
+Mit \verb|\multicolumn{|\meta{Spalten}\verb|}{|\meta{Ausrichtung}\verb|}{|\meta{Inhalt}\verb|}| kann eine Zelle mehrere Spalten überdecken.
+\begin{lstlisting}
+\multicolumn{2}{c}{Zelle über zwei Spalten (zentr.)}
+\end{lstlisting}
+\pause\vfill
+Paket \pkg{multirow} bietet Unterstützung für Zellen über mehrere Zeilen.
+\verb|\multirow{|\meta{Zeilen}\verb|}{|\meta{Breite}\verb|}{|\meta{Inhalt}\verb|}|
+\begin{lstlisting}
+\multirow{3}{*}{Zelle über drei Zeilen}
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile,shrink]{mit booktabs}%{Positivbeispiel}
-\hspace{-1cm}
-\begin{LTXexample}[pos=b,%width=.45\textwidth,
-rframe={}]
-\begin{tabular}{llr} \toprule
-  \multicolumn{2}{c}{Artikel} \\ \cmidrule(r){1-2}
-  Tier      & Beschreibung & Preis (\$)\\ \midrule
-  Mücke     & pro Gramm    & 13.65 \\
-            & pro Stück   & 0.01 \\
-  Gnu       & ausgestopft  & 92.50 \\
-  Emu       & ausgestopft  & 33.33 \\
-  Gürtetier & gefroren     & 8.99 \\ \bottomrule
-\end{tabular}
-\end{LTXexample}
-\end{frame}
 %\begin{frame}[fragile]{array}
 %\begin{itemize}
 %\item Paket \pkg{array} erweitert die Möglichkeiten von \verb/tabular/
@@ -1220,94 +1204,143 @@ rframe={}]
 %\end{frame}
 
 
-\subsection{automatische Spaltenbreite}
+%\subsection{automatische Spaltenbreite}
+%
+%\begin{frame}[fragile]{automatische Spaltenbreite}
+%\begin{itemize}
+%%\item \verb/tabular*/ ändert \emph{Abstand} der Spalten
+%\item \pkg{tabularx} verteilt \emph{Breite} der Spalten \emph{gleichmäßig}
+%\item \pkg{tabulary} verteilet \emph{Breite} der Spalten \emph{am Inhalt orientiert}
+%\item \pkg{tabu} funktioniert ähnlich wie \pkg{tabularx}, nur \emph{in bunt}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{automatische Breiten}
+%\begin{LTXexample}[width=.4\textwidth]
+%\begin{tabularx}{4cm}{|l|X|r|}
+% a a & b b & c c
+%\end{tabularx}
+%\end{LTXexample}
+%\begin{LTXexample}[width=.4\textwidth]
+%\begin{tabular}{|l|l|r|}
+% a a & b b & c c
+%\end{tabular}
+%\end{LTXexample}
+%\end{frame}
+%
+%\begin{frame}[fragile]{tabularx}
+%Automatische Berechnung der Spaltenbreite:
+%\begin{LTXexample}
+%\begin{tabularx}{\linewidth}{lX|X|r}
+%linke Spalte & Eine längere Spalte& kurz & rechts
+%\end{tabularx}
+%\end{LTXexample}
+%\end{frame}
+%
+%\begin{frame}[fragile]{tabulary}
+%\begin{LTXexample}
+%\begin{tabulary}{4cm}{|L|L|L|}
+%a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+%\end{tabulary}
+%\end{LTXexample}
+%\begin{LTXexample}
+%\begin{tabular}{|l|l|l|}
+%a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
+%\end{tabular}
+%\end{LTXexample}
+%\end{frame}
+%
+%\begin{frame}[fragile]{tabulary}
+%Mögliche Spaltentypen:\\[1em]
+%\begin{description}
+%\item[\texttt{L}] linksbündig
+%\item[\texttt{R}] rechtsbündig
+%\item[\texttt{C}] zentriert
+%\item[\texttt{J}] Blocksatz
+%\end{description}
+%\vfill
+%\begin{itemize}
+%\item Alle Spalten verhalten sich wie \verb/p/-Spalten.
+%\item Breite der Spalten ist \emph{nicht} vorher festgelegt.
+%\end{itemize}
+%\end{frame}
 
-\begin{frame}[fragile]{automatische Spaltenbreite}
+
+
+
+
+
+\subsection[booktabs]{Schöne Tabellen}
+
+\begin{frame}[fragile]{Fragwürdiges Layout}
 \begin{itemize}
-%\item \verb/tabular*/ ändert \emph{Abstand} der Spalten
-\item \pkg{tabularx} verteilt \emph{Breite} der Spalten \emph{gleichmäßig}
-\item \pkg{tabulary} verteilet \emph{Breite} der Spalten \emph{am Inhalt orientiert}
-\item \pkg{tabu} funktioniert ähnlich wie \pkg{tabularx}, nur \emph{in bunt}
+\item Paket \pkg{booktabs} (Simon Fear) für hohe Qualität
+\item bei Nutzung von \pkg{tabularray}: \verb|\UseTblrLibrary{booktabs}|
+\item Empfehlungen aus dem Paket:
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{automatische Breiten}
-\begin{LTXexample}[width=.4\textwidth]
-\begin{tabularx}{4cm}{|l|X|r|}
- a a & b b & c c
-\end{tabularx}
-\end{LTXexample}
-\begin{LTXexample}[width=.4\textwidth]
-\begin{tabular}{|l|l|r|}
- a a & b b & c c
-\end{tabular}
-\end{LTXexample}
-\end{frame}
-
-\begin{frame}[fragile]{tabularx}
-Automatische Berechnung der Spaltenbreite:
-\begin{LTXexample}
-\begin{tabularx}{\linewidth}{lX|X|r}
-linke Spalte & Eine längere Spalte& kurz & rechts
-\end{tabularx}
-\end{LTXexample}
-\end{frame}
-
-\begin{frame}[fragile]{tabulary}
-\begin{LTXexample}
-\begin{tabulary}{4cm}{|L|L|L|}
-a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
-\end{tabulary}
-\end{LTXexample}
-\begin{LTXexample}
-\begin{tabular}{|l|l|l|}
-a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
-\end{tabular}
-\end{LTXexample}
-\end{frame}
-
-\begin{frame}[fragile]{tabulary}
-Mögliche Spaltentypen:\\[1em]
-\begin{description}
-\item[\texttt{L}] linksbündig
-\item[\texttt{R}] rechtsbündig
-\item[\texttt{C}] zentriert
-\item[\texttt{J}] Blocksatz
-\end{description}
 \vfill
-\begin{itemize}
-\item Alle Spalten verhalten sich wie \verb/p/-Spalten.
-\item Breite der Spalten ist \emph{nicht} vorher festgelegt.
-\end{itemize}
+\begin{fancyquote}
+\begin{enumerate}
+\item \alert{Never, ever use vertical rules.}
+\item \alert{Never use double rules.}
+\item<2-> Put the units in the column heading (not in the body of the table).
+\item<2-> Always precede a decimal point by a digit; thus \verb/0.1/ \emph{not} just \verb/.1/.
+\item<2-> Do not use “ditto” signs or any other such convention to repeat a previous
+value. In many circumstances a blank will serve just as well. If it won’t,
+then repeat the value. \quoted{\href{https://texdoc.org/pkg/booktabs}{booktabs-Dokumentation}}
+\end{enumerate}
+\end{fancyquote}
 \end{frame}
 
+\begin{frame}[fragile]{ohne booktabs}%{Negativbeispiel}
+\hspace{-1cm}
+\begin{LTXexample}[pos=b,%width=.45\textwidth,
+rframe={}]
+\begin{tabular}{||l|lr||} \hline
+  Mücken     & Gramm       & \$13.65 \\ \cline{2-3}
+             & je          & .01 \\ \hline
+  Gnu        & ausgestopft & 92.50 \\ \cline{1-1} \cline{3-3}
+  Emu        &             & 33.33 \\ \hline
+  Gürteltier & gefroren    & 8.99 \\ \hline
+\end{tabular}
+\end{LTXexample}
+\end{frame}
 
-
-\begin{frame}[fragile]{Zellen über mehrere Spalten/Zeilen}
-Mit \verb|\multicolumn{|\meta{Spalten}\verb|}{|\meta{Ausrichtung}\verb|}{|\meta{Inhalt}\verb|}| kann eine Zelle mehrere Spalten überdecken.
-\begin{lstlisting}
-\multicolumn{2}{c}{Zelle über zwei Spalten (zentr.)}
-\end{lstlisting}
-\pause\vfill
-Paket \pkg{multirow} bietet Unterstützung für Zellen über mehrere Zeilen.
-\verb|\multirow{|\meta{Zeilen}\verb|}{|\meta{Breite}\verb|}{|\meta{Inhalt}\verb|}|
-\begin{lstlisting}
-\multirow{3}{*}{Zelle über drei Zeilen}
-\end{lstlisting}
+\begin{frame}[fragile,shrink]{mit booktabs}%{Positivbeispiel}
+\hspace{-1cm}
+\begin{LTXexample}[pos=b,%width=.45\textwidth,
+rframe={}]
+\begin{tabular}{llr} \toprule
+  \multicolumn{2}{c}{Artikel} \\ \cmidrule(r){1-2}
+  Tier      & Beschreibung & Preis (\$)\\ \midrule
+  Mücke     & pro Gramm    & 13.65 \\
+            & pro Stück   & 0.01 \\
+  Gnu       & ausgestopft  & 92.50 \\
+  Emu       & ausgestopft  & 33.33 \\
+  Gürtetier & gefroren     & 8.99 \\ \bottomrule
+\end{tabular}
+\end{LTXexample}
 \end{frame}
 
 
 \begin{frame}[fragile]{weitere nützliche Pakete}
-\begin{description}[\texttt{threeparttable}]
-\item[\pkg{tabu}] farbige Zellen und Linien, gleichmäßige Spaltenbreite
-\item[\pkg{xcolor}] farbige Zellen
-\item[\pkg{colortbl}] farbige Linien
-\item[\pkg{hhline}] vielfältige Linien (horizontal, vertikal \dots)
-\item[\pkg{arydshln}] gestrichelte Linien 
+\begin{description}[\pkg{threeparttable}]
+%\item[\pkg{tabu}] farbige Zellen und Linien, gleichmäßige Spaltenbreite
+%\item[\pkg{xcolor}] farbige Zellen
+%\item[\pkg{colortbl}] farbige Linien
+%\item[\pkg{hhline}] vielfältige Linien (horizontal, vertikal \dots)
+%\item[\pkg{arydshln}] gestrichelte Linien 
 \item[\pkg{ltxtable}] mehrseitige Tabellen mit automatischer Breitenanpassung
 %\item[\pkg{multirow}] vertikale Ausrichtung 
 \item[\pkg{siunitx}] Ausrichtung am Dezimalpunkt % das kann auch siunitx → siehe nächste Vorlesung
 \item[\pkg{threeparttable}] Fußnoten an Tabellen
+\item[\pkg{tabularray}-Libraries] binden bestehende Pakete in tblr-Syntax ein; Laden mit \verb|\UseTblrLibrary{|\meta{library}\verb|}|  (siehe Dokumentation)
+\begin{itemize}
+\item \verb|amsmath|
+\item \verb|booktabs|
+\item \verb|diagbox|
+\item \verb|siunitx|
+\end{itemize}
 \end{description}
 \vfill
 Praktisches Online-Tool: \href{https://www.tablesgenerator.com/}{Tables Generator}\\
@@ -1321,15 +1354,15 @@ Erstellen Sie in einer Gleitumgebung eine Tabelle mit dem folgenden Tabellenkopf
 \end{arbeitsauftrag}
 \vfill
 \begin{center}
-\begin{tabulary}{\textwidth}{SLSJ}
+\begin{tblr}{colspec={SXSX}}
 \toprule
-{Lfd. Nr.} & Gegenstand & {Anzahl} & Beschreibung \\
+{{{Lfd. Nr.}}} & Gegenstand & {{{Anzahl}}} & Beschreibung \\
 \midrule
 1 & Bleistift & 13 & absolute Premiumqualität, besonders spitz, handbemalt, Stärke HB\\
 2 & … \\
-~ \\
+  &~ \\
 \bottomrule
-\end{tabulary}
+\end{tblr}
 \end{center}
 \end{frame}
 
