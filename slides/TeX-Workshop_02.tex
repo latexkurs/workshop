@@ -1109,10 +1109,10 @@ Formel \ref{eq:summe} addiert alle mit $c_i$ gewichtete $a_i$.
 \item[\texttt{c}] zentrierte Spalte
 \item[\texttt{r}] rechtbündige Spalte
 \item[\texttt{|}] vertikale Linie zwischen Spalten
-\item[\texttt{||}] doppelte Linie zwischen Spalten (wird nicht durchgestrichen)
+\item[\texttt{||}] doppelte Linie zwischen Spalten %(wird nicht durchgestrichen)
 \item[\texttt{p\{\meta{Breite}\}}] Spalte mit fester Breite 
 %\item[\texttt{@\{\meta{Inhalt}\}}] setzt statt Spaltenabstand \verb/Inhalt/
-\item[\texttt{\kern-.95ex*\{n\}\{\meta{kürz}\}}] setzt $n$ mal \meta{kürz}, z.\,B. \verb/*{2}{|}/
+\item[\texttt{\kern-.95ex*\{n\}\{\meta{kürz}\}}] setzt $n$ mal \meta{kürz}, z.\,B. \verb/*{3}{p{4cm}|}/
 \end{description}
 \end{frame}
 
@@ -1127,36 +1127,154 @@ Formel \ref{eq:summe} addiert alle mit $c_i$ gewichtete $a_i$.
 \end{frame}
 
 
-\subsection[tabularray]{automatische Spaltenbreite}
+\subsection[tabularray]{unterschiedliche Spaltenbreiten}
 \nocite{tabularray}
 
-\begin{frame}[fragile]{automatische Spaltenbreite}
+\begin{frame}[fragile]{unterschiedliche Spaltenbreite}
 \begin{itemize}
-\item \pkg{tabularray} bietet vielfältige Gestaltungsmöglichkeiten für Tabellen.
+\item Paket \pkg{tabularray} bietet vielfältige Gestaltungsmöglichkeiten für Tabellen.
 \item klassiche Nutzung: \\
 \verb|\begin{tblr}{|\meta{Spaltendefinitionen}\verb|}|\\
-\meta{Tablleninhalt}\\
+~~~~\meta{Tablleninhalt}\\
 \verb|\end{tblr}|
-\item erweiterte Eingabemöglichkeiten::
-\verb|\begin{tblr}{|bla\verb|}|\\
-\meta{Tablleninhalt}\\
+\item erweiterte Eingabemöglichkeiten:\\
+\verb|\begin{tblr}{colspec={|\meta{Spaltendef.}\verb|}, |\meta{weitere Optionen}\verb|}|\\
+~~~~\meta{Tablleninhalt}\\
 \verb|\end{tblr}|
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile]{Zellen über mehrere Spalten/Zeilen}
-Mit \verb|\multicolumn{|\meta{Spalten}\verb|}{|\meta{Ausrichtung}\verb|}{|\meta{Inhalt}\verb|}| kann eine Zelle mehrere Spalten überdecken.
-\begin{lstlisting}
-\multicolumn{2}{c}{Zelle über zwei Spalten (zentr.)}
-\end{lstlisting}
-\pause\vfill
-Paket \pkg{multirow} bietet Unterstützung für Zellen über mehrere Zeilen.
-\verb|\multirow{|\meta{Zeilen}\verb|}{|\meta{Breite}\verb|}{|\meta{Inhalt}\verb|}|
-\begin{lstlisting}
-\multirow{3}{*}{Zelle über drei Zeilen}
-\end{lstlisting}
+\begin{frame}[fragile]{Tabelle mit \pkg{tabularray}}
+\begin{LTXexample}[pos=b,preset={\small}]
+\begin{tblr}{
+    columns = {wd=2cm, halign=c},
+    row{2-3} = {font=\itshape},
+    vlines, hlines,
+  }
+  Alpha   & Beta  & Gamma  & Delta \\
+  Epsilon & Zeta  & Eta    & Theta \\
+  Iota    & Kappa & Lambda & Mu    \\
+\end{tblr}
+\end{LTXexample}
 \end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{unterschiedliche Spaltenbreiten}
+Neuer Spaltentyp:
+\begin{description}
+\item[\texttt{X[\meta{Faktor},\meta{Typ}]}] (linksbündige) Spalte mit variabler Breite
+\end{description}
+\vfill
+
+Zur Verfügung stehende Breite wird gleichmäßig auf alle \verb|X|-Spalten verteilt:
+
+\begin{LTXexample}[width=.4\textwidth]
+\begin{tblr}{|l|l|r|}
+ a a & b b & c c
+\end{tblr}
+\end{LTXexample}
+\begin{LTXexample}[width=.4\textwidth]
+\begin{tblr}{|l|X|r|}
+ a a & b b & c c
+\end{tblr}
+\end{LTXexample}
+\begin{LTXexample}[width=.4\textwidth]
+\begin{tblr}{|X[1]|X[2]|X[3]|}
+ a a & b b & c c
+\end{tblr}
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{Umbrüche in Zellen}
+Zeilen können mit \verb|{ \\ }| umgebrochen werden, wenn der Zellinhalt eingeklammert ist:
+
+\begin{LTXexample}[width=.4\textwidth]
+\begin{tblr}{|X[r]|X[2,c]|X|}
+ a a & {b b\\b b} & c c
+\end{tblr}
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{vertikale Positionierung}
+Zeilentypen \texttt{h}, \texttt{m} und \texttt{b\{\meta{Höhe}\}} richten Inhalt an Kopf, Mitte bzw. Fuß der Zeile aus.
+
+\begin{LTXexample}[pos=b,preset={\small}]
+\begin{tblr}{ colspec={l|c|r}, rowspec={h{8mm}|m{12mm}|f{8mm}} }
+  aa        & bb        & {cc\\ccc} \\
+  aa        & {bb\\bbb} & cc        \\
+  {aa\\aaa} & bb        & cc        \\
+\end{tblr}
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{Zellen über mehrere Spalten/Zeilen}
+ \verb|\SetCell[r=|\meta{Zeilen}\verb|,c=|\meta{Spalten}\verb|]{|\meta{Ausrichtung}\verb|}| vergrößert aktuelle Zelle
+ \vfill
+ 
+\begin{LTXexample}[pos=r,preset={\small},width=0.45\linewidth]
+\begin{tblr}{|c|c|c|c|c|}
+\hline
+  \SetCell[r=2]{c} 2 Rows
+  & \SetCell[c=2]{c} 2 Columns
+  &  & \SetCell[r=2,c=2]{c} 2 Rows 2 Cols & \\
+\hline
+  & 2b & 2c &	&	\\
+\hline
+3a & 3b & 3c & 3d & 3e \\
+\hline
+\end{tblr}
+\end{LTXexample}
+\end{frame}
+
+
+\begin{frame}[fragile]{farbige Tabellen}
+\begin{LTXexample}[pos=r,preset={\small}]
+\begin{tblr}{
+  row{odd} = {bg=azure8},
+  column{1} = {bg=azure4},
+  row{1} = {
+    bg=azure3, fg=white,
+    font=\bfseries,
+  },
+}
+  Alpha & Beta & Gamma & Delta \\
+  Epsilon & Zeta & Eta & Theta \\
+  Iota & Kappa & Lambda & Mu \\
+  Nu & Xi & Omicron & Pi \\
+  Rho & Sigma & Tau & Ypsilon \\
+\end{tblr}
+\end{LTXexample}
+Neben \pkg{tabularray} muss das Paket \pkg{xcolor} geladen sein.
+\end{frame}
+
+
+\begin{frame}[fragile]{Mathe in Tabellen}
+\begin{description}
+\item[\texttt{X[\$\textcolor{gray}{/}\$\$]}] startet inline-/display-Mathemodus automatisch in der ganzen Spalte
+\item[S] wird automatisch am Dezimaltrennzeichen ausgerichtet \\ benötigt \verb|\UseTblrLibrary{siunitx}| \\ Text muss mit \verb|guard| gekennzeichnet sein
+\end{description}
+ 
+\begin{LTXexample}[pos=r,preset={\small},width=0.45\linewidth]
+\begin{tblr}{
+  hlines,vlines,
+  colspec={X[$]X[$$]SS[table-format=1.5]},
+  row{1} = {guard},
+}
+  a·b·c   & a·b·c   & Zahlen & Zahlen  \\
+  \frac12 & \frac12 & 111    & 0.00001 \\
+  \frac34 & \frac34 &   2.1  & 0.0001  \\
+  \frac56 & \frac56 &  33.11 & 0.001  \\
+\end{tblr}
+\end{LTXexample}
+\end{frame}
+
 
 %\begin{frame}[fragile]{array}
 %\begin{itemize}
@@ -1310,41 +1428,44 @@ rframe={}]
 \hspace{-1cm}
 \begin{LTXexample}[pos=b,%width=.45\textwidth,
 rframe={}]
-\begin{tabular}{llr} \toprule
-  \multicolumn{2}{c}{Artikel} \\ \cmidrule(r){1-2}
-  Tier      & Beschreibung & Preis (\$)\\ \midrule
+\begin{tblr}{llS[table-format=3.2]} \toprule
+  \SetCell[c=2]{c} Artikel & & \\ \cmidrule[r]{1-2}
+  Tier      & Beschreibung & {{{Preis (\$)}}}\\ \midrule
   Mücke     & pro Gramm    & 13.65 \\
             & pro Stück   & 0.01 \\
   Gnu       & ausgestopft  & 92.50 \\
   Emu       & ausgestopft  & 33.33 \\
   Gürtetier & gefroren     & 8.99 \\ \bottomrule
-\end{tabular}
+\end{tblr}
 \end{LTXexample}
 \end{frame}
 
 
-\begin{frame}[fragile]{weitere nützliche Pakete}
-\begin{description}[\pkg{threeparttable}]
+\begin{frame}{Nützlich beim Umgang mit Tabellen …}
+\begin{itemize}
 %\item[\pkg{tabu}] farbige Zellen und Linien, gleichmäßige Spaltenbreite
 %\item[\pkg{xcolor}] farbige Zellen
 %\item[\pkg{colortbl}] farbige Linien
 %\item[\pkg{hhline}] vielfältige Linien (horizontal, vertikal \dots)
 %\item[\pkg{arydshln}] gestrichelte Linien 
-\item[\pkg{ltxtable}] mehrseitige Tabellen mit automatischer Breitenanpassung
+%\item[\pkg{ltxtable}] mehrseitige Tabellen mit automatischer Breitenanpassung
 %\item[\pkg{multirow}] vertikale Ausrichtung 
-\item[\pkg{siunitx}] Ausrichtung am Dezimalpunkt % das kann auch siunitx → siehe nächste Vorlesung
-\item[\pkg{threeparttable}] Fußnoten an Tabellen
-\item[\pkg{tabularray}-Libraries] binden bestehende Pakete in tblr-Syntax ein; Laden mit \verb|\UseTblrLibrary{|\meta{library}\verb|}|  (siehe Dokumentation)
-\begin{itemize}
-\item \verb|amsmath|
-\item \verb|booktabs|
-\item \verb|diagbox|
-\item \verb|siunitx|
-\end{itemize}
+%\item[\pkg{siunitx}] Ausrichtung am Dezimalpunkt % das kann auch siunitx → siehe nächste Vorlesung
+%\item[\pkg{threeparttable}] Fußnoten an Tabellen
+\item \pkg{tabularray}-Libraries binden bestehende Pakete in \texttt{tblr}-Syntax ein\\
+Laden mit \texttt{\textbackslash UseTblrLibrary\{\meta{library}\}}  (siehe Dokumentation)
+\begin{description}
+\item[\texttt{amsmath}] Tabellen-Funktionen z.\,B. in Matrizen benutzen
+\item[\texttt{booktabs}] \emph{schöne} Tabellen setzen
+\item[\texttt{diagbox}] ersten Zelle diagonal Teilen
+\item[\texttt{siunitx}] Daten in Tabellen am Dezimalpunkt ausrichten
 \end{description}
+\item \texttt{longtblr}-Umgebung erlaubt Tabellen mit Fußnoten und Seitenumbrüchen 
+
 \vfill
-Praktisches Online-Tool: \href{https://www.tablesgenerator.com/}{Tables Generator}\\
+\item Praktisches Online-Tool: \href{https://www.tablesgenerator.com/}{Tables Generator}\\
 \url{https://www.tablesgenerator.com/}
+\end{itemize}
 \qrcorner{https://www.tablesgenerator.com}
 \end{frame}
 
