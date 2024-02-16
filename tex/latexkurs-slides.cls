@@ -34,19 +34,6 @@
 \LoadClass[aspectratio=169]{beamer}
 
 
-%% Language
-\RequirePackage{polyglossia}
-\setmainlanguage{german}
-\setotherlanguage{english}
-
-%% Fonts
-\usefonttheme{professionalfonts}
-\RequirePackage{csquotes, fontspec, microtype, unicode-math}
-\setmainfont{Libertinus Serif}
-\setsansfont{Libertinus Sans}
-\setmonofont[Scale=.95,AutoFakeSlant]{Inconsolata}
-\setmathfont[AutoFakeBold]{Libertinus Math}
-
 %% Layout
 %\mode<presentation>{
 	\useinnertheme{circles}
@@ -101,7 +88,28 @@
 \DeclareComplementaryOption{kursB}{kursA}
 \DeclareBoolOption{web}
 \DeclareBoolOption{noshortverb}
+\DeclareBoolOption{englisch}
 \ProcessKeyvalOptions{latexkurs}
+
+
+%% Language
+\RequirePackage{polyglossia}
+\ifltxkurs@englisch
+	\setmainlanguage{english}
+	\setotherlanguage{german}
+\else
+	\setmainlanguage{german}
+	\setotherlanguage{english}
+\fi
+
+%% Fonts
+\usefonttheme{professionalfonts}
+\RequirePackage{csquotes, fontspec, unicode-math}
+\RequirePackage[babel=true]{microtype}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont[Scale=.95,AutoFakeSlant]{Inconsolata}
+\setmathfont[AutoFakeBold]{Libertinus Math}
 
 
 \ifltxkurs@kursA
@@ -124,12 +132,20 @@
 \fi
 
 %% Date Formating
-\RequirePackage[german]{datetime2}
+\ifltxkurs@englisch
+	\RequirePackage{datetime2}
+\else
+	\RequirePackage[german]{datetime2}
+\fi
 %\DTMusemodule{german}{de-DE}
 \DTMsavedate{coursedate}{\ltxkurs@datum}
 \date{%
-	\ifltxkurspre@web%
-		\DTMgermanmonthname{\DTMfetchmonth{coursedate}}~\DTMfetchyear{coursedate}%
+	\ifltxkurs@web%
+		\ifltxkurs@englisch%
+			\DTMenglishmonthname{\DTMfetchmonth{coursedate}}~\DTMfetchyear{coursedate}%
+		\else%
+			\DTMgermanmonthname{\DTMfetchmonth{coursedate}}~\DTMfetchyear{coursedate}%
+		\fi
 	\else%
 		\DTMUsedate{coursedate}%
 	\fi%
@@ -141,7 +157,11 @@
 %\fi
 
 %% Titlepage
-\title{Einführung in das Textsatzsystem \LaTeX{}}
+\ifltxkurs@englisch
+	\title{Introduction to the Typesetting System \LaTeX{}}
+\else
+	\title{Einführung in das Textsatzsystem \LaTeX{}}
+\fi	
 \subtitle{\ltxkurs@titel}
 \author[Mo]{Moritz Brinkmann\\\href{mailto:mail@latexkurs.de}{\texttt{mail@latexkurs.de}}}
 \AtBeginDocument{
@@ -181,7 +201,7 @@
 		};
 		\IfBooleanT{#1}{
 			\node [anchor=south, xshift=-14mm, yshift=40mm, rotate=-25, href node={https://qn3.de/#2}] at (current page.south east) (OLtext) {
-				{\scalebox{.7}{in Overleaf ausprobieren}}
+				{\scalebox{.7}{\ifltxkurs@englisch try this in Overleaf\else in Overleaf ausprobieren\fi}}
 			};
 			\draw [thick, ->] (OLtext) to [bend angle=30, bend right] (OLqrcode);
 		}
@@ -213,7 +233,11 @@
 	\begingroup
 	\setbeamercolor{block title}{use=structure,fg=white,bg=green!60!black}
 	\setbeamercolor{block body}{use=structure,fg=black,bg=green!20!white}
-	\begin{block}{Arbeitsauftrag}
+	\ifltxkurs@englisch
+		\begin{block}{Assignment}
+	\else
+		\begin{block}{Arbeitsauftrag}
+	\fi
 }{
 	\end{block}
 	\endgroup
@@ -221,10 +245,11 @@
 
 % \teil command for parts
 \newcounter{teil}
+\setcounter{teil}{0}
 \providecommand{\teil}[2][]{
 	\ifthenelse{\equal{#1}{}}{\section{#2}}{\section{#1}}
 	\stepcounter{teil}
-	\frame{\centering\alert{Teil \Roman{teil}}\\\huge #2}
+	\frame{\centering\alert{\ifltxkurs@englisch Part \else Teil \fi \Roman{teil}}\\\huge #2}
 }
 
 
@@ -293,7 +318,7 @@
 
 \addbibresource{literatur.bib}
 %\AtEndDocument{
-\newcommand{\weiterführendeliteratur}{\frame[allowframebreaks]{\frametitle{Weiterführende Literatur}\printbibliography}}
+\newcommand{\weiterführendeliteratur}{\frame[allowframebreaks]{\ifltxcourse@englisch\frametitle{References}\else\frametitle{Weiterführende Literatur}\fi\printbibliography}}
 
 
 

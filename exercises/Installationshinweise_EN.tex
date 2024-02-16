@@ -1,0 +1,85 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% 
+% © 2016-2022 Moritz Brinkmann, CC-by-sa
+% http://latexkurs.github.io
+
+\documentclass[
+%	vorläufig, 
+	ausgabe=2024-02-12,
+	titel=Installation\ Instructions,
+	shortverb=true,
+	englisch=true,
+]{../tex/latexkurs-exercise}
+
+\begin{document}
+\begin{center}
+\sffamily\bfseries\Large \TeX\ Installation
+\end{center}
+\begin{english}
+
+\noindent If you frequently work with \LaTeX, it is generally recommended to have a complete \LaTeX\ installation on your computer. However, in recent years, several online tools have been developed that allow you to use \LaTeX\ in your browser without installation. One notable tool is \href{https://qn3.de/tex00}{Overleaf}, which also offers collaborative document editing capabilities.
+
+For the \LaTeX\ course, it is sufficient to have a free \href{https://qn3.de/tex00}{Overleaf} account. For those who also want to work offline or prefer not to create an account, installing the latest 2023 version of the \href{https://www.tug.org/texlive/}{\TeXlive distribution} is recommended.
+
+The following instructions explain how to install the latest \TeXlive distribution. While not necessarily required for the course, it is recommended for long-term use of \LaTeX. A functional \TeX\ system essentially consists of two parts: a \TeX\ distribution and an editor.
+
+\section{The \TeX\ Distribution}
+
+The \LaTeX\ distribution takes care of downloading all necessary files and placing them in the correct locations. Different distributions are available for different operating systems. If there is already an outdated or unused \TeX\ system installed on your computer, it is recommended to \emph{completely} remove it before installing a new one to avoid potential conflicts.
+
+\subsection*{Windows}
+For Windows, besides \href{https://www.tug.org/texlive/}{\TeXlive}, the \href{https://miktex.org/}{MikTeX} distribution is also available. MikTeX is relatively easy to install and can automatically install missing packages. Additionally, there is the \href{https://www.tug.org/protext/}{pro\TeX t bundle}, which aims to be particularly easy to set up and includes the editors TeXstudio and TeXnicCenter.
+
+To install \TeXlive, simply download and run the installer \texttt{install-tl-windows.exe}. Choosing the installation scheme \texttt{simple install} will download and install all packages and programs included in \TeXlive from the internet. Information, instructions, and downloads for \TeXlive can be found at: \url{https://www.tug.org/texlive/}
+
+\subsection*{Mac}
+For Mac OS, there is the \href{https://www.tug.org/mactex}{Mac\TeX\ distribution}, which automatically installs \TeXlive and sets up the editor TeXShop. The project page \url{https://www.tug.org/mactex} offers downloads, instructions, and support.
+
+\subsection*{Unix/Linux}
+Most Linux distributions have a \TeXlive package that can be installed via the system's package manager (apt, emerge, pacman, yum, etc.). It is important to ensure that the latest version of 2023 is available in the package repositories. Alternatively, \TeXlive can also be installed manually on Linux.
+
+
+
+
+\clearpage
+
+\section{The Editor}
+
+With the \TeX\ distribution, we have all the necessary packages and programs to compile \TeX\ files into PDFs. To create \TeX\ files, we need an editor. Essentially, any editor that can save text files in UTF-8 encoding is suitable for \TeX. However, there are several editors specifically developed for working with \LaTeX, which include syntax highlighting and some useful additional features. These are often called integrated development environments (IDEs), which come with their own PDF viewers and quick access to important \TeX\ functions.
+
+Since most of the time will be spent in the editor, and the actual \TeX\ system works in the background, it is worth putting some effort into choosing the right editor. Below is a list of popular editors.
+
+\begin{description}
+\item[\href{https://www.tug.org/texworks/}{TeXworks}]
+The free editor TeXworks is modeled after TeXShop, available under Mac. It comes with the \TeXlive installation on Windows, and it can be installed independently on Linux. TeXworks includes its own PDF viewer and supports sync\TeX, which allows navigation between source code and PDF: clicking on a location in the PDF opens the corresponding location in the source code, and vice versa! This can be a very powerful tool, especially for large documents.
+
+\item[\href{https://www.xm1math.net/texmaker/}{TeXmaker}]
+A reliable, feature-rich editor for Linux, Mac, and Windows with sync\TeX\ support.
+
+\item[\href{https://www.texstudio.org/}{TeXstudio}]
+Editor based on TeXmaker, offering additional features like real-time syntax checking.
+
+\item[\href{https://www.texniccenter.org/}{TeXnicCenter}]
+A frequently recommended editor for Windows, automatically included with a MiKTeX installation. sync\TeX\ is possible when used with the Sumatra PDF viewer.
+
+\item[\href{https://kile.sourceforge.io/}{Kile}]
+Kile is the KDE editor for \LaTeX, but it should also be possible to run it on Mac and Windows. Kile is very easy and intuitive to use, offering all the features needed for efficient work with \LaTeX, including an integrated preview function for DVI and PDF files with sync\TeX.
+
+\item[\href{https://www.vim.org/}{Vim}, \href{https://www.gnu.org/software/emacs}{Emacs}]
+For the classic editors, Vim-LaTeX and AUC\TeX\ provide plugins that facilitate working with \LaTeX. Those who already use Vim or Emacs will likely be happy with them, but for others, the learning curve might be too steep to learn \LaTeX\ and a powerful editor \emph{simultaneously}.
+
+\item[\href{https://pages.uoregon.edu/koch/texshop}{TeXShop}]
+A \TeX\ editor for Mac OS, included with Mac\TeX. The editor is praised for its intuitive and well-integrated interface with the operating system.
+\end{description}
+
+\noindent Finding an editor that meets personal needs can be a lengthy process, and the list above is only intended to provide some suggestions. In case of doubt, TeXworks provides a good editor for both beginners and advanced users.\\
+A detailed comparison of many \TeX\ editors can be found, for example, on Wikipedia:\\\url{https://en.wikipedia.org/wiki/Comparison_of_TeX_editors}
+
+%With \href{https://qn3.de/tex00}{Overleaf}, there is a web service that allows using \LaTeX\ without local installation.\\ \href{https://qn3.de/tex00}{\texttt{https://overleaf.com}}
+
+\end{english}
+
+
+\end{document}

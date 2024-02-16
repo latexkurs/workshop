@@ -1,7 +1,7 @@
 % !TEX TS-program = lualatex
 % !TEX encoding = UTF-8 Unicode
-% !TEX spellcheck = de_DE
-% © 2017-2024 Moritz Brinkmann, CC-by-sa
+% !TEX spellcheck = en_US
+% © 2024 Moritz Brinkmann, CC-by-sa
 % https://ma.latexkurs.de
 
 \documentclass[
@@ -9,10 +9,11 @@
 	datum=2023-02-19,
 	datum1=2023-02-19,
 	datum2=2023-03-05,
-	titel={zweiter Tag},
+	titel={day two},
 	web=true,handout,
-	kursA,
+	kursB,
 	noshortverb,
+	englisch=true,
 ]{../tex/latexkurs-slides}
 
 %%%%%%%% Eval: %%%%%%%%
@@ -555,35 +556,35 @@ time	values	error
 
 \begin{document}
 
-\begin{frame}[t]{Inhalt}
+\begin{frame}[t]{Contents}
 	\tableofcontents
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\teil{Bibliografien}
+\teil{Bibliographies}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{Bibliografie}
+\begin{frame}[fragile]{Bibliography}
 \begin{itemize}
-	\item Bibliografie enthält Liste verwendeter Quellen und ggf. weiterführende Literatur.
-	\item je nach Fachbereich unterschiedliche Zitierstile
-	\item (grobes) Aussehen der Bibliografie wird von Dokumentenklasse bestimmt.
+	\item Bibliography contains a list of used sources and possibly further literature.
+	\item Different citation styles depending on the field of study.
+	\item (Rough) appearance of the bibliography is determined by the document class.
 	\pause
-	\item zwei Möglichkeiten zur Erstellung der Bibliografie:
+	\item Two methods for creating the bibliography:
 	\begin{enumerate}
-		\item manuelle Methode mit \verb|thebibliography|-Umgebung
-		\item automatische Methode mit \hologo{BibTeX}/\hologo{biber}
+		\item Manual method with the \verb|thebibliography| environment.
+		\item Automatic method with \hologo{BibTeX}/\hologo{biber}.
 	\end{enumerate}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile,t]{manuelle Methode}
- Bestimmte Syntax zum Setzen der Bibliografie:
+\begin{frame}[fragile,t]{Manual Method}
+ Specific syntax for setting the bibliography:
 	\begin{itemize}
-		\item Umbegung \verb|\begin{thebibliography}{|\meta{Anzahl}\verb|}|
-		\item Aufzählung der Werke mittels \verb|\bibitem{|\meta{Key}\verb|}| \meta{Text}
-		\item Zitieren eines Werks mit \verb|\cite{|\meta{Key(s)}\verb|}| oder \verb|\cite[|\meta{Seite}\verb|]{|\meta{Key}\verb|}|
+		\item Environment \verb|\begin{thebibliography}{|\meta{Number}\verb|}|
+		\item Listing of works using \verb|\bibitem{|\meta{Key}\verb|}| \meta{Text}
+		\item Citing a work with \verb|\cite{|\meta{Key(s)}\verb|}| or \verb|\cite[|\meta{Page}\verb|]{|\meta{Key}\verb|}|
 	\end{itemize}
 	\vfill
 \begin{lstlisting}
@@ -596,27 +597,27 @@ time	values	error
 \vfill
 \pause
 \begin{itemize}
-	\item manuelles Erstellen (und Sortieren) der Bibliografie ist sehr umständlich
-	\item Einträge nicht sinnvoll wiederverwendbar
+	\item Manual creation (and sorting) of the bibliography is very cumbersome.
+	\item Entries not easily reusable.
 	\pause
-	\item[⇒] Programm \verb|biber| übernimmt Sortierung und Verwaltung der Einträge
+	\item[⇒] Program \verb|biber| takes over sorting and management of entries.
 \end{itemize}
 \end{frame}
 
 \subsection{biblatex/biber}
-\begin{frame}[fragile]{\BibTeX/\hologo{biber}-Idee}
+\begin{frame}[fragile]{\BibTeX/\hologo{biber} Idea}
 	\begin{itemize}
-		\item Einträge liegen als Textdatei (\verb|.bib|) in vorgegbener Syntax vor
-		\item Referenz im Dokument mit \verb|\cite{mittelbach2004}|\pdfmarginpar{Wenn man will, dass nicht zitierte Referenzen in der Bibliografie auftauchen kann man diese mit nocite{} hinzufügen. nocite{*} fügt alle Items in der .bib-Datei ein.}
-		\item Programm \verb|biber| fügt referenzierte Quelle automatisch in Bibliografie ein
-		\item Aussehen der Referenz und Bibliografieeinträge vielfältig einstellbar
-		\item Zugriff auf große Menge an verfügbaren Referenzen
+		\item Entries exist as text files (\verb|.bib|) in a predefined syntax.
+		\item Reference in the document with \verb|\cite{mittelbach2004}|\pdfmarginpar{If you want non-cited references to appear in the bibliography, you can add them with \texttt{nocite\{\}}. \texttt{nocite{*}} inserts all items in the .bib file.}
+		\item Program \verb|biber| automatically adds referenced source to bibliography.
+		\item Appearance of the reference and bibliography entries can be configured in various ways.
+		\item Access to a large number of available references.
 	\end{itemize}
 \end{frame}
 
 
-\begin{frame}[b,fragile]{Die \texttt{.bib}-Datei}
-Unterschiedliche Bib-Items für unterschiedliche Dokumenttypen:
+\begin{frame}[b,fragile]{The \texttt{.bib} File}
+Different bib items for different document types:
 \begin{columns}
 \begin{column}{.3\textwidth}
 	\begin{itemize}
@@ -647,37 +648,37 @@ Unterschiedliche Bib-Items für unterschiedliche Dokumenttypen:
 \end{column}
 \end{columns}
 \vfill
-Jedes Item hat verschiedene mandatorische und optionale Felder.
+Each item has various mandatory and optional fields.
 \vfill
-\begin{block}{Syntax eines Eintrags}
-\verb|@|\meta{Item-Typ}\verb|{|\meta{Ref-Key}\verb|,|\\
-\verb|    |\meta{Feld}\verb|    = {|\meta{Wert}\verb|},|\\
-\verb|    |\meta{Feld}\verb|    = {|\meta{Wert}\verb|},|\\
+\begin{block}{Syntax of an Entry}
+\verb|@|\meta{Item-Type}\verb|{|\meta{Ref-Key}\verb|,|\\
+\verb|    |\meta{Field}\verb|    = {|\meta{Value}\verb|},|\\
+\verb|    |\meta{Field}\verb|    = {|\meta{Value}\verb|},|\\
 \verb|}|
 \end{block}
 \end{frame}
 
-\begin{frame}[b,fragile]{Die \texttt{.bib}-Datei}
+\begin{frame}[b,fragile]{The \texttt{.bib} File}
 	\begin{itemize}
-		\item Verwendung unintuitiv
-		\item graphische Oberflächen erleichtern das Leben
-		\\ z.\,B. \href{https://www.jabref.org/}{JabRef}, \href{https://www.bibsonomy.org/}{BibSonomy}, \href{https://www.citavi.com/de}{Citavi}, \href{https://endnote.com/}{EndNote}, \href{https://www.mendeley.com}{Mendeley}, \href{https://www.zotero.org}{Zotero}, …
-		\item direkte online-Suche z.\,B. bei \href{http://primo.bib.uni-mannheim.de/}{UB} oder \href{https://scholar.google.de}{Google Scholar}
+		\item Usage is unintuitive.
+		\item Graphical interfaces make life easier.
+		\\ e.\,g., \href{https://www.jabref.org/}{JabRef}, \href{https://www.bibsonomy.org/}{BibSonomy}, \href{https://www.citavi.com/de}{Citavi}, \href{https://endnote.com/}{EndNote}, \href{https://www.mendeley.com}{Mendeley}, \href{https://www.zotero.org}{Zotero}, …
+		\item Direct online search e.\,g., at \href{http://primo.bib.uni-mannheim.de/}{UB} or \href{https://scholar.google.de}{Google Scholar}
 	\end{itemize}
 	\vfill
-\begin{block}{Syntax eines Eintrags}
-\verb|@|\meta{Item-Typ}\verb|{|\meta{Ref-Key}\verb|,|\\
-\verb|    |\meta{Feld}\verb|    = {|\meta{Wert}\verb|},|\\
-\verb|    |\meta{Feld}\verb|    = {|\meta{Wert}\verb|},|\\
+\begin{block}{Syntax of an Entry}
+\verb|@|\meta{Item-Type}\verb|{|\meta{Ref-Key}\verb|,|\\
+\verb|    |\meta{Field}\verb|    = {|\meta{Value}\verb|},|\\
+\verb|    |\meta{Field}\verb|    = {|\meta{Value}\verb|},|\\
 \verb|}|
 \end{block}
 \end{frame}
 
 
 
-\begin{frame}[fragile]{Erstellung der Bibliografie}%{|biblatex|}
+\begin{frame}[fragile]{Creating the Bibliography}
 \begin{olcol}
-\begin{block}{im Dokument}\vspace{-1ex}
+\begin{block}{in the document}\vspace{-1ex}
 \begin{lstlisting}[frame=none]
 \usepackage[style=authoryear]{biblatex}
 \addbibresource{bibfile.bib}
@@ -688,7 +689,7 @@ Jedes Item hat verschiedene mandatorische und optionale Felder.
 \end{lstlisting}
 \vspace{-1ex}
 \end{block}
-\begin{block}{in der .bib-Datei}\vspace{-1ex}
+\begin{block}{in the .bib file}\vspace{-1ex}
 \begin{lstlisting}[frame=none]
 @book{Tolkien54,
   author    ={Tolkien, John R. R.},
@@ -700,49 +701,49 @@ Jedes Item hat verschiedene mandatorische und optionale Felder.
 \end{lstlisting}
 \vspace{-1ex}
 \end{block}
-%\begin{block}{in der Konsole}
-%\promt \verb|xelatex dokument.tex|\\
-%\promt \verb|biber dokument.bcf|\\
-%\promt \verb|xelatex dokument.tex|
+%\begin{block}{on the Terminal}
+%\promt \verb|lualatex document.tex|\\
+%\promt \verb|biber document.bcf|\\
+%\promt \verb|lualatex document.tex|
 %\end{block}
 \end{olcol}
 \overleaf{tex11}
 \end{frame}
 
-\begin{frame}[fragile]{Zitier- und Bibliografiestile}%{\verb|biblatex|}
+\begin{frame}[fragile]{Citation and Bibliography Styles}
 \begin{itemize}
-\item \pkg{biblatex} unterstützt viele vordefinierte Stile:
-\item \verb|\usepackage[style=|\meta{Stil}\verb|]{biblatex}|
+\item \pkg{biblatex} supports many predefined styles:
+\item \verb|\usepackage[style=|\meta{Style}\verb|]{biblatex}|
 \end{itemize}
 \begin{description}
-\item[\texttt{numeric}] Standard-Stil \hfill [1, 2, 4, 3, 7]
-\item[\texttt{numeric-comp}] Kompakte Version von \verb|numeric| \hfill [1-4, 7]
-\item[\texttt{alphabetic}] Abkürzungen von Autor und Jahr \hfill [Jon95] [JW86] 
-\item[\texttt{authoryear}] Autor-Jahr-Stil \hfill Jones 1995 
-\item[\texttt{authoryear-ibid}] Mehrfachnennungen auf einer Seite werden mit \emph{ebd.} abgekürzt
+\item[\texttt{numeric}] Standard style \hfill [1, 2, 4, 3, 7]
+\item[\texttt{numeric-comp}] Compact version of \texttt{numeric} \hfill [1-4, 7]
+\item[\texttt{alphabetic}] Abbreviations of author and year \hfill [Jon95] [JW86] 
+\item[\texttt{authoryear}] Author-year style \hfill Jones 1995 
+\item[\texttt{authoryear-ibid}] Multiple citations on one page are abbreviated with \emph{ibid.}
 \end{description}
 \begin{itemize}
-\item Bibliografiestil wird dem Zitierstil angepasst
-\item kann mit \verb|citestyle=| und \verb|bibstyle=| verändert werden
+\item Bibliography style is adapted to the citation style.
+\item Can be changed with \verb|citestyle=| and \verb|bibstyle=|.
 \end{itemize}
 \overleaf{tex11}
 \end{frame}
 
-\begin{frame}{Zitieren}
-\texttt{\textbackslash textcite\{\meta{key}\}} erzeugt Referenz im Text: \hfill {\small van Mises (1962)}\\
-\texttt{\textbackslash Textcite\{\meta{key}\}} erzeugt Referenz am Satzanfang: \hfill {\small Van Mises (1962)}\\
-\texttt{\textbackslash parencite\{\meta{key}\}} erzeugt Referenz in Klammern: \hfill {\small (van Mises 1962)}\\
+\begin{frame}{Citing}
+\texttt{\textbackslash textcite\{\meta{key}\}} generates reference in the text: \hfill {\small van Mises (1962)}\\
+\texttt{\textbackslash Textcite\{\meta{key}\}} generates reference at the beginning of the sentence: \hfill {\small Van Mises (1962)}\\
+\texttt{\textbackslash parencite\{\meta{key}\}} generates reference in parentheses: \hfill {\small (van Mises 1962)}\\
 \vfill
 
-Optionale Argumente:\\
-\texttt{\textbackslash parencite[\meta{Text davor}][\meta{Text danach}]\{\meta{key}\}}\\
-\texttt{\textbackslash parencite[\meta{Text danach}]\{\meta{key}\}}
+Optional arguments:\\
+\texttt{\textbackslash parencite[\meta{Text before}][\meta{Text after}]\{\meta{key}\}}\\
+\texttt{\textbackslash parencite[\meta{Text after}]\{\meta{key}\}}
 \vfill\pause
 %\begin{olcol}
 \begin{arbeitsauftrag}
-Erstellen Sie eine \texttt{.bib}-Datei mit einigen Einträgen und versuchen Sie diese in einem Dokument zu referenzieren.
+Create a \texttt{.bib} file with some entries and try to reference them in a document.
 
-Erzeugen Sie Ihr Dokument und die Bibliografie durch Aufrufen von \LuaLaTeX, \hologo{biber} und \LuaLaTeX.
+Generate your document and bibliography by calling \LuaLaTeX, \hologo{biber}, and \LuaLaTeX.
 \end{arbeitsauftrag}
 %\end{olcol}
 %\overleaf{tex11}
@@ -750,31 +751,31 @@ Erzeugen Sie Ihr Dokument und die Bibliografie durch Aufrufen von \LuaLaTeX, \ho
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\teil{Mathematiksatz}
+\teil{Typesetting Mathematics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Inline- und Displaymode}
-\begin{frame}[t]{Inline- und Displaymode}
+\subsection{Inline and Display Mode}
+\begin{frame}[t]{Inline and Display Mode}
 \begin{columns}
 \begin{column}{.48\textwidth}
-\begin{block}{Inlinemode}
+\begin{block}{Inline Mode}
 \begin{itemize}
-	\item Formeln, die direkt im Fließtext vorkommen
-	\item kurze Formeln, Nennung von Variablen
-	\item Elemente gehen nicht über die Zeilenhöhe hinaus
-	\item Grenzen werden \emph{neben} Integrale, Summen und Produkte gesetzt
+	\item Formulas appearing directly in the text flow
+	\item Short formulas, mentioning variables
+	\item Elements do not exceed the line height
+	\item Limits are set \emph{beside} integrals, sums, and products
 \end{itemize}
 \end{block}
 
 \end{column}
 \begin{column}{.48\textwidth}
-\begin{block}{Displaymode}
+\begin{block}{Display Mode}
 	\begin{itemize}
-		\item Auszeichnung wichtiger Formeln
-		\item Darstelling langer Rechnungen
-		\item komplexe Formeln
-		\item mehrfach indizierte Größen
-		\item geschachtelte Brüche
+		\item Emphasizes important formulas
+		\item Represents long calculations
+		\item Complex formulas
+		\item Multiply indexed quantities
+		\item Nested fractions
 		\item …
 	\end{itemize}
 \end{block}
@@ -782,31 +783,31 @@ Erzeugen Sie Ihr Dokument und die Bibliografie durch Aufrufen von \LuaLaTeX, \ho
 \end{columns}
 \end{frame}
 
-\begin{frame}{Inline- und Displaymode}
+\begin{frame}{Inline and Display Mode}
 \rmfamily
-\textbf{Inline-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\textbf{Inline-Mathe mit Displaystyle:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, wobei diese Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
-\textbf{Display-Mathe:} $E=mc^2$ kennt jedes Kind, aber kaum jemand kann wirklich mehr damit anfangen als mit \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] wobei diese zweite Formel nun mal gar keinen Sinn ergibt, aber zeigt, wie Grenzen im \TeX-Mathesatz aussehen.
+\textbf{Inline Math:} $E=mc^2$ is known by every child, but hardly anyone can make more sense of it than with $\int^\infty_{-\infty}\sum_{n = 1}^5 dx$, where this formula simply makes no sense, but shows how limits look in \TeX\ typesetting.
+\textbf{Inline Math with Displaystyle:} $E=mc^2$ is known by every child, but hardly anyone can make more sense of it than with $\displaystyle \int^\infty_{-\infty}\sum_{n = 1}^5 dx$, where this formula simply makes no sense, but shows how limits look in \TeX\ typesetting.
+\textbf{Display Math:} $E=mc^2$ is known by every child, but hardly anyone can make more sense of it than with \[\int^\infty_{-\infty}\sum_{n = 1}^5 dx,\] where this second formula simply makes no sense, but shows how limits look in \TeX\ typesetting.
 \end{frame}
 
 
-\begin{frame}[t,fragile]{Inline- und Displaymode}
+\begin{frame}[t,fragile]{Inline and Display Mode}
 \vspace*{-1em}
 
 \begin{columns}[t]
 \begin{column}{.48\textwidth}
-\begin{block}{Inlinemode}
-\verb|$|\meta{Formel}\verb|$|
+\begin{block}{Inline Mode}
+\verb|$|\meta{Formula}\verb|$|
 \end{block}\vspace*{2.72em}
 
 \begin{LTXexample}[pos=b]
-Die Funktion $K(x)$ modelliert $K$ in Abhängigkeit von $x$.
+The function $K(x)$ models $K$ depending on $x$.
 \end{LTXexample}
 \end{column}
 \begin{column}{.48\textwidth}
-\begin{block}{Displaymode}
+\begin{block}{Display Mode}
 \verb|\begin{equation}|\\
-~~\meta{Formel}\\
+~~\meta{Formula}\\
 \verb|\end{equation}|
 \end{block}\vspace*{0.1ex}
 
@@ -817,20 +818,19 @@ Die Funktion $K(x)$ modelliert $K$ in Abhängigkeit von $x$.
 \end{LTXexample}
 \end{column}
 \end{columns}
-\overleaf{tex12}
 \end{frame}
 
 
-\begin{frame}[fragile]{Mehrzeilige Formeln}
-	Eine Reihe von untereinander ausgerichteten, zueinander angeordneten Gleichungen wird z.\,B. verwendet für:
+\begin{frame}[fragile]{Multi-line Formulas}
+	A series of equations aligned and arranged with respect to each other, for example used for:
 	\begin{itemize}
-		\item Herleitungen
-		\item Übersichten
-		\item Vergleich von Formeln
+		\item Derivations
+		\item Summaries
+		\item Comparison of formulas
 	\end{itemize}
 %	\pause
-%	\sout{\TeX-Standardumgebung: \texttt{eqnarray}} \pause \alert{unschön}\\	\alert{besser:}
-	 \verb|align|-Umgebung aus dem \pkg{amsmath}-Paket.
+%	\sout{\TeX\ standard environment: \texttt{eqnarray}} \pause \alert{ugly}\\	\alert{better:}
+	 \verb|align| environment from the \pkg{amsmath} package.
 	\pause
 \begin{LTXexample}
 \begin{align}
@@ -840,53 +840,53 @@ abc &= d \\
 &= r
 \end{align}
 \end{LTXexample}
-	ohne Nummerierung: \verb|{align*}|
+	without numbering: \verb|{align*}|
 \end{frame}
 
 
-\subsection{Grundbefehle}
-\begin{frame}[fragile]{Variablen und Zahlen}
+\subsection{Basic Commands}
+\begin{frame}[fragile]{Variables and Numbers}
 	\begin{itemize}
-		\item Variablen werden kursiv gesetzt: \verb|$a$|: $a$
-		\item Schriftart abhängig von der Dokumentenklasse!\\%
-		(Groteske, Serifen etc.)
-		\item Ziffern werden automatisch korrekt gesetzt: $12.2$ statt 12.2
+		\item Variables are set in italics: \verb|$a$|: $a$
+		\item Font depends on the document class!\\%
+		(Grotesque, Serifs, etc.)
+		\item Digits are automatically set correctly: $12.2$ instead of 12.2
 	\end{itemize}
 	\vfill
-	Paket \pkg{siunitx} erlaubt Satz von Größen und Einheiten
+	Package \pkg{siunitx} allows typesetting of quantities and units
 \begin{LTXexample}[pos=r]
 \num{3.14159+-0.00001} \\
 \SI{95}{\kilo\joule} \\
 \si{\milli\meter}
 \end{LTXexample}
-(funktioniert im Mathemodus und im Textmodus)
+(works in math mode and text mode)
 \end{frame}
 
-\begin{frame}[fragile]{Hoch- und Tiefstellung}
+\begin{frame}[fragile]{Superscripts and Subscripts}
 	\begin{itemize}
-		\item Zeichen mit besonderer Bedeutung: \verb|^| und \verb|_|
-		\item Hochstellung: \verb|a^b|\hfill $a^b$
-		\item Tiefstellung: \verb|a_b|\hfill $a_b$
-		\item Gruppierungen sind möglich: \verb|a^{bc}|, \verb|a_{bc}|\hfill $a_{bc}$
-		\item Kombination ist möglich: \verb|a_b^c|\hfill $a_b^c$
-		\item Ohne vorhergehendes Zeichen: \verb|^{235}U|\hfill $^{235}\mathrm U$
-		\item Schachtelung nur mit Gruppierung:\\%
+		\item Characters with special meaning: \verb|^| and \verb|_|
+		\item Superscript: \verb|a^b|\hfill $a^b$
+		\item Subscript: \verb|a_b|\hfill $a_b$
+		\item Grouping is possible: \verb|a^{bc}|, \verb|a_{bc}|\hfill $a_{bc}$
+		\item Combination is possible: \verb|a_b^c|\hfill $a_b^c$
+		\item Without preceding character: \verb|^{235}U|\hfill $^{235}\mathrm U$
+		\item Nesting only with grouping:\\%
 		\verb|a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}| \hfill \Large $a_{b_{c_{d_{e_{f^g}}}}}^{h^{i^{j_k}}}$\normalsize
-		\item[] \verb|a_b_c| produziert Fehler!
+		\item[] \verb|a_b_c| produces an error!
 	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Operatoren}
-Operatorennamen werden aufrecht gesetzt und sind vordefiniert
+\begin{frame}[fragile]{Operators}
+Operator names are set upright and are predefined
 	\begin{itemize}
-		\item richtig: $\sin(x)$\quad falsch: $sin(x)$
+		\item Correct: $\sin(x)$\quad Incorrect: $sin(x)$
 	\end{itemize}
 \begin{LTXexample}[pos=b]
 $\sin(x) \cos(y) \tan(2\pi) \lim \arctan$
 \end{LTXexample}
 	\pause
 	\begin{itemize}
-		\item Paket \pkg{amsopn} bietet viele Definitionen:
+		\item Package \pkg{amsopn} provides many definitions:
 	\end{itemize}
 \begin{lstlisting}
 \arccos \arcsin \arg \cos \cot \coth \deg \det
@@ -895,14 +895,14 @@ $\sin(x) \cos(y) \tan(2\pi) \lim \arctan$
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Klammern}
-Klammerung von großen Ausdrücken kann Probleme bereiten:
+\begin{frame}[fragile]{Brackets}
+Bracketing large expressions can be problematic:
 \begin{LTXexample}
 \[ (
   \frac{\int^a x dx}{\sum_{n=1} x}
 ) \]
 \end{LTXexample}
-Besser:
+Better:
 \begin{LTXexample}
 \[ \left(
   \frac{\int^a x dx}{\sum_{n=1} x}
@@ -911,12 +911,12 @@ Besser:
 \end{frame}
 
 
-\begin{frame}[fragile]{Klammern}
+\begin{frame}[fragile]{Brackets}
 \begin{itemize}
-\item \verb|\left| und \verb|\right| vor allem, was dehnbar ist
-\item \verb|\left( \right]| funktioniert auch
-\item \verb|\left. \right)| liefert angepasste rechte Klammer
-\item Hoch- und Tiefstellung werden angepasst:
+\item \verb|\left| and \verb|\right| before everything that stretches
+\item \verb|\left( \right]| also works
+\item \verb|\left. \right)| provides adapted right bracket
+\item Superscripts and subscripts are adjusted:
 \end{itemize}
 \begin{LTXexample}[pos=b]
 \begin{displaymath}
@@ -927,10 +927,10 @@ Besser:
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile]{Grenzen}
+\begin{frame}[fragile]{Limits}
 \begin{itemize}
-\item Grenzen per \verb|\limits| angeben
-\item Mehrzeilige Grenzen mit \verb|\atop|
+\item Specify limits using \verb|\limits|
+\item Multi-line limits with \verb|\atop|
 \end{itemize}
 \begin{LTXexample}
 \[
@@ -942,10 +942,10 @@ Besser:
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile]{Sonderzeichen}
+\begin{frame}[fragile]{Special Characters}
 \begin{itemize}
-\item Viele Zeichen sind über ihren Namen ereichbar,
-\item genauso Griechische Groß- und Kleinbuchstaben
+\item Many characters are accessible by their names,
+\item as well as Greek uppercase and lowercase letters
 \end{itemize}
 \begin{LTXexample}[preset=\vspace{-1em}]
 \begin{align*}
@@ -961,12 +961,12 @@ Besser:
 \end{align*}
 \end{LTXexample}
 \pause
-Wenn man ein Symbol sucht:\\
+If you are looking for a symbol:\\
 \texttt{texdoc \href{https://texdoc.org/serve/maths-symbols/0}{maths-symbols} \href{https://texdoc.org/serve/symbols-a4/0}{symbols-a4}}
-oder \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
+or \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
 \end{frame}
 
-\begin{frame}[fragile]{Wurzeln}
+\begin{frame}[fragile]{Roots}
 \begin{LTXexample}[preset=\Large]
 \[
   \sqrt{a_{n_{m_p}}}
@@ -976,7 +976,7 @@ oder \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
 \end{LTXexample}
 \pause
 \begin{itemize}
-\item zu tiefe Unterlängen sind unschön \item[⇒] \verb|\smash[|\meta{t, b}\verb|]{|\meta{Formel}\verb|}|
+\item Roots with deep descenders are unsightly \item[⇒] \verb|\smash[|\meta{t, b}\verb|]{|\meta{Formula}\verb|}|
 \end{itemize}
 \begin{LTXexample}[preset=\Large]
 \[
@@ -992,7 +992,7 @@ oder \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
 \end{frame}
 
 
-\begin{frame}[fragile]{Matrizen}
+\begin{frame}[fragile]{Matrices}
 \begin{LTXexample}
 \[
   \begin{matrix}
@@ -1015,8 +1015,8 @@ oder \alert{\href{http://detexify.kirelabs.org/classify.html}{Detexify}}
 \end{frame}
 
 
-\begin{frame}[fragile]{Matrizen}
-Paket \pkg{amsmath} definiert weitere Matrixumgebungen:\\[2em]
+\begin{frame}[fragile]{Matrices}
+Package \pkg{amsmath} defines additional matrix environments:\\[2em]
 \begin{minipage}{3cm}
 \[\begin{pmatrix}
 a & b \\ c & d
@@ -1056,98 +1056,95 @@ a & b \\ c & d
 \end{minipage}
 \end{frame}
 
-\subsection{Nummerierung}
-\begin{frame}[fragile]{Nummerierung von Fallunterscheidungen}
-Paket \pkg{cases} bietet Nummerierung von case-Konstrukten:
+\subsection{Numbering}
+\begin{frame}[fragile]{Numbering of Cases}
+Package \pkg{cases} provides numbering of case constructs:
 \begin{LTXexample}[pos=b]
 \begin{numcases}{E = mc^2}
-  m \neq 0 & Masselose Teilchen\\
-  m < 0 & Antiteilchen (?)\\
-  m > 0 & normale Teilchen
+  m \neq 0 & massless particles\\
+  m < 0 & antiparticles (?)\\
+  m > 0 & normal particles
 \end{numcases}
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}{Anwendung}
+\begin{frame}{Application}
 \begin{arbeitsauftrag}
-Versuchen Sie das folgende Beispiel nachzubauen.
+Try to recreate the following example.
 \end{arbeitsauftrag}
 \rmfamily\vfill
-Die Maxwell-Gleichungen stellen die Verknüpfung zwischen dem elektrischen Feld $\vec E$ und dem magnetischen Feld  $\vec B$ dar:
+The Maxwell equations represent the relationship between the electric field $\vec E$ and the magnetic field $\vec B$:
 \begin{align*}
 \vec \nabla \cdot \vec E &= \frac{\rho}{\varepsilon_0} & \vec \nabla \times \vec E &= - \frac{\partial \vec B}{\partial t}\\
 \vec \nabla \cdot \vec B &= 0 & \vec \nabla \times \vec B &= \mu_0\varepsilon_0\frac{\partial \vec E}{\partial t}
 \end{align*}
-Formel \ref{eq:summe} addiert alle mit $c_i$ gewichtete $a_i$.
+Formula \ref{eq:summe} adds all $a_i$ weighted by $c_i$.
 \begin{align}
 \sum_{i=1}^n c_i \cdot a_i  \label{eq:summe}
 \end{align}
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\teil{Tabellen}
+\teil{Tables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\begin{frame}[fragile]{Tabellenumgebung: tabular}
-\texttt{\textbackslash begin\{tabular\}\{\meta{Spalten-Spezifikation}\}}
+\begin{frame}[fragile]{Table Environment: tabular}
+\texttt{\textbackslash begin\{tabular\}\{\meta{Column Specification}\}}
 \vfill
 \begin{olcol}
 \begin{LTXexample}[pos=b]
 \begin{tabular}{llr}
-  erster     & zweiter & dritter Eintrag \\
-  neue Zeile &         & mit zwei Einträgen \\
-  dritte     & Zeile
+first & second & third entry \\
+new line & & with two entries \\
+third & line
 \end{tabular}
 \end{LTXexample}
 \end{olcol}
 \overleaf{tex13}
 \end{frame}
 
-
-\begin{frame}[fragile]{Spalten-Typen}
+\begin{frame}[fragile]{Column Types}
 \begin{description}
-\item[\texttt{l}] linksbündige Spalte
-\item[\texttt{c}] zentrierte Spalte
-\item[\texttt{r}] rechtbündige Spalte
-\item[\texttt{|}] vertikale Linie zwischen Spalten
-\item[\texttt{||}] doppelte Linie zwischen Spalten %(wird nicht durchgestrichen)
-\item[\texttt{p\{\meta{Breite}\}}] Spalte mit fester Breite 
-%\item[\texttt{@\{\meta{Inhalt}\}}] setzt statt Spaltenabstand \verb/Inhalt/
-\item[\texttt{\kern-.95ex*\{n\}\{\meta{kürz}\}}] setzt $n$ mal \meta{kürz}, z.\,B. \verb/*{3}{p{4cm}|}/
+\item[\texttt{l}] left-aligned column
+\item[\texttt{c}] centered column
+\item[\texttt{r}] right-aligned column
+\item[\texttt{|}] vertical line between columns
+\item[\texttt{||}] double line between columns %(not crossed out)
+\item[\texttt{p{\meta{Width}}}] column with fixed width
+%\item[\texttt{@{\meta{Content}}}] instead of column separation, set \verb/Content/
+\item[\texttt{\kern-.95ex*{n}{\meta{short}}}] repeat \meta{short} $n$ times, e.\,g., \verb/*{3}{p{4cm}|}/
 \end{description}
 \end{frame}
 
 \begin{frame}[fragile]{tabular}
 \begin{LTXexample}[pos=b,preset={\small}]
 \begin{tabular}{l|c||r|p{2cm}|c|}
-  links & mitte & rechts & vier & fünf\\\hline\hline
-  links & mitte &  & eine lange vierte Spalte, die umgebrochen wird\\\hline
-  & & & &
+left & center & right & four & five\\\hline\hline
+left & center & & a exceptionally long fourth column that breaks\\\hline
+& & & &
 \end{tabular}
 \end{LTXexample}
 \end{frame}
 
-
-\subsection[tabularray]{unterschiedliche Spaltenbreiten}
+\subsection[tabularray]{Different Column Widths}
 %\nocite{tabularray}
 
-\begin{frame}[fragile]{unterschiedliche Spaltenbreite}
+\begin{frame}[fragile]{Different Column Widths}
 \begin{itemize}
-\item Paket \pkg{tabularray} bietet vielfältige Gestaltungsmöglichkeiten für Tabellen.
-\item klassiche Nutzung: \\
-\verb|\begin{tblr}{|\meta{Spaltendefinitionen}\verb|}|\\
-~~~~\meta{Tablleninhalt}\\
+\item Package \pkg{tabularray} offers various design options for tables.
+\item classic usage: \
+\verb|\begin{tblr}{|\meta{column definitions}\verb|}|
 \verb|\end{tblr}|
-\item erweiterte Eingabemöglichkeiten:\\
-\verb|\begin{tblr}{colspec={|\meta{Spaltendef.}\verb|}, |\meta{weitere Optionen}\verb|}|\\
-~~~~\meta{Tablleninhalt}\\
+\item extended input options:\\
+\verb|\begin{tblr}{colspec={|\meta{column definitions}\verb|}, |\meta{additional options}\verb|}|\\
+~~~~\meta{table content}\\
 \verb|\end{tblr}|
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile]{Tabelle mit \pkg{tabularray}}
+\begin{frame}[fragile]{Table with \pkg{tabularray}}
 \begin{LTXexample}[pos=b,preset={\small}]
 \begin{tblr}{
     columns = {wd=2cm, halign=c},
@@ -1165,14 +1162,14 @@ Formel \ref{eq:summe} addiert alle mit $c_i$ gewichtete $a_i$.
 
 
 
-\begin{frame}[fragile]{unterschiedliche Spaltenbreiten}
-Neuer Spaltentyp:
+\begin{frame}[fragile]{Different Column Widths}
+New column type:
 \begin{description}
-\item[\texttt{X[\meta{Faktor},\meta{Typ}]}] (linksbündige) Spalte mit variabler Breite
+\item[\texttt{X[\meta{Factor},\meta{Type}]}] (left-aligned) column with variable width
 \end{description}
 \vfill
 
-Zur Verfügung stehende Breite wird gleichmäßig auf alle \verb|X|-Spalten verteilt:
+Available width is evenly distributed among all \verb|X|-columns:
 
 \begin{LTXexample}[width=.4\textwidth]
 \begin{tblr}{|l|l|r|}
@@ -1192,8 +1189,8 @@ Zur Verfügung stehende Breite wird gleichmäßig auf alle \verb|X|-Spalten vert
 \end{frame}
 
 
-\begin{frame}[fragile]{Umbrüche in Zellen}
-Zeilen können mit \verb|{ \\ }| umgebrochen werden, wenn der Zellinhalt eingeklammert ist:
+\begin{frame}[fragile]{Line Breaks in Cells}
+Rows can be broken with \verb|{ \\ }| if the cell content is enclosed:
 
 \begin{LTXexample}[width=.4\textwidth]
 \begin{tblr}{|X[r]|X[2,c]|X|}
@@ -1203,8 +1200,8 @@ Zeilen können mit \verb|{ \\ }| umgebrochen werden, wenn der Zellinhalt eingekl
 \end{frame}
 
 
-\begin{frame}[fragile]{vertikale Positionierung}
-Zeilentypen \texttt{h}, \texttt{m} und \texttt{b\{\meta{Höhe}\}} richten Inhalt an Kopf, Mitte bzw. Fuß der Zeile aus.
+\begin{frame}[fragile]{Vertical Alignment}
+Row types \texttt{h}, \texttt{m}, and \texttt{b\{\meta{Height}\}} align content at the head, center, and foot of the row, respectively.
 
 \begin{LTXexample}[pos=b,preset={\small}]
 \begin{tblr}{ colspec={l|c|r}, rowspec={h{8mm}|m{12mm}|f{8mm}} }
@@ -1216,8 +1213,8 @@ Zeilentypen \texttt{h}, \texttt{m} und \texttt{b\{\meta{Höhe}\}} richten Inhalt
 \end{frame}
 
 
-\begin{frame}[fragile]{Zellen über mehrere Spalten/Zeilen}
- \verb|\SetCell[r=|\meta{Zeilen}\verb|,c=|\meta{Spalten}\verb|]{|\meta{Ausrichtung}\verb|}| vergrößert aktuelle Zelle
+\begin{frame}[fragile]{Cells Spanning Multiple Columns/Rows}
+ \verb|\SetCell[r=|\meta{Rows}\verb|,c=|\meta{Columns}\verb|]{|\meta{Alignment}\verb|}| enlarges current cell
  \vfill
  
 \begin{LTXexample}[pos=r,preset={\small},width=0.45\linewidth]
@@ -1236,7 +1233,7 @@ Zeilentypen \texttt{h}, \texttt{m} und \texttt{b\{\meta{Höhe}\}} richten Inhalt
 \end{frame}
 
 
-\begin{frame}[fragile]{farbige Tabellen}
+\begin{frame}[fragile]{Colored Tables}
 \begin{LTXexample}[pos=r,preset={\small}]
 \begin{tblr}{
   row{odd} = {bg=azure8},
@@ -1253,14 +1250,14 @@ Zeilentypen \texttt{h}, \texttt{m} und \texttt{b\{\meta{Höhe}\}} richten Inhalt
   Rho & Sigma & Tau & Ypsilon \\
 \end{tblr}
 \end{LTXexample}
-Neben \pkg{tabularray} muss das Paket \pkg{xcolor} geladen sein.
+In addition to \pkg{tabularray}, the \pkg{xcolor} package must be loaded.
 \end{frame}
 
 
-\begin{frame}[fragile]{Mathe in Tabellen}
+\begin{frame}[fragile]{Math in Tables}
 \begin{description}
-\item[\texttt{X[\$\textcolor{gray}{/}\$\$]}] startet inline-/display-Mathemodus automatisch in der ganzen Spalte
-\item[S] wird automatisch am Dezimaltrennzeichen ausgerichtet \\ benötigt \verb|\UseTblrLibrary{siunitx}| \\ Text muss mit \verb|guard| gekennzeichnet sein
+\item[\texttt{X[\$\textcolor{gray}{/}\$\$]}] automatically starts inline/display math mode throughout the column
+\item[S] automatically aligns at the decimal point \\ requires \verb|\UseTblrLibrary{siunitx}| \\ Text must be marked with \verb|guard|
 \end{description}
  
 \begin{LTXexample}[pos=r,preset={\small},width=0.45\linewidth]
@@ -1269,7 +1266,7 @@ Neben \pkg{tabularray} muss das Paket \pkg{xcolor} geladen sein.
   colspec={X[$]X[$$]SS[table-format=1.5]},
   row{1} = {guard},
 }
-  a·b·c   & a·b·c   & Zahlen & Zahlen  \\
+  a·b·c   & a·b·c   & Numbers & Numbers  \\
   \frac12 & \frac12 & 111    & 0.00001 \\
   \frac34 & \frac34 &   2.1  & 0.0001  \\
   \frac56 & \frac56 &  33.11 & 0.001  \\
@@ -1278,125 +1275,13 @@ Neben \pkg{tabularray} muss das Paket \pkg{xcolor} geladen sein.
 \end{frame}
 
 
-%\begin{frame}[fragile]{array}
-%\begin{itemize}
-%\item Paket \pkg{array} erweitert die Möglichkeiten von \verb/tabular/
-%\item Änderung von vertikalen Linien, neue Spaltentypen:
-%\end{itemize}
-%\begin{description}
-%\item[\texttt{|}] berücksichtigt die Linienbreite
-%\item[\texttt{m\{\meta{Breite}\}}] vertikal zentrierte Spalte der angegebenen \meta{Breite}
-%\item[\texttt{b\{\meta{Breite}\}}] unten ausgerichtete Spalte der angegebenen \meta{Breite} (vgl. p)
-%\item[\texttt{>\{\meta{Befehl}\}}] fügt \meta{Befehl} direkt vor der nächsten Spalte ein
-%\item[\texttt{<\{\meta{Befehl}\}}] fügt \meta{Befehl} direkt hinter der letzten Spalte ein
-%%\item[\texttt{!\{\meta{Befehl}\}}] wie \verb/|/, fügt aber \meta{Befehl} ein. Vgl. \verb/@/, aber Abstand korrigiert
-%\end{description}
-%\end{frame}
-%
-%\begin{frame}[fragile]{array}
-%\begin{LTXexample}[pos=b]
-%\begin{tabular*}{6cm}{|p{1cm}p{3cm}p{1cm}|}
-%links & mittlerer Text mit eingebautem Umbruch & rechts
-%\end{tabular*}
-%\end{LTXexample}
-%\end{frame}
-%\begin{frame}[fragile]{array}
-%\begin{LTXexample}[pos=b]
-%\begin{tabular*}{6cm}{|m{1cm}m{3cm}m{1cm}|}
-%links & mittlerer Text mit eingebautem Umbruch & rechts
-%\end{tabular*}
-%\end{LTXexample}
-%\end{frame}
-%\begin{frame}[fragile]{array}
-%\begin{LTXexample}[pos=b]
-%\begin{tabular*}{6cm}{|b{1cm}b{3cm}b{1cm}|}
-%links & mittlerer Text mit eingebautem Umbruch & rechts
-%\end{tabular*}
-%\end{LTXexample}
-%\end{frame}
-%\begin{frame}[fragile]{array}
-%\begin{LTXexample}[pos=b]
-%\begin{tabular}{>{\bfseries}l|>{\color{red}}r}
-%links & rechts\\
-%links & rechts
-%\end{tabular}
-%\end{LTXexample}
-%\end{frame}
+\subsection[booktabs]{Beautiful Tables}
 
-
-%\subsection{automatische Spaltenbreite}
-%
-%\begin{frame}[fragile]{automatische Spaltenbreite}
-%\begin{itemize}
-%%\item \verb/tabular*/ ändert \emph{Abstand} der Spalten
-%\item \pkg{tabularx} verteilt \emph{Breite} der Spalten \emph{gleichmäßig}
-%\item \pkg{tabulary} verteilet \emph{Breite} der Spalten \emph{am Inhalt orientiert}
-%\item \pkg{tabu} funktioniert ähnlich wie \pkg{tabularx}, nur \emph{in bunt}
-%\end{itemize}
-%\end{frame}
-%
-%\begin{frame}[fragile]{automatische Breiten}
-%\begin{LTXexample}[width=.4\textwidth]
-%\begin{tabularx}{4cm}{|l|X|r|}
-% a a & b b & c c
-%\end{tabularx}
-%\end{LTXexample}
-%\begin{LTXexample}[width=.4\textwidth]
-%\begin{tabular}{|l|l|r|}
-% a a & b b & c c
-%\end{tabular}
-%\end{LTXexample}
-%\end{frame}
-%
-%\begin{frame}[fragile]{tabularx}
-%Automatische Berechnung der Spaltenbreite:
-%\begin{LTXexample}
-%\begin{tabularx}{\linewidth}{lX|X|r}
-%linke Spalte & Eine längere Spalte& kurz & rechts
-%\end{tabularx}
-%\end{LTXexample}
-%\end{frame}
-%
-%\begin{frame}[fragile]{tabulary}
-%\begin{LTXexample}
-%\begin{tabulary}{4cm}{|L|L|L|}
-%a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
-%\end{tabulary}
-%\end{LTXexample}
-%\begin{LTXexample}
-%\begin{tabular}{|l|l|l|}
-%a & b b b b b b b b b & c c c c c c c c c c c c c c c c c 
-%\end{tabular}
-%\end{LTXexample}
-%\end{frame}
-%
-%\begin{frame}[fragile]{tabulary}
-%Mögliche Spaltentypen:\\[1em]
-%\begin{description}
-%\item[\texttt{L}] linksbündig
-%\item[\texttt{R}] rechtsbündig
-%\item[\texttt{C}] zentriert
-%\item[\texttt{J}] Blocksatz
-%\end{description}
-%\vfill
-%\begin{itemize}
-%\item Alle Spalten verhalten sich wie \verb/p/-Spalten.
-%\item Breite der Spalten ist \emph{nicht} vorher festgelegt.
-%\end{itemize}
-%\end{frame}
-
-
-
-
-
-
-\subsection[booktabs]{Schöne Tabellen}
-
-\begin{frame}[fragile]{Fragwürdiges Layout}
+\begin{frame}[fragile]{Questionable Layout}
 \begin{itemize}
-\item Paket \pkg{booktabs} (Simon Fear) für hohe Qualität
-\item bei Nutzung von \pkg{tabularray}: \verb|\UseTblrLibrary{booktabs}|
-\item Empfehlungen aus dem Paket:
+\item Package \pkg{booktabs} (Simon Fear) for high-quality tables
+\item when using \pkg{tabularray}: \verb|\UseTblrLibrary{booktabs}|
+\item Recommendations from the package:
 \end{itemize}
 \vfill
 \begin{fancyquote}
@@ -1407,82 +1292,82 @@ Neben \pkg{tabularray} muss das Paket \pkg{xcolor} geladen sein.
 \item<2-> Always precede a decimal point by a digit; thus \verb/0.1/ \emph{not} just \verb/.1/.
 \item<2-> Do not use “ditto” signs or any other such convention to repeat a previous
 value. In many circumstances a blank will serve just as well. If it won’t,
-then repeat the value. \quoted{\href{https://texdoc.org/pkg/booktabs}{booktabs-Dokumentation}}
+then repeat the value. \quoted{\href{https://texdoc.org/pkg/booktabs}{booktabs documentation}}
 %\nocite{booktabs}
 \end{enumerate}
 \end{fancyquote}
 \end{frame}
 
-\begin{frame}[fragile]{ohne booktabs}%{Negativbeispiel}
+\begin{frame}[fragile]{Without booktabs}%{Negative Example}
 \hspace{-1cm}
 \begin{LTXexample}[pos=b,%width=.45\textwidth,
 rframe={}]
 \begin{tabular}{||l|lr||} \hline
-  Mücken     & Gramm       & \$13.65 \\ \cline{2-3}
-             & je          & .01 \\ \hline
-  Gnu        & ausgestopft & 92.50 \\ \cline{1-1} \cline{3-3}
+  Mosquitoes     & Grams       & \$13.65 \\ \cline{2-3}
+             & per          & .01 \\ \hline
+  Wildebeest        & stuffed & 92.50 \\ \cline{1-1} \cline{3-3}
   Emu        &             & 33.33 \\ \hline
-  Gürteltier & gefroren    & 8.99 \\ \hline
+  Armadillo & frozen    & 8.99 \\ \hline
 \end{tabular}
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,shrink]{mit booktabs}%{Positivbeispiel}
+\begin{frame}[fragile,shrink]{With booktabs}%{Positive Example}
 \hspace{-1cm}
 \begin{LTXexample}[pos=b,%width=.45\textwidth,
 rframe={}]
 \begin{tblr}{llS[table-format=3.2]} \toprule
-  \SetCell[c=2]{c} Artikel & & \\ \cmidrule[r]{1-2}
-  Tier      & Beschreibung & {{{Preis (\$)}}}\\ \midrule
-  Mücke     & pro Gramm    & 13.65 \\
-            & pro Stück   & 0.01 \\
-  Gnu       & ausgestopft  & 92.50 \\
-  Emu       & ausgestopft  & 33.33 \\
-  Gürtetier & gefroren     & 8.99 \\ \bottomrule
+  \SetCell[c=2]{c} Item & & \\ \cmidrule[r]{1-2}
+  Animal      & Description & {{{Price (\$)}}}\\ \midrule
+  Mosquito     & per Gram    & 13.65 \\
+            & per Piece   & 0.01 \\
+  Wildebeest       & stuffed  & 92.50 \\
+  Emu       & stuffed  & 33.33 \\
+  Armadillo & frozen     & 8.99 \\ \bottomrule
 \end{tblr}
 \end{LTXexample}
 \end{frame}
 
 
-\begin{frame}{Nützlich beim Umgang mit Tabellen …}
+\begin{frame}{Useful for Dealing with Tables …}
 \begin{itemize}
-%\item[\pkg{tabu}] farbige Zellen und Linien, gleichmäßige Spaltenbreite
-%\item[\pkg{xcolor}] farbige Zellen
-%\item[\pkg{colortbl}] farbige Linien
-%\item[\pkg{hhline}] vielfältige Linien (horizontal, vertikal \dots)
-%\item[\pkg{arydshln}] gestrichelte Linien 
-%\item[\pkg{ltxtable}] mehrseitige Tabellen mit automatischer Breitenanpassung
-%\item[\pkg{multirow}] vertikale Ausrichtung 
-%\item[\pkg{siunitx}] Ausrichtung am Dezimalpunkt % das kann auch siunitx → siehe nächste Vorlesung
-%\item[\pkg{threeparttable}] Fußnoten an Tabellen
-\item \pkg{tabularray}-Libraries binden bestehende Pakete in \texttt{tblr}-Syntax ein\\
-Laden mit \texttt{\textbackslash UseTblrLibrary\{\meta{library}\}}  (siehe Dokumentation)
+%\item[\pkg{tabu}] colored cells and lines, equal column width
+%\item[\pkg{xcolor}] colored cells
+%\item[\pkg{colortbl}] colored lines
+%\item[\pkg{hhline}] various lines (horizontal, vertical \dots)
+%\item[\pkg{arydshln}] dashed lines 
+%\item[\pkg{ltxtable}] multi-page tables with automatic width adjustment
+%\item[\pkg{multirow}] vertical alignment 
+%\item[\pkg{siunitx}] alignment at decimal point % this can also be done by siunitx → see next lecture
+%\item[\pkg{threeparttable}] footnotes to tables
+\item \pkg{tabularray} libraries integrate existing packages into \texttt{tblr} syntax\\
+Load with \texttt{\textbackslash UseTblrLibrary\{\meta{library}\}}  (see documentation)
 \begin{description}
-\item[\texttt{amsmath}] Tabellen-Funktionen z.\,B. in Matrizen benutzen
-\item[\texttt{booktabs}] \emph{schöne} Tabellen setzen
-\item[\texttt{diagbox}] ersten Zelle diagonal Teilen
-\item[\texttt{siunitx}] Daten in Tabellen am Dezimalpunkt ausrichten
+\item[\texttt{amsmath}] use table functions e.\,g., in matrices
+\item[\texttt{booktabs}] set \emph{beautiful} tables
+\item[\texttt{diagbox}] split first cell diagonally
+\item[\texttt{siunitx}] align data in tables at decimal point
 \end{description}
-\item \texttt{longtblr}-Umgebung erlaubt Tabellen mit Fußnoten und Seitenumbrüchen 
+\item \texttt{longtblr} environment allows tables with footnotes and page breaks 
 
 \vfill
-\item Praktisches Online-Tool: \href{https://www.tablesgenerator.com/}{Tables Generator}\\
+\item Practical Online Tool: \href{https://www.tablesgenerator.com/}{Tables Generator}\\
 \url{https://www.tablesgenerator.com/}
 \end{itemize}
 \qrcorner{https://www.tablesgenerator.com}
 \end{frame}
 
-\begin{frame}{Anwendung}
+\begin{frame}{Application}
 \begin{arbeitsauftrag}
-Erstellen Sie in einer Gleitumgebung eine Tabelle mit dem folgenden Tabellenkopf. Ergänzen Sie eine Beschriftung (\texttt{\textbackslash caption}).
+Create a table with the following table header in a floating environment. Add a caption (\texttt{\textbackslash caption}).
 \end{arbeitsauftrag}
 \vfill
 \begin{center}
 \begin{tblr}{colspec={SXSX}}
 \toprule
-{{{Lfd. Nr.}}} & Gegenstand & {{{Anzahl}}} & Beschreibung \\
+{{{Serial No.}}} & Item & {{{Quantity}}} & Description \\
 \midrule
-1 & Bleistift & 13 & absolute Premiumqualität, besonders spitz, handbemalt, Stärke HB\\
+1 & Pencil & 13 & absolute premium quality, especially sharp, hand-painted, grade HB\\
 2 & … \\
   &~ \\
 \bottomrule
@@ -1491,29 +1376,30 @@ Erstellen Sie in einer Gleitumgebung eine Tabelle mit dem folgenden Tabellenkopf
 \end{frame}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\teil{Umfangreiche Dokumente}
+\teil{Extensive Documents}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Aufteilung}
-	\begin{itemize}
-		\item Nachteil von \TeX: lange Dokumente werden unübersichtlich\pause
-		\item Vorteil von \TeX: Teile des Dokumentes können in externe Dateien ausgelagert werden
-		\item geschickte Aufteilung und Verwaltung eines Dokumentes möglich
-	\end{itemize}
+\begin{frame}{Organization}
+\begin{itemize}
+\item Drawback of \TeX: Long documents become unwieldy \pause
+\item Advantage of \TeX: Parts of the document can be outsourced to external files
+\item Enables smart organization and management of a document
+\end{itemize}
 \end{frame}
 
 \DeleteShortVerb|
 
-\begin{frame}{Aufteilung}
+\begin{frame}{Organization}
 \begin{columns}
 \begin{column}{.5\textwidth}
-	\begin{itemize}
-		\item eine Hauptdatei als leeres Gerüst
-		\item eine header-Datei (evtl. weitere Datei(en) für spezielle Befehlsdefinitionen)
-		\item Inhalte in einem Unterordner
-		\item Abbildungen und sonstige Materialien in weiteren Unterordnern
-	\end{itemize}
+\begin{itemize}
+\item One main file as a blank skeleton
+\item One header file (possibly additional file(s) for specific command definitions)
+\item Contents in a subfolder
+\item Figures and other materials in further subfolders
+\end{itemize}
 \end{column}
 \begin{column}{.4\textwidth}
 \begin{tikzpicture}[
@@ -1522,19 +1408,20 @@ Erstellen Sie in einer Gleitumgebung eine Tabelle mit dem folgenden Tabellenkopf
  	edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
  	\ttfamily
 	\node [fill=blue!30] {main/}
-		child {node {hauptdatei.tex}}
+		child {node {mainfile.tex}}
 		child {node {header.tex}}
 %		child {node {defs}}
-		child {node [fill=blue!30] {bilder/}
-			child {node {bild1.png}}
-			child {node {bild2.jpg}}
+		child {node [fill=blue!30] {contents/}
+			child {node {chapter1.tex}}
+			child {node {chapter2.tex}}
+			child {node {appendix1.tex}}
 		}
 		child [missing] {}
 		child [missing] {}
-		child {node [fill=blue!30] {inhalte/}
-			child {node {kapitel1.tex}}
-			child {node {kapitel2.tex}}
-			child {node {anhang1.tex}}
+		child [missing] {}
+		child {node [fill=blue!30] {images/}
+			child {node {image1.png}}
+			child {node {image2.jpg}}
 		}
 	;
 \end{tikzpicture}
@@ -1543,191 +1430,190 @@ Erstellen Sie in einer Gleitumgebung eine Tabelle mit dem folgenden Tabellenkopf
 \end{frame}
 \MakeShortVerb|
 
-\begin{frame}[fragile]{input \& include}
-	\begin{itemize}
-		\item \verb|\input| und \verb|\include| fügen externe Dateien am angegebenen Ort ein
-		\item \TeX\ „springt“ aus dem aktuellen Dokument, liest woanders, und springt wieder zurück \pause
-		\item \TeX-Version: \verb|\input| liest den Code einfach ein, als gehöre er ins Hauptdokument
-		\item \LaTeX-Version: |\include| erstellt eigene \verb|.aux|-Datei (sinnvoll, wenn \verb|.aux| benötigt)
-		\item \verb|\includeonly{a.tex,b.tex}| in der Präambel lässt nur die angegebenen Dateien für \verb|\include| zu
-		\item \verb|\excludeonly{b.tex,c.tex}| lässt die angegebenen Dateien für \verb|\include| \emph{nicht} zu (benötigt Paket \pkg{excludeonly})
-	\end{itemize}
+\begin{frame}[fragile]{\texttt{input} \& \texttt{include}}
+\begin{itemize}
+\item \verb|\input| and \verb|\include| insert external files at the specified location
+\item \TeX\ "jumps" out of the current document, reads elsewhere, and jumps back \pause
+\item \TeX\ version: \verb|\input| simply reads the code as if it belonged to the main document
+\item \LaTeX\ version: \verb|\include| creates its own \verb|.aux| file (useful when \verb|.aux| is needed)
+\item \verb|\includeonly{a.tex,b.tex}| in the preamble allows only the specified files for \verb|\include|
+\item \verb|\excludeonly{b.tex,c.tex}| does \emph{not} allow the specified files for \verb|\include| (requires \pkg{excludeonly} package)
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{root-Dokument}
+\begin{frame}[fragile]{Root Document}
 \begin{itemize}
-	\item nach Aufteilung muss immer das Hauptdokument kompiliert werden
-	\item[⇒] ständiges Wechseln zwischen Dokumenten\pause
-	\item gute Editoren nehmen die Arbeit ab:
-	\begin{itemize}
-		\item Definition von Hauptdokumenten möglich
-		\item Kompiliert automatisch das zugehörige Hauptdokument
-	\end{itemize}
+\item After division, only the main document must be compiled
+\item[⇒] Constant switching between documents \pause
+\item Good editors take care of the work:
+\begin{itemize}
+\item Definition of main documents possible
+\item Automatically compiles the associated main document
+\end{itemize}
 \end{itemize}
 \pause\vfill
 \begin{description}
-\item[\parbox{2cm}{\vspace{-5.68cm}\flushright\TeX works\\\TeX shop\\\TeX studio}] 
-Setzen von \emph{magic comments:}\\ \verb*?% !TEX root = ?\meta{Hauptdokument}
+\item[\parbox{2cm}{\vspace{-5.68cm}\flushright\TeX works\\\TeX shop\\\TeX studio}]
+Setting \emph{magic comments:}\\\verb*?% !TEX root = ?\meta{Main document}
 \begin{lstlisting}
-% !TEX root = ../Masterarbeit.tex
+% !TEX root = ../Thesis.tex
 % !TEX program = lualatex
 % !TEX encoding = utf8
-% !TEX spellcheck = de_DE
+% !TEX spellcheck = en_US
 \end{lstlisting}
 \item[Overleaf] Menu\,→\,Main Document
-\item[viele IDEs] Festlegen einer „Projekt-Hauptdatei“
+\item[Many IDEs] Setting a “project main file”
 \end{description}
 \end{frame}
 
-\begin{frame}[fragile,t]{Beispiel-Hauptdokument}
+\begin{frame}[fragile,t]{Example Main Document}
 \begin{lstlisting}
 \input{header}
 
 \includeonly{chapter1}
-\excludeonly{anhang} % erfordert Paket excludeonly!
+\excludeonly{appendix} % requires excludeonly package!
 
 \begin{document}
-  \include{chapter1}
-  \include{chapter2}
-   ...
-  \appendix
-  \include{anhang}
+\include{chapter1}
+\include{chapter2}
+...
+\appendix
+\include{appendix}
 \end{document}
 \end{lstlisting}
 \vfill
-⇒ Nur \verb|chapter1| wird hier gesetzt, \verb|anhang| explizit nie.
+⇒ Only \verb|chapter1| is set here, \verb|appendix| is explicitly never included.
 \overleaf{tex20}
 \end{frame}
 
-\begin{frame}[fragile]{Header-Dokument}{Einstellungen}
-	\begin{itemize}
-		\item Satzspiegel
-		\item Schriften (Brotschrift, Überschriften)
-		\item Formatierung von Formeln
-		\item …
-		\item alles, was vor \verb|\begin{document}| steht
-	\end{itemize}
+\begin{frame}[fragile]{Header Document}{Settings}
+\begin{itemize}
+\item Page layout
+\item Fonts (body text, headings)
+\item Formatting of equations
+\item …
+\item everything before \verb|\begin{document}|
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,t]{Titelei}
-	\begin{itemize}
-		\item enthält alles bis zur ersten Inhaltsseite
-		\item enthält Autor, Titel, etc.
-		\item mit KOMA: Dokumentoption \verb|titlepage=true/false| setzt eigene Seiten oder einen Titelkopf
-		\item Umgebung \verb|\begin{titlepage}| setzt eine frei gestaltbare Titelseite
-		\item Befehl \verb|\maketitle| setzt vordefinierte Titelei
-		\item Angaben von \verb|\title|, \verb|\author|, \verb|\extratitle| etc. nötig und möglich
-	\end{itemize}
-	\overleaf{tex14}
+\begin{frame}[fragile,t]{Front Matter}
+\begin{itemize}
+\item Contains everything up to the first content page
+\item Includes author, title, etc.
+\item with KOMA: Document option \verb|titlepage=true/false| sets own pages or a title head
+\item Environment \verb|\begin{titlepage}| sets a freely designable title page
+\item Command \verb|\maketitle| sets predefined front matter
+\item Specifications of \verb|\title|, \verb|\author|, \verb|\extratitle| etc. necessary and possible
+\end{itemize}
+\overleaf{tex14}
 \end{frame}
 
-\begin{frame}[fragile,t]{Titeleibefehle im KOMA-Bundle}
+\begin{frame}[fragile,t]{Title Commands in the KOMA Bundle}
 \begin{lstlisting}
 \documentclass{scrbook}
 \begin{document}
-  \titlehead{\Large Universität Schlauenheim}
-  \subject{Masterarbeit}
-  \title{Risikomanagement in Zeiten von Social Media}
-  \subtitle{Design interaktiver Apps für Banken und
-    Versicherungen}
-  \author{cand.\,stup. Uli Ungenau}
-  \date{30. Februar 2024}
-  \publishers{Betreut durch Prof.\,Dr.\,rer.\,stup. Naseweis}
-  \dedication{Für meine Mama.}
+\titlehead{\Large University of Smartville}
+\subject{Master's Thesis}
+\title{Risk Management in the Era of Social Media}
+\subtitle{Design of Interactive Apps for Banks and
+Insurance Companies}
+\author{cand. stup. Ian Imprécis}
+\date{February 30, 2024}
+\publishers{Supervised by Prof. Dr. Smartypants}
+\dedication{For my Mom.}
 
-  \maketitle
+\maketitle
 \end{document}
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile,b]{|\textbackslash maketitle| (in der Beamer-Klasse)}
+\begin{frame}[fragile,b]{|\textbackslash maketitle| (in the Beamer Class)}
 \begin{LTXexample}[pos=b]
-\title{Risikomanagement in Zeiten von Social Media}
-\subtitle{Design interaktiver Apps für Banken und
-  Versicherungen}
-\author{cand.\,stup. Uli Ungenau}
+\title{Risk Management in the Era of Social Media}
+\subtitle{Design of Interactive Apps for Banks and
+Insurance Companies}
+\author{cand. stup. Ian Imprécis}
 \date{30. Februar 2024}
 
 \maketitle
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{abstract}
+\begin{frame}[fragile,t]{Abstract}
 \begin{itemize}
-	\item Umgebung \verb|abstract| existiert für eine kurze Zusammenfassung des Dokuments
-	\item mehrere Abstracts möglich (z.\,B. englisch\,/\,deutsch etc.)
+\item Environment \verb|abstract| exists for a brief summary of the document
+\item Several abstracts possible (e.\,g., English/German etc.)
 \end{itemize}
 \vfill
 \begin{LTXexample}
 \begin{abstract}
-  Hier kommt eine kurze Zusammenfassung des Inhalts \dots
+Here comes a brief summary of the content \dots
 \end{abstract}
 
-Und hier fängt das eigentlich Dokument an 
+And here the actual document starts
 \dots
 \end{LTXexample}
-Die \texttt{abstract}-Umgebung steht in der \texttt{scrbook}/\texttt{book}-Klasse nicht zur Verfügung.
+The \texttt{abstract} environment is not available in the \texttt{scrbook}/\texttt{book} class.
 \end{frame}
 
-\begin{frame}[fragile]{Verzeichnisse – TOC, LOF, LOT}
-	\begin{itemize}
-		\item Verzeichnisse fassen strukturierte Elemente zusammen
-		\item prinzipiell kann alles in ein eigenes Verzeichnis aufgenommen werden
-		\item übliche Verzeichnisse:
-		\begin{itemize}
-			\item Inhaltsverzeichnis \hfill \verb|\tableofcontents|
-			\item Abbildungsverzeichnis \hfill \verb|\listoffigures|
-			\item Tabellenverzeichnis \hfill \verb|\listoftables|
-		\end{itemize}
-		\item Aufnamhme der Verzeichnisse ins Inhaltsverzeichnis:
-		 |\setuptoc{toc}{totoc}|
-%		\item möglich: Codeverzeichnis, Beispielverzeichnis, …
-	\end{itemize} 
-\end{frame}
-
-\begin{frame}[fragile]{Fußnoten, Randbemerkungen}
-	zusätzlicher Text, der nicht ins Hauptdokument\,/\,in den Textfluss passt
-	\begin{itemize}
-		\item Fußnoten \hfill \verb|\footnote{}|
-		\item gleitende Randnotiz \hfill \verb|\marginpar|
-		\item Randbemerkung  (Paket \pkg{marginnote}) \hfill \verb|\marginnote|
-	\end{itemize}
-	\vfill
-	Paket \pkg{footmisc} bietet vielfältige Möglichkeiten Aussehen von Fußnoten anzupassen
-\end{frame}
-
-\begin{frame}[fragile]{Zitate}
-Es gibt eigene Umgebungen für Zitate:
+\begin{frame}[fragile]{Lists of Content - TOC, LOF, LOT}
 \begin{itemize}
-\item \verb|quote| für kurze Zitate
-\item	 \verb|quotation| für längere Zitate
-\item \verb|verse| für Gedichte
+\item Lists compile structured elements
+\item Essentially, anything can be included in its own list
+\item Common lists:
+\begin{itemize}
+\item Table of contents \hfill \verb|\tableofcontents|
+\item List of figures \hfill \verb|\listoffigures|
+\item List of tables \hfill \verb|\listoftables|
 \end{itemize}
-Das Paket \pkg{csquotes} passt Feinheiten von Anführungszeichen für den nicht-englischen Satz an.
+\item Inclusion of lists in the table of contents: \verb|\setuptoc{toc}{totoc}|
+% \item Possible: code list, example list, …
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Footnotes, Marginal Notes}
+Additional text that does not fit into the main document/text flow
+\begin{itemize}
+\item Footnotes \hfill \verb|\footnote{}|
+\item Floating margin note \hfill \verb|\marginpar|
+\item Margin note (Package \pkg{marginnote}) \hfill \verb|\marginnote|
+\end{itemize}
+\vfill
+Package \pkg{footmisc} offers various options to customize the appearance of footnotes
+\end{frame}
+
+\begin{frame}[fragile]{Quotations}
+There are dedicated environments for quotations:
+\begin{itemize}
+\item \verb|quote| for short quotations
+\item \verb|quotation| for longer quotations
+\item \verb|verse| for poems
+\end{itemize}
+Package \pkg{csquotes} adjusts finer points of quotation marks for non-English text.
 \vfill
 \begin{lstlisting}
 \begin{quote}
-  alea iacta est \hfill\textit{Caesar}
+alea iacta est \hfill\textit{Caesar}
 \end{quote}
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Verweise}
-	\begin{itemize}
-		\item Elemente können mittels \verb|\label{}| bezeichnet werden
-		\item mögliche Elemente sind Überschriften (sections etc.), \verb|table|, \verb|figure|, Formeln, …
-		\item Referenzierung mit \verb|\ref{}| oder \verb|\cref| (Paket \pkg{cleveref})
-	\end{itemize}
+\begin{frame}[fragile]{References}
+\begin{itemize}
+\item Elements can be labeled with \verb|\label{}|
+\item Possible elements are headings (sections etc.), \verb|table|, \verb|figure|, formulas, …
+\item Referencing with \verb|\ref{}| or \verb|\cref| (Package \pkg{cleveref})
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,t]{Links im Dokument}{hyperref}
+\begin{frame}[fragile,t]{Links in the Document}{hyperref}
 \begin{itemize}
-\item Paket \pkg{hyperref} macht Verweise im PDF anklickbar
-\item \verb|\ref| und \verb|\cite| wird automatisch verlinkt
-\item	 URLs können mit \verb|\url{|\meta{URL}\verb|}| angegeben werden
-\item	 benannte Links mit \verb|\href{|\meta{URL}\verb|}{|\meta{angezeigter Text}\verb|}|
+\item Package \pkg{hyperref} makes references clickable in the PDF
+\item \verb|\ref| and \verb|\cite| are automatically linked
+\item URLs can be specified with \verb|\url{}|
+\item Named links with \verb|\href{}{}|
 \end{itemize}
-\uncover<2>{Um Probleme zu vermeiden \pkg{hyperref} eher als letztes Paket laden!}
+\uncover<2>{To avoid problems, load \pkg{hyperref} as the last package!}
 \vfill
 \begin{LTXexample}
 \url{http://xkcd.com}\\
@@ -1735,13 +1621,13 @@ Das Paket \pkg{csquotes} passt Feinheiten von Anführungszeichen für den nicht-
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile]{Vorspann\,/\,Anhang in \texttt{scrbook}}
+\begin{frame}[fragile]{Front Matter}
 \begin{itemize}
-\item Befehl |\frontmatter| schaltet auf römische Seitenzahlen
-\item |\mainmatter| auf normaler Nummerierung 
-\item |\backmatter| auf Anhang \\ in anderen Dokumentenklassen:  nur |\appendix|
-\item Nummerierung startet neu\\(abhängig von Dokumentenklasse A, B, C, …)
-\item Abschnitte im Anhang wie gewohnt mit |\chapter|, |\section|, etc.
+\item Command |\frontmatter| switches to Roman page numbers
+\item |\mainmatter| to normal numbering
+\item |\backmatter| to appendix \\ in other document classes: only |\appendix|
+\item Numbering starts anew\\(dependent on document class A, B, C, …)
+\item Sections in the appendix as usual with |\chapter|, |\section|, etc.
 \end{itemize}
 \vfill
 \begin{lstlisting}
@@ -1751,47 +1637,46 @@ Das Paket \pkg{csquotes} passt Feinheiten von Anführungszeichen für den nicht-
 \end{lstlisting}
 \end{frame}
 
-
-\begin{frame}{Anwendung}
+\begin{frame}{Application}
 \begin{arbeitsauftrag}
-Ergänzen Sie Ihr Dokument um die folgenden Elemente:
+Add the following elements to your document:
 \begin{itemize}
-\item Titelseite
-\item Inhaltsverzeichnis
-\item Abbildungsverzeichnis
-\item Tabellenverzeichnis
-\item Anhang
+\item Title page
+\item Table of contents
+\item List of figures
+\item List of tables
+\item Appendix
 \end{itemize}
 \end{arbeitsauftrag}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\teil{Diagramme}
+\teil{Diagrams}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Diagramme}
+\begin{frame}{Diagrams}
 \begin{itemize}
-\item Ein Diagramm ist eine grafische Darstellung von Daten, Sachverhalten oder Informationen.
-\item Information sollte dabei im Vordergrund stehen
-\item Diagramme sollten sich in das Dokument einfügen
+\item A diagram is a graphical representation of data, facts, or information.
+\item Information should be the primary focus.
+\item Diagrams should fit into the document:
 \begin{itemize}
-\item passende Dimensionen
-\item Beschriftung in gleicher Schriftart
+\item appropriate dimensions
+\item labeling in the same font style
 \end{itemize}
 \end{itemize}
 
-Empfehlung für Diagramme in \LaTeX: \pkg{pgfplots}
+Recommendation for diagrams in \LaTeX: \pkg{pgfplots}
 \end{frame}
 
 \begin{frame}[fragile]{pgfplots}
-Konfiguration mittels \verb|\pgfplotsset{|\meta{Optionen}|}|. Paketautor empfiehlt, für zukünftige Kompatbilität, die aktelle Version anzugeben.
+Configuration using \verb|\pgfplotsset{|\meta{options}|}|. The package author recommends specifying the current version for future compatibility.
 \begin{lstlisting}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \end{lstlisting}
 \pause
-\pkg{pgfplots} basiert auf \href{http://ctan.org/pkg/pgf}{\TikZ/PGF} und steht deshalb innerhalb einer |tikzpicture|:
+\pkg{pgfplots} is based on \href{http://ctan.org/pkg/pgf}{\TikZ/PGF} and therefore is within a |tikzpicture| environment:
 \begingroup
 \pgfplotsset{scale=0.5}
 \begin{LTXexample}[pos=r, explpreset={}, preset=, rframe={}]
@@ -1806,30 +1691,30 @@ Konfiguration mittels \verb|\pgfplotsset{|\meta{Optionen}|}|. Paketautor empfieh
 \end{frame}
 
 
-\begin{frame}{Achsentypen}
-Verschiedene Achsentypen verfügbar: \\[1em]
-\texttt{\textbackslash begin\{}\meta{Achsentyp}\verb|\}[|\meta{Optionen}\verb|]|\\
-\quad\meta{Inhalt}\\
-\texttt{\textbackslash end\{}\meta{Achsentyp}\verb|\}|
+\begin{frame}{Types of Axes}
+Various types of axes available: \\[1em]
+\texttt{\textbackslash begin\{}\meta{axis type}\verb|\}[|\meta{options}\verb|]|\\
+\quad\meta{content}\\
+\texttt{\textbackslash end\{}\meta{axis type}\verb|\}|
 
 \vfill
 
 \begin{tabular}{rl}
-\verb|axis| & lineare Koordinatenachsen\\
-\verb|semilogyaxis| & $x$-Achse linear, $y$-Achse logarithmisch\\
-\verb|semilogxaxis| & $x$-Achse logarithmisch, $y$-Achse linear\\
-\verb|loglogaxis| & beide Achsen logarithmisch\\
-\verb|polaraxis| & Polarkoordinaten\footnote{mit \verb|\textbackslash usepgfplotslibrary\{polar\}|}\\
-\verb|smithchart| & Smith-Diagramm\footnote{mit \verb|\textbackslash usepgfplotslibrary\{smithchart\}|}\\
-\verb|ternaryaxis| & Dreiecksdiagramm\footnote{mit \verb|\textbackslash usepgfplotslibrary\{ternary\}|}
+\verb|axis| & linear coordinate axes\\
+\verb|semilogyaxis| & linear $x$-axis, logarithmic $y$-axis\\
+\verb|semilogxaxis| & logarithmic $x$-axis, linear $y$-axis\\
+\verb|loglogaxis| & both axes logarithmic\\
+\verb|polaraxis| & polar coordinates\footnote{with \verb|\textbackslash usepgfplotslibrary\{polar\}|}\\
+\verb|smithchart| & Smith chart\footnote{with \verb|\textbackslash usepgfplotslibrary\{smithchart\}|}\\
+\verb|ternaryaxis| & ternary diagram\footnote{with \verb|\textbackslash usepgfplotslibrary\{ternary\}|}
 \end{tabular}
 \end{frame}
 
 
-\begin{frame}[fragile,t]{Daten hinzufügen}%\verb|\textbackslash addplot|}
-\verb|\addplot [|\meta{Optionen}\verb|] {|\meta{Eingabedaten}\verb|};|\\%\meta{ggf. TikZ-Befehle}|;|\\
-\verb|\addplot+[|\meta{Optionen}\verb|] {|\meta{Eingabedaten}\verb|};|%\meta{ggf. TikZ-Befehle}|;|
-\pdfmarginpar{Während die angegebenen Optionen bei addplot die globalen/bzw. Standardoptionen überschreiben fügt addplot+ die angegebenen Optionen nur den globalen hinzu.}\vfill
+\begin{frame}[fragile,t]{Adding Data}%\verb|\textbackslash addplot|}
+\verb|\addplot [|\meta{options}\verb|] {|\meta{input data}\verb|};|\\%\meta{additional TikZ commands}|;|\\
+\verb|\addplot+[|\meta{options}\verb|] {|\meta{input data}\verb|};|%\meta{additional TikZ commands}|;|
+\pdfmarginpar{While the specified options at \texttt{addplot} override the global/standard options, \texttt{addplot+} only adds the specified options to the global ones.}\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{axis}
@@ -1839,8 +1724,8 @@ Verschiedene Achsentypen verfügbar: \\[1em]
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{Koordinaten Eingabe}
-\verb|\addplot [|\meta{Optionen}\verb|] coordinates {|\meta{Koordinaten}\verb|};|\vfill
+\begin{frame}[fragile,t]{Coordinate Input}
+\verb|\addplot [|\meta{options}\verb|] coordinates {|\meta{coordinates}\verb|};|\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{loglogaxis}
@@ -1860,9 +1745,8 @@ Verschiedene Achsentypen verfügbar: \\[1em]
 \end{frame}
 
 
-\begin{frame}[fragile,t]{Daten-Tabellen}
-\verb|\addplot [|\meta{Optionen}\verb|] table [|\meta{Spalten-Auswahl}\verb|] {|\meta{Tabelle}\verb|};|\pdfmarginpar{Tabelle kann dabei entweder eine Datei mit Tabellendaten, oder eine direkt im TeX-File eingegebe Tabelle sein.}
-\vfill
+\begin{frame}[fragile,t]{Data Tables}
+\verb|\addplot [|\meta{options}\verb|] table [|\meta{column selection}\verb|] {|\meta{table}\verb|};|\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{axis}
@@ -1882,8 +1766,8 @@ Verschiedene Achsentypen verfügbar: \\[1em]
 \end{frame}
 
 
-\begin{frame}[fragile,t]{Daten in externen Dateien}
-\verb|\addplot [|\meta{Optionen}\verb|] table [|\meta{Spalten-Ausw.}\verb|] {|\meta{Dateipfad}\verb|};|\vfill
+\begin{frame}[fragile,t]{Data in External Files}
+\verb|\addplot [|\meta{options}\verb|] table [|\meta{column selection}\verb|] {|\meta{file path}\verb|};|\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{axis}
@@ -1895,42 +1779,42 @@ Verschiedene Achsentypen verfügbar: \\[1em]
 \end{tikzpicture}
 \end{LTXexample}
 \pause
-Paket \pkg{pgfplotstable} erlaubt das Nachbearbeiten vorhandener Tabellen (z.\,B. Einfügen einer Ausgleichsgerade).
+Package \pkg{pgfplotstable} allows post-processing of existing tables (e.g., inserting a trendline).
 \end{frame}
 
-\begin{frame}[fragile]{Beschriftungen}
+\begin{frame}[fragile]{Labels}
 \begin{tabular}{rll}
-Key & Values & Funktion\\\midrule
-\verb|title| & Text & Titel über dem Diagramm\\
-\verb|x|/\verb|ylabel| & bel. Text & Beschriftung der $x$- bzw. $y$-Achse  \\
-\verb|x|/\verb|ymin|/\verb|max| & Wert & schränkt Achse auf Bereich ein\\
-\verb|mark| & \verb|*|, \verb|x|, \verb|+|, \verb|o|, … & Koordinaten-Marker anpassen\\
-\verb|x|/\verb|ytick| & Liste & Koordinatenstriche explizit angeben\\
-\verb|minor tick num| & Zahl & Anzahl der Zwischenstriche\\
-\verb|grid| & \verb|major|, \verb|minor| & Gitter im Hintergrund einblenden
+Key & Values & Function\\\midrule
+\verb|title| & Text & Title above the diagram\\
+\verb|x|/\verb|ylabel| & any text & Label of the $x$- or $y$-axis  \\
+\verb|x|/\verb|ymin|/\verb|max| & value & limits axis to range\\
+\verb|mark| & \verb|*|, \verb|x|, \verb|+|, \verb|o|, … & customize coordinate markers\\
+\verb|x|/\verb|ytick| & list & explicitly specify coordinate ticks\\
+\verb|minor tick num| & number & number of minor ticks\\
+\verb|grid| & \verb|major|, \verb|minor| & display gridlines in the background
 \end{tabular}
 \end{frame}
 
-\begin{frame}[fragile,t]{Lengenden}
-\verb|\addlegendentry{|\meta{Beschreibung}\verb|}|\vfill
+\begin{frame}[fragile,t]{Legends}
+\verb|\addlegendentry{|\meta{description}\verb|}|\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
 \begin{axis}
   \addplot[smooth,mark=*,blue] coordinates {
     (0,2) (1,3) (3,1)
   };
-  \addlegendentry{Fall 1}
+  \addlegendentry{Case 1}
   \addplot[smooth,color=red,mark=x] coordinates {
     (0,0) (1,1) (2,1) (3,2)
   };
-  \addlegendentry{Fall 2}
+  \addlegendentry{Case 2}
 \end{axis}
 \end{tikzpicture}
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{Platzierung der Achsen}
-\verb|axis y line=|\meta{Platzierung}, \verb|axis x line=|\meta{Platzierung}\vfill
+\begin{frame}[fragile,t]{Axis Placement}
+\verb|axis y line=|\meta{placement}, \verb|axis x line=|\meta{placement}\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
 \begin{axis}[
@@ -1947,8 +1831,8 @@ domain=-5:5,samples=40]
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{Fehlerbalken}
-Fehler können mit den Optionen \verb|error bars/|\meta{Key}\verb|=|\meta{Value} gesetzt werden.\vfill
+\begin{frame}[fragile,t]{Error Bars}
+Errors can be set using the options \verb|error bars/|\meta{key}\verb|=|\meta{value}.\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
 \begin{axis}
@@ -1956,7 +1840,7 @@ Fehler können mit den Optionen \verb|error bars/|\meta{Key}\verb|=|\meta{Value}
    error bars/y dir=both,
    error bars/y fixed relative=.1,
   ] table [x=x,y=y]
-  {x	    y
+  {x    y
    32     32
    64     64
    128    128
@@ -1966,8 +1850,8 @@ Fehler können mit den Optionen \verb|error bars/|\meta{Key}\verb|=|\meta{Value}
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{Fehlerbalken}
-Individuelle Fehler konnen mit \verb|+-| (symmetrisch) oder \verb|+=| und \verb|-=| (asymmetrisch) angegeben werden:\vfill
+\begin{frame}[fragile,t]{Error Bars}
+Individual errors can be specified with \verb|+-| (symmetric) or \verb|+=| and \verb|-=| (asymmetric):\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
 \begin{axis}
@@ -1988,8 +1872,8 @@ Individuelle Fehler konnen mit \verb|+-| (symmetrisch) oder \verb|+=| und \verb|
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{Fehlerbalken}
-Fehler können auch aus einer Tabelle stammen:\vfill
+\begin{frame}[fragile,t]{Error Bars}
+Errors can also come from a table:\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{axis}
@@ -2005,8 +1889,8 @@ Fehler können auch aus einer Tabelle stammen:\vfill
 \end{frame}
 
 
-\begin{frame}[fragile,t]{Histogramme}
-Histogramme mit Option \verb|hist={|\meta{Histogram-Optionen}\verb|}|\vfill
+\begin{frame}[fragile,t]{Histograms}
+Histograms with option \verb|hist={|\meta{histogram options}\verb|}|\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{axis}
@@ -2021,32 +1905,32 @@ Histogramme mit Option \verb|hist={|\meta{Histogram-Optionen}\verb|}|\vfill
   \end{axis}
 \end{tikzpicture}
 \end{LTXexample}
-Interessante Optionen:\\\verb|cummulative| für kummuliertes Histogram\\\verb|density| normiert auf 1
+Interesting options:\\\verb|cumulative| for cumulative histogram\\\verb|density| normalized to 1
 \end{frame}
 
 
-\begin{frame}[fragile,t]{Balkendiagramme}
-Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vfill
+\begin{frame}[fragile,t]{Bar Charts}
+Option \verb|xbar| creates horizontal bar chart, \verb|ybar| creates vertical bar chart\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
 \begin{axis}[
  xbar,
  width=6cm, height=3.5cm,
  enlarge y limits=0.5,
- xlabel={Anzahl der Antworten},
- symbolic y coords={Ja,Nein},
+ xlabel={Number of responses},
+ symbolic y coords={Yes,No},
  ytick=data,
 ]
  \addplot coordinates
-  {(3,Nein) (7,Ja)};
+  {(3,No) (7,Yes)};
 \end{axis}
 \end{tikzpicture}
 \end{LTXexample}
 \end{frame}
 
 
-\begin{frame}[fragile,t]{Balkendiagramme}
-Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vfill
+\begin{frame}[fragile,t]{Bar Charts}
+Option \verb|xbar| creates horizontal bar chart, \verb|ybar| creates vertical bar chart\vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
 \begin{axis}[
@@ -2057,7 +1941,9 @@ Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vf
  {(a,40) (b,50) (c,70)};
  \addplot coordinates 
  {(a,43) (b,45) (c,65)};
- \addplot coordinates 
+ \
+
+addplot coordinates 
  {(a,13) (b,25) (c,35)};
 \end{axis}
 \end{tikzpicture}
@@ -2067,7 +1953,7 @@ Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vf
 
 
 \begin{frame}[fragile,t]{Boxplots}
-\verb|\usepgfplotslibrary{statistics}| erlaubt Satz von Boxplots:\vfill
+\verb|\usepgfplotslibrary{statistics}| allows generation of boxplots:\vfill
 \usepgfplotslibrary{statistics}
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
@@ -2085,8 +1971,8 @@ Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vf
 \end{LTXexample}
 \end{frame}
 
-\begin{frame}[fragile,t]{3D-Plots}% \verb|\textbackslash addplot3|}
-\verb|\addplot3 [|\meta{Optionen}\verb|] {|\meta{Eingabedaten}\verb|};| \vfill
+\begin{frame}[fragile,t]{3D Plots}% \verb|\textbackslash addplot3|}
+\verb|\addplot3 [|\meta{options}\verb|] {|\meta{input data}\verb|};| \vfill
 \begin{LTXexample}[pos=r, explpreset={}, preset=\small, rframe={}]
 \begin{tikzpicture}
   \begin{axis}
@@ -2101,16 +1987,15 @@ Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vf
 \end{LTXexample}
 \end{frame}
 
-%% TikZ-Diagramme aus R exportieren: R-Paket “TikZDevice”
+%% Export TikZ diagrams from R: R package “TikZDevice”
 
-
-\nocite{mathmode, dante:mathe, amsmath, tabularray, booktabs, dante:tabellen, dante:wissarbeit, pgfplots} %dante:koma, 
-\begin{frame}[allowframebreaks]{Weiterführende Literatur}
+\nocite{mathmode, amsmath, tabularray, booktabs, dante:wissarbeit, koma-en, pgfplots}
+\begin{frame}[allowframebreaks]{Further Reading}
 \printbibliography
 \end{frame}
 
 
-\begin{frame}<handout:1>{Lehrevaluation}
+\begin{frame}<handout:1>{Teaching Evaluation}
 
 \begin{columns}
 	\column{.4\textwidth}
@@ -2119,7 +2004,7 @@ Option \verb|xbar| erzeug Balkendiagramm, \verb|ybar| erzeugt Säulendiagramm\vf
 	\begin{tabbing}
 	\textbf{Losung:\quad}\=\url{evasys.uni-mannheim.de} \kill
 	\textbf{Link:} \> \href{https://evasys.uni-mannheim.de/evasys/online.php?p=\kursAB{\evallosungA}{\evallosungB}}{\texttt{evasys.uni-mannheim.de}} \\
-	\textbf{Losung:} \> \href{https://evasys.uni-mannheim.de/evasys/online.php?p=\kursAB{\evallosungA}{\evallosungB}}{\texttt{\kursAB{\evallosungA}{\evallosungB}}}
+	\textbf{TAN:} \> \href{https://evasys.uni-mannheim.de/evasys/online.php?p=\kursAB{\evallosungA}{\evallosungB}}{\texttt{\kursAB{\evallosungA}{\evallosungB}}}
 	\end{tabbing}
 \end{columns}
 \end{frame}

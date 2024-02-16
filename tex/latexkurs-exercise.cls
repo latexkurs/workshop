@@ -17,10 +17,7 @@
 	xparse,
 }
 
-%% Language
-\RequirePackage{polyglossia}
-\setmainlanguage{german}
-\setotherlanguage{english}
+
 
 %% Fonts
 \RequirePackage{fontspec, microtype}
@@ -43,7 +40,18 @@
 \DeclareStringOption{titel}
 \DeclareBoolOption{vorläufig}
 \DeclareBoolOption{lösung}
+\DeclareBoolOption{englisch}
 \ProcessKeyvalOptions{latexkurs}
+
+%% Language
+\RequirePackage{polyglossia}
+\ifltxkurs@englisch
+	\setmainlanguage{english}
+	\setotherlanguage{german}
+\else
+	\setmainlanguage{german}
+	\setotherlanguage{english}
+\fi
 
 %% Geometry
 \RequirePackage{geometry}
@@ -70,12 +78,22 @@
 }
 \setkomafont{pagehead}{\normalfont\small\sffamily}
 \setkomafont{pagefoot}{\small\itshape}
-\ihead{\LaTeX-Workshop}
-\chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
-\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{Datum: \DTMdate{\ltxkurs@datum}}{Stand: \DTMdate{\ltxkurs@ausgabe}}}
-\ifoot{Mannheim, FSS 2023}
-\cfoot{}
-\ofoot{Seite~\thepage~von~\pageref{LastPage}}
+\ifltxkurs@englisch
+	\ihead{\LaTeX\ Workshop}
+	\chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Exercise \ltxkurs@blattnr}{\ltxkurs@titel}}
+	\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{issued \DTMdate{\ltxkurs@datum}}{as of \DTMdate{\ltxkurs@ausgabe}}}
+	\ifoot{Mannheim, FSS 2024}
+	\cfoot{}
+	\ofoot{page~\thepage~of~\pageref{LastPage}}
+\else
+	\ihead{\LaTeX-Workshop}
+	\chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
+	\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{Datum: \DTMdate{\ltxkurs@datum}}{Stand: \DTMdate{\ltxkurs@ausgabe}}}
+	\ifoot{Mannheim, FSS 2024}
+	\cfoot{}
+	\ofoot{Seite~\thepage~von~\pageref{LastPage}}
+\fi
+
 
 %% Listings
 \RequirePackage{showexpl}

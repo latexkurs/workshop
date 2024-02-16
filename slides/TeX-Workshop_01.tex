@@ -1,7 +1,7 @@
 % !TEX TS-program = lualatex
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = de_DE
-% © 2017-2023 Moritz Brinkmann, CC-by-sa
+% © 2017-2024 Moritz Brinkmann, CC-by-sa
 % https://ma.latexkurs.de
 
 \documentclass[
@@ -14,7 +14,7 @@
 	kursA,
 ]{../tex/latexkurs-slides}
 
-\usepackage{caption,booktabs,siunitx}
+\usepackage{caption,booktabs,siunitx,adjustbox}
 
 \setotherlanguages{russian,dutch}
 
@@ -44,11 +44,11 @@ Nach den zwei Workshop-Tagen können Sie …
 			\item	zwei Sitzungen:
 				\begin{itemize}
 				\kursAB{
-					\item Samstag 18. Februar (heute)
-					\item Sonntag 19. Februar (morgen)
+					\item Samstag 17. Februar (heute)
+					\item Sonntag 18. Februar (morgen)
 				}{
-					\item Samstag 4. März (heute)
-					\item Sonntag 5. März (morgen)
+					\item Samstag 2. März (heute)
+					\item Sonntag 3. März (morgen)
 				}
 				\end{itemize}
 			jeweils 10 bis 15 Uhr
@@ -59,7 +59,7 @@ Nach den zwei Workshop-Tagen können Sie …
 		\begin{columns}
 			\column{.7\textwidth}
 				\begin{itemize}
-					\item Alle Materialien stehen auf der \href{https://ma.latexkurs.de}{Workshophomepage} oder im \href{https://ilias.uni-mannheim.de/goto.php?target=fold_1226497&client_id=ILIAS}{ILIAS} zum Download:\\[1ex]
+					\item Alle Materialien stehen auf der \href{https://ma.latexkurs.de}{Workshophomepage} oder im \href{https://ilias.uni-mannheim.de/goto.php?target=fold_1461908&client_id=ILIAS}{ILIAS} zum Download:\\[1ex]
 					\url{https://ma.latexkurs.de/}\\\quad
 				\end{itemize}
 			\column{.25\textwidth}
@@ -82,15 +82,15 @@ Nach den zwei Workshop-Tagen können Sie …
 				\begin{columns}
 					\column{0.26\textwidth}
 					\begin{itemize}\setlength{\itemsep}{0pt}
-							\item Samstag 19. Februar
-							\item Sonntag 20. Februar
+							\item Samstag 17. Februar
+							\item Sonntag 18. Februar
 					\end{itemize}
 					\column{0.04\textwidth}
 						\emph{oder}
 					\column{0.26\textwidth}
 					\begin{itemize}\setlength{\itemsep}{0pt}
-						\item Samstag 5. März
-						\item Sonntag 6. März
+						\item Samstag 2. März
+						\item Sonntag 3. März
 					\end{itemize}
 					\column{0.1\textwidth}
 						\vspace{1.5cm}
@@ -104,7 +104,7 @@ Nach den zwei Workshop-Tagen können Sie …
 		\begin{columns}
 			\column{.7\textwidth}
 				\begin{itemize}
-					\item Alle Materialien stehen auf der \href{https://ma.latexkurs.de}{Workshophomepage} %oder im \href{https://ilias.uni-mannheim.de/goto.php?target=fold_1226497&client_id=ILIAS}{ILIAS}
+					\item Alle Materialien stehen auf der \href{https://ma.latexkurs.de}{Workshophomepage} oder im \href{https://ilias.uni-mannheim.de/goto.php?target=fold_1461908&client_id=ILIAS}{ILIAS}
 					 zum Download:\\[1ex]
 					\url{https://ma.latexkurs.de/}\\[1em]\quad
 				\end{itemize}
@@ -482,7 +482,7 @@ Erstellen Sie ein erstes \LaTeX-Dokument, indem Sie dieses Minimalbeispiel in Ih
 	\pause
 	\begin{olcol}
 		\begin{arbeitsauftrag}
-			Laden Sie sich die Datei \href{http://latexkurs.github.io/MA/uebung_layout.tex}{\texttt{uebung\_layout.tex}} von der Workshopwebseite herunter. Vollziehen Sie daran nach und nach alle typografischen Einstellungen, die besprochen werden.
+			Laden Sie sich die Datei \href{https://latexkurs.github.io/MA-de/uebung_layout.tex}{\texttt{uebung\_layout.tex}} von der Workshopwebseite herunter. Vollziehen Sie daran nach und nach alle typografischen Einstellungen, die besprochen werden.
 		
 			Im Idealfall wählen Sie alle Werte so, dass Sie den Anforderungen an die Ihnen bevorstehende Abschlussarbeit genügen.
 		\end{arbeitsauftrag}
@@ -886,17 +886,17 @@ Testen Sie auch das Aussehen anderer Umgebungen wie |itemize| und |description|.
 		\begin{column}{.65\textwidth}
 %			\setlength{\labelwidth}{5cm}
 			\begin{description}
-				\item<all:1->[tracking] Anpassung des Glyphenabstands innerhalb der Wörter (≤\,3\%)
+				\item<all:1->[protrusion] Optischer Randausgleich
 				\item<all:2->[expansion] Anpassung der Glyphenbreite (≤\,2\%)
-				\item<all:3->[protrusion] Optischer Randausgleich
+				\item<all:3->[tracking] Anpassung des Glyphenabstands innerhalb der Wörter (≤\,3\%)
 				\item<all:4->[ligatures] Verbindung mehrerer Buchstaben zu einer Glyphe
 			\end{description}
 		\end{column}
 		\begin{column}{.25\textwidth}%
 			\centering\rmfamily\Large\noindent%
-			\only<all:1>{\LARGE\hfill V\kern1pt A\hfill F\kern1.1pt o\hfill\,\\\hfill VA\hfill Fo\hfill}%
-			\only<all:2>{Text\\\scalebox{.98}{Text}}%
-			\only<all:3>{\tiny\parbox{\textwidth}{Lorem ipsum dolor sit amet consectetur\textcolor{red}{,} adipisici elit, sed eiusmod tempor incid\textcolor{red}{\-}unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis no\textcolor{red}{\-}strud exer\textcolor{red}{\-}citation ullamco labo\textcolor{red}{\-}ris nisi ut aliquid ex ea commodi consequat. Quis aute iure rep\textcolor{red}{\-}rehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa\textcolor{red}{\-}riatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}}%
+			\only<all:3>{\LARGE\hfill V\kern1pt A\hfill F\kern1.1pt o\hfill\,\\\hfill VA\hfill Fo\hfill}%
+			\only<all:2>{Text\\\adjustbox{scale={.92}{1}}{Text}}%
+			\only<all:1>{\tiny\parbox{\textwidth}{Lorem ipsum dolor sit amet consectetur\textcolor{red}{,} adipisici elit, sed eiusmod tempor incid\textcolor{red}{\-}unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis no\textcolor{red}{\-}strud exer\textcolor{red}{\-}citation ullamco labo\textcolor{red}{\-}ris nisi ut aliquid ex ea commodi consequat. Quis aute iure rep\textcolor{red}{\-}rehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa\textcolor{red}{\-}riatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}}%
 			\only<all:4>{f\/i fi\\
 				f\/l fl\\
 				f\/f ff\\
@@ -942,8 +942,9 @@ Aktivieren Sie in Ihrem \href{https://qn3.de/tex02}{Dokument} den optischen Rand
 \end{frame}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \teil{Dokumentation \& Fehlermeldungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dokumentation}
 \begin{frame}[fragile]{Dokumentation}
 	\begin{itemize}
@@ -1032,7 +1033,7 @@ l.60
 	\pause\vskip.8ex
 	\begin{olcol}
 		\begin{arbeitsauftrag}
-			Laden Sie sich das Dokument \href{https://latexkurs.github.io/MA/uebung_fehlermeldungen.tex}{\texttt{uebung\_fehlermeldungen.tex}} von der Workshophomepage, erstellen Sie ein MWE und beheben Sie falls möglich alle Fehler.
+			Laden Sie sich das Dokument \href{https://latexkurs.github.io/MA-de/uebung_fehlermeldungen.tex}{\texttt{uebung\_fehlermeldungen.tex}} von der Workshophomepage, erstellen Sie ein MWE und beheben Sie falls möglich alle Fehler.
 		\end{arbeitsauftrag}
 	\end{olcol}
 	\overleaf{tex05}
