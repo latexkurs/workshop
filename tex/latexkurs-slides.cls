@@ -106,10 +106,10 @@
 \usefonttheme{professionalfonts}
 \RequirePackage{csquotes, fontspec, unicode-math}
 \RequirePackage[babel=true]{microtype}
-\setmainfont{Libertinus Serif}
-\setsansfont{Libertinus Sans}
+\setmainfont{LibertinusSerif}
+\setsansfont{LibertinusSans}
 \setmonofont[Scale=.95,AutoFakeSlant]{Inconsolata}
-\setmathfont[AutoFakeBold]{Libertinus Math}
+\setmathfont[AutoFakeBold]{LibertinusMath}
 
 
 \ifltxkurs@kursA
