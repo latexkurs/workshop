@@ -1,0 +1,30 @@
+\documentclass{scrartcl}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+
+\usepackage{blindtext}
+
+\usepackage{fontspec}
+%% System fonts must be loaded with the same name they are displayed with,
+%% such as in Word
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+%% Fonts provided with TeX Live can be loaded as packages
+%% See also: http://www.tug.dk/FontCatalogue/
+%\usepackage{libertine}
+%\usepackage{bookman}
+%\usepackage{gfsartemisia}
+%\usepackage[default]{droidserif}
+
+
+\begin{document}
+\section{Here comes some Lorem Ipsum text}
+\Blindtext[2][3]
+
+\subsection{And a bit more Lorem Ipsum text}
+\Blindtext[5]
+
+\end{document}

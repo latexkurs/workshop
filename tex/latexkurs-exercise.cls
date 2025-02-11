@@ -82,14 +82,14 @@
 	\ihead{\LaTeX\ Workshop}
 	\chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Exercise \ltxkurs@blattnr}{\ltxkurs@titel}}
 	\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{issued \DTMdate{\ltxkurs@datum}}{as of \DTMdate{\ltxkurs@ausgabe}}}
-	\ifoot{Mannheim, FSS 2024}
+	\ifoot{Mannheim, FSS 2025}
 	\cfoot{}
 	\ofoot{page~\thepage~of~\pageref{LastPage}}
 \else
 	\ihead{\LaTeX-Workshop}
 	\chead{\bfseries\ifthenelse{\equal{\ltxkurs@titel}{}}{Übungsblatt \ltxkurs@blattnr}{\ltxkurs@titel}}
 	\ohead{\ifthenelse{\equal{\ltxkurs@ausgabe}{}}{Datum: \DTMdate{\ltxkurs@datum}}{Stand: \DTMdate{\ltxkurs@ausgabe}}}
-	\ifoot{Mannheim, FSS 2024}
+	\ifoot{Mannheim, FSS 2025}
 	\cfoot{}
 	\ofoot{Seite~\thepage~von~\pageref{LastPage}}
 \fi

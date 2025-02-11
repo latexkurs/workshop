@@ -1,0 +1,30 @@
+\documentclass{scrartcl}
+
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+\usepackage{blindtext}
+
+\usepackage{fontspec}
+%% Systemschriftarten müssen mit dem gleichen Namen geladen werden,
+%% mit dem sie z.B. auch in Word angezeigt werden
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+%% in TeXlive mitgelieferte Schriften können als Paket geladen werden
+%% siehe auch: http://www.tug.dk/FontCatalogue/
+%\usepackage{libertine}
+%\usepackage{bookman}
+%\usepackage{gfsartemisia}
+%\usepackage[default]{droidserif}
+
+
+\begin{document}
+\section{Hier kommt ein Blindtext}
+\Blindtext[2][3]
+
+\subsection{Und noch ein bisschen Blindtext}
+\Blindtext[5]
+
+\end{document}

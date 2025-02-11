@@ -1,0 +1,56 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% © 2021-2024 Moritz Brinkmann, CC-by-sa
+% https://ma.latexkurs.de
+
+\documentclass[a4paper, 12pt, oneside]{scrreprt}
+
+\usepackage{blindtext}
+
+%% Seitenränder
+\usepackage{geometry}
+\geometry{hmargin=3cm}
+
+%% Kopf- und Fußzeilen
+\pagestyle{headings}
+
+%% Zeilenabstand
+\usepackage{setspace}
+\onehalfspacing
+
+%% Mikrotypographie
+\usepackage{microtype}
+
+
+\begin{document}
+	
+	\chapter{Das erste Kapitel}
+	\blindtext
+	
+	
+	\section{Erster Abschnitt im ersten Kapitel}
+	\blindtext[2]
+	
+	\blinditemize
+	
+	\blindtext
+	\begin{quote}
+		\blindtext
+		
+		\blindtext
+	\end{quote}
+	
+	\blindtext
+	\begin{quotation}
+		\blindtext
+		
+		\blindtext
+	\end{quotation}
+	\blindtext
+	
+	
+	\section{Zweiter Abschnitt im ersten Kapitel}
+	\Blindtext
+	
+\end{document}

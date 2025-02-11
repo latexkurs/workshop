@@ -1,0 +1,40 @@
+\documentclass[
+ 	a4paper,
+	twoside,
+]{scrreprt}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+
+\usepackage{blindtext}
+\usepackage[inner=2cm, outer=4cm]{geometry}
+
+%% Header and Footer with KOMA-Script (scrlayer-scrpage):
+\usepackage[headsepline=true]{scrlayer-scrpage}
+ \ohead{\thepage}
+ \rehead{\headmark}
+ \lohead{\headmark}
+ % Page number only in the footer on plain pages
+ \ofoot[\thepage]{}
+ % Display content on plain pages as well:
+ \ifoot*{\textcopyright\ M. Mustermann}
+ % Activate the defined header:
+ \pagestyle{scrheadings}
+ % Automatically fill the header with the current chapter/section:
+ \automark[section]{chapter}
+
+\begin{document}
+    
+    \chapter{Here comes some blind text}
+    \blindtext[2]
+    
+    \Blindtext
+    
+    \chapter{And a bit more blind text}
+    \Blindtext[3][2]
+    
+    \thispagestyle{plain.scrheadings}
+    % Changes the page style only for the current page
+    \blindtext[4]
+
+\end{document}

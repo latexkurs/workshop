@@ -1,0 +1,120 @@
+\documentclass[oneside,12pt,a4paper]{scrreprt}
+
+\usepackage{microtype}
+
+\usepackage{tabularray, xcolor}
+\UseTblrLibrary{booktabs}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{german}
+
+\begin{document}
+
+\chapter{Tables}
+\section{Standard \LaTeX{} table \texttt{tabular}}
+
+\begin{table}[h!]
+    \centering
+    \caption{Example table with \texttt{tabular}}
+    \begin{tabular}{lcrp{3cm}}
+        \toprule
+        left-aligned & centered & right-aligned & wrapped \\
+        \midrule
+        Cell 1     & Cell 2   & third cell & Text in this cell will wrap after 3 cm. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\section{Tables with \texttt{tabularray}}
+
+\begin{table}[hb]
+    \caption{Example table with \texttt{tabularray}}
+    \begin{tblr}{X[l]X[c]X[r]X[j]}
+        \toprule
+        left-aligned & centered & right-aligned & justified \\
+        \midrule
+        The text in the first column will automatically wrap and be left-aligned. &
+        The text in the second column will automatically wrap and be centered. &
+        The text in the third column will automatically wrap and be right-aligned. &
+        The text in the fourth column will automatically wrap and be justified. \\
+        \bottomrule
+    \end{tblr}
+\end{table}
+
+\begin{table}[hb]
+    \caption{Different distribution of the total width, negative coefficients only specify the \emph{maximum} width.}
+    \centering
+    \begin{tblr}{
+        width = 0.8\textwidth,
+        colspec = {|l|X[1]|X[2]|X[-1]|},
+    }
+        Alpha   & Beta  & Gamma  & Delta \\
+        Epsilon & Zeta  & Eta    & Theta \\
+        Iota    & Kappa & Lambda & Mu    \\
+    \end{tblr}
+\end{table}
+
+\begin{table}[hb]
+    \caption{Different formatted lines}
+    \centering
+    \begin{tblr}{
+        columns = {
+            wd=2cm,
+            halign=c
+        },
+        row{2-3} = {font=\itshape},
+        vlines = {solid, magenta}, 
+        hlines = {dashed},
+    }
+        Alpha   & Beta  & Gamma  & Delta \\
+        Epsilon & Zeta  & Eta    & Theta \\
+        Iota    & Kappa & Lambda & Mu    \\
+    \end{tblr}
+\end{table}
+
+\begin{table}[hb]
+    \caption{Differently colored cells}
+    \centering
+    \begin{tblr}{
+        hlines = {white},
+        vlines = {white},
+        cell{1,6}{odd} = {teal7},
+        cell{1,6}{even} = {green7},
+        cell{2,4}{1,4} = {red7},
+        cell{3,5}{1,4} = {purple7},
+        cell{2}{2} = {r=4,c=2}{c,azure7},
+    }
+        Alpha   & Beta  & Gamma   & Delta   \\
+        Epsilon & Zeta  & Eta     & Theta   \\
+        Iota    & Kappa & Lambda  & Mu      \\ 
+        Nu      & Xi    & Omicron & Pi      \\
+        Rho     & Sigma & Tau     & Upsilon \\
+        Phi     & Chi   & Psi     & Omega   \\
+    \end{tblr}
+\end{table}
+
+
+\begin{table}[hb]
+    \caption{Table with the \texttt{booktabs} extension}
+    \centering
+    \begin{booktabs}{
+        colspec = lcccc,
+        cell{1}{1} = {r=2}{},
+        cell{1}{2,4} = {c=2}{},
+    }
+        \toprule
+            Sample & I &   & II & \\
+        \cmidrule[lr]{2-3} \cmidrule[lr]{4-5}
+                   & A & B & C & D \\
+        \midrule
+            S1     & 5 & 6 & 7 & 8 \\
+            S2     & 6 & 7 & 8 & 5 \\
+            S3     & 7 & 8 & 5 & 6 \\
+        \bottomrule
+    \end{booktabs}
+\end{table}
+
+
+\end{document}

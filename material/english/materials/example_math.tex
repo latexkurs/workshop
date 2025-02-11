@@ -1,0 +1,95 @@
+\documentclass%[fleqn]% ← left aligned equations
+{scrartcl}
+
+\usepackage{
+	amsmath,
+	amssymb,
+	icomma,
+	mathtools,
+	polyglossia,
+}
+\setmainlanguage{english}
+
+\begin{document}
+
+\section{Mathe}
+\subsection{Mathe-Umgebungen}
+
+% inline-math:
+$ f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i $
+
+% display-math
+\[
+	f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i
+\]
+
+\begin{displaymath}
+	f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i
+\end{displaymath}
+
+\begin{equation}
+	f(x) = n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots = \sum_{i=0}^\infty n_i \cdot x^i
+\end{equation}
+
+% equations aligned at '&' (with numbering):
+\begin{align}
+	f(x) &= n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots \\
+	     &= \sum_{i=0}^\infty n_i \cdot x^i
+\end{align}
+
+% equations aligned at '&' (without numbering):
+\begin{align*}
+	f(x) &= n_0 + n_1 \cdot x + n_2 \cdot x^2 + n_3 \cdot x^3 + \cdots \\
+	     &= \sum_{i=0}^\infty n_i \cdot x^i
+\end{align*}
+
+\[ x_{n+1} = x_n - \frac{f(x_n)}{f’(x_n)} \]
+\[ x_{n+1} = x_n - \frac{f(x_n)}{f^\prime (x_n)} \]
+
+
+\subsection{Greek Letters}
+
+\begin{align*}
+\alpha        \theta        o           \tau         \\
+\beta         \vartheta    \pi          \upsilon     \\
+\gamma        \gamma       \varpi       \phi         \\
+\delta        \kappa       \rho         \varphi      \\
+\epsilon      \lambda      \varrho      \chi         \\
+\varepsilon   \mu          \sigma       \psi         \\
+\zeta         \nu          \varsigma    \omega       \\
+\eta          \xi                                    \\
+                                                     \\
+\Gamma        \Lambda      \Sigma       \Psi         \\
+\Delta        \Xi          \Upsilon     \Omega       \\
+\Theta        \Pi          \Phi
+\end{align*}
+
+% To find all possible symbols:
+% http://detexify.kirelabs.org/classify.html
+
+
+\subsection{Operators}
+
+\begin{equation}
+	\sin(x)
+	\cos(y)
+	\lim_{\phi\rightarrow 0} \tan(\phi)
+\end{equation}
+
+
+\subsection{Matrices}
+
+\begin{align}
+	A &= 
+ 		\begin{pmatrix}
+ 			a & b \\
+	 		c & d \\
+ 		\end{pmatrix} \\
+	\det(A) &= 
+		\begin{vmatrix}
+ 			a & b \\
+	 		c & d \\
+ 		\end{vmatrix}
+\end{align}
+
+\end{document}

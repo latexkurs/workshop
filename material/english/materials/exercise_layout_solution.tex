@@ -1,0 +1,56 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = de_DE
+% © 2024 Moritz Brinkmann, CC-by-sa
+% https://ma.latexkurs.de
+
+\documentclass[a4paper, 12pt, oneside]{scrreprt}
+
+\usepackage{blindtext}
+
+%% page margins
+\usepackage{geometry}
+\geometry{hmargin=3cm}
+
+%% header amd footer
+\pagestyle{headings}
+
+%% line spacing
+\usepackage{setspace}
+\onehalfspacing
+
+%% microtypography
+\usepackage{microtype}
+
+
+\begin{document}
+	
+	\chapter{The First Chapter}
+	\blindtext
+	
+	
+	\section{First Section in the First Chapter}
+	\blindtext[2]
+	
+	\blinditemize
+	
+	\blindtext
+	\begin{quote}
+		\blindtext
+		
+		\blindtext
+	\end{quote}
+	
+	\blindtext
+	\begin{quotation}
+		\blindtext
+		
+		\blindtext
+	\end{quotation}
+	\blindtext
+	
+	
+	\section{Second Section in the First Chapter}
+	\Blindtext
+	
+\end{document}

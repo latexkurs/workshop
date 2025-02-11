@@ -1,0 +1,40 @@
+\documentclass[
+ 	a4paper,
+	twoside,
+]{scrreprt}
+
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+\usepackage{blindtext}
+\usepackage[inner=2cm, outer=4cm]{geometry}
+
+%% Kopf- und Fußzeilen mit KOMA-Skript (sclayer-scrpage):
+\usepackage[headsepline=true]{scrlayer-scrpage}
+ \ohead{\thepage}
+ \rehead{\headmark}
+ \lohead{\headmark}
+ % Seitenzahl nur auf plain-Seiten im Fuß
+ \ofoot[\thepage]{}
+ % Inhalt auch auf plain-Seiten anzeigen:
+ \ifoot*{\textcopyright\ M. Mustermann}
+ % Aktivieren des festgelegten Kopfzeile:
+ \pagestyle{scrheadings}
+ % automatisches Füllen der Kopfzeile mit aktuellem Kapitel/Abschnitt:
+ \automark[section]{chapter}
+
+\begin{document}
+    
+    \chapter{Hier kommt ein Blindtext}
+    \blindtext[2]
+    
+    \Blindtext
+    
+    \chapter{Und noch ein bisschen Blindtext}
+    \Blindtext[3][2]
+    
+    \thispagestyle{plain.scrheadings}
+    % ändert den Seitenstil nur für die aktuelle Seite
+    \blindtext[4]
+
+\end{document}
